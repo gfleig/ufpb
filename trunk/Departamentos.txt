@@ -1,0 +1,21 @@
+DCS
+
+Institucional
+	Gestão
+	Corpo Docente -> SIGAA
+	Comissões Adm/Representações
+	Ambientes Professores
+	Contato etc
+
+Cursos Grad
+Cursos Pós
+Pesquisa/Extensão/Monitoria (ext e mon -> SIGAA)
+Área Docente
+Prog. Disciplinas
+	Aproveitamento
+	Programas de componentes curr.
+Editais de Concursos
+Notícias Relacionadas
+Processos -> SIGAA
+Links úteis
+
