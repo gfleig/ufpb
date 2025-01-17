@@ -766,9 +766,10 @@ class WidgetDestaqueSoloInvertido extends WP_Widget {
         $img_link = !empty($instance['img_link']) ? $instance['img_link'] : get_the_post_thumbnail_url(url_to_postid($pagina_link));
 
         echo $args['before_widget'];
+
         echo '
         <div class="destaque-wrapper destaque-solo invertido">  
-            <div class="camada-1">
+            <div class="linha-abaixo">
                 <h2>' . $titulo . '</h2>
                 <p>' . $resumo . '</p>
                 <div class="link-wrapper">
@@ -850,7 +851,7 @@ class WidgetDestaqueSolo extends WP_Widget {
 
     public function widget($args, $instance) {
         // Extrair os valores dos campos do widget
-        $pagina_link = $instance['pagina_link'];
+        $pagina_link = esc_url($instance['pagina_link']);
         $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
         $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link));    
         $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
@@ -859,13 +860,13 @@ class WidgetDestaqueSolo extends WP_Widget {
         echo $args['before_widget'];
 
         echo '
-        <div class="destaque-wrapper destaque-solo">  
-            <div class="camada-1">
-                <h2>' . $titulo . '</h2>
-                <p>' . $resumo . '</p>
-                <div class="link-wrapper">
-                    <a class="mais-link" href=' . $pagina_link . '>' . $link_texto . '</a>           
-                </div>
+        <div class="width-wrapper destaque-solo large-spacer">  
+            <div class="linha-abaixo linha-header-longa flex-grow-parent">
+                <h2 class="linha-header">' . $titulo . '</h2>
+                <div class="flex-grow">
+                    <p>' . $resumo . '</p>
+                    <a class="mais-link" href=' . $pagina_link . '>' . $link_texto . '</a>
+                </div>                
             </div>
             <div class="destaque-solo-img">
                 <img src="' . $img_link . '" alt="Imagem da página">
@@ -1340,76 +1341,57 @@ class WidgetLinksRapidos extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        // Extrair os valores dos campos do widget
         $titulo = $instance['titulo'];
-        
-        $text_primeiro = $instance['text_primeiro'];
-        $text_segundo = $instance['text_segundo'];
-        $text_terceiro = $instance['text_terceiro'];
-        $text_quarto = $instance['text_quarto'];
-        $text_quinto = $instance['text_quinto'];
-        $text_sexto = $instance['text_sexto'];
 
-        $icon_primeiro = $instance['icon_primeiro'];
-        $icon_segundo = $instance['icon_segundo'];
-        $icon_terceiro = $instance['icon_terceiro'];
-        $icon_quarto = $instance['icon_quarto'];
-        $icon_quinto = $instance['icon_quinto'];
-        $icon_sexto = $instance['icon_sexto'];
+        $text = [        
+            $instance['text_primeiro'],
+            $instance['text_segundo'],
+            $instance['text_terceiro'],
+            $instance['text_quarto'],
+            $instance['text_quinto'],
+            $instance['text_sexto']
+        ];
+
+        $icon = [
+            $instance['icon_primeiro'],
+            $instance['icon_segundo'],
+            $instance['icon_terceiro'],
+            $instance['icon_quarto'],
+            $instance['icon_quinto'],
+            $instance['icon_sexto']
+        ];
         
-        $primeiro = $instance['primeiro'];
-        $segundo = $instance['segundo'];
-        $terceiro = $instance['terceiro'];
-        $quarto = $instance['quarto'];
-        $quinto = $instance['quinto'];
-        $sexto = $instance['sexto'];
+        $link = [
+            $instance['primeiro'],
+            $instance['segundo'],
+            $instance['terceiro'],
+            $instance['quarto'],
+            $instance['quinto'],
+            $instance['sexto']
+        ];
 
         echo $args['before_widget'];
         echo '
-        <div class="links-wrapper">
-            <h2> ' , esc_html($titulo) , ' </h2>
-            <div class="links">
+        <div class="width-wrapper large-spacer">
+            <div class="linha-header-longa">
+                <h2 class="linha-header"> ' , esc_html($titulo) , ' </h2>
+                <div class="links">';
 
-            <a href="' . esc_url($primeiro) . '" class="link-full camada-1">
+        for ($i = 0; $i < 6; $i++) {
+            echo '
+            <a href="' . esc_url($link[$i]) . '" class="link-full linha-abaixo">
                 <div class="link-image-wrapper">              
-                    <i class="' . esc_attr($icon_primeiro) . '"></i>              
+                    <i class="' . esc_attr($icon[$i]) . '"></i>              
                 </div>          
-                <div class="link-text" href="#">' . esc_html($text_primeiro) . '</div>
-            </a>
-            <a href="' . esc_url($segundo) . '" class="link-full camada-1">
-                <div class="link-image-wrapper">
-                    <i class="' . esc_attr($icon_segundo) . '"></i>
-                </div>          
-                <div class="link-text" href="#">' . esc_html($text_segundo) . '</div>
-            </a>
-            <a href="' . esc_url($terceiro) . '" class="link-full camada-1">
-                <div class="link-image-wrapper">
-                    <i class="' . esc_attr($icon_terceiro) . '"></i>
-                </div>          
-                <div class="link-text" href="#">' . esc_html($text_terceiro) . '</div>
-            </a>
-            <a href="' . esc_url($quarto) . '" class="link-full camada-1">
-                <div class="link-image-wrapper">
-                    <i class="' . esc_attr($icon_quarto) . '"></i>
-                </div>          
-                <div class="link-text" href="#">' . esc_html($text_quarto) . '</div>
-            </a>
-            <a href="' . esc_url($quinto) . '" class="link-full camada-1">
-                <div class="link-image-wrapper">
-                    <i class="' . esc_attr($icon_quinto) . '"></i>
-                </div>          
-                <div class="link-text" href="#">' . esc_html($text_quinto) . '</div>
-            </a>
-            <a href="' . esc_url($sexto) . '" class="link-full camada-1">
-            <div class="link-image-wrapper">
-                    <i class="' . esc_attr($icon_sexto) . '"></i>
-                </div>          
-                <div class="link-text" href="#">' . esc_html($text_sexto) . '</div>
+                <div class="link-text texto-escuro" href="#">' . esc_html($text[$i]) . '</div>
             </a>';
+        }        
         
         echo '
+                </div>
             </div>
         </div>';
+
         echo $args['after_widget'];            
     }
 

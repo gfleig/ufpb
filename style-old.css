@@ -1,20 +1,18 @@
 /*
-Theme Name: UFPB
-Theme URI: https://github.com/gfleig/ufpb
-Author: Fleig {IL} + STI
+Theme Name: Oiticica Theme UFPB
+Theme URI: https://github.com/interfaceslivres/oiticica-theme
+Author: Fleig {IL}
 Author URI: https://github.com/gfleig
 Description: Tema de torar feito inhouse, artesanalmente (zero plugins), e com carinho. Possui funcionalidades incríveis como, além do óbvio, sistema de eventos, widgets de destaque, navegação via menus dinâmicos (sidebar) e flexibilidade de customização gráfica e de conteúdo. 
-Version: 0
+Version: 1.2.1
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations, accessibility-ready, blog, portfolio, news
 */
 
-* { 
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
+
+* { padding: 0; margin: 0; }
 
 :root {
   font-size: 18px;
@@ -22,100 +20,58 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 
 body {
   margin-top: 0px;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-color: var(--cor-background);
   margin: 0px;
 
   /*--cor-tema: #102d69;*/
   --cor-background: white;
-  --cor-linha: #D7D7D7;
-
+  --cor-footer: var(--cor-tema);
+  --cor-middleground: #F6F6F6;
+  --cor-middleground-hover: #F6F6F6;
+  --cor-footer-conteudo: white;
+  --cor-item-nav: var(--cor-background);
   --cor-texto-escuro: #383838;
-  --cor-texto-medio: #777;  
+  --cor-texto-medio: #777;
+  --cor-texto-claro: white;  
 
-  --fonte-base: 18px;
-  --fonte-pequena: 15px;
-  --fonte-header: 24px;
-  --fonte-titulo: 32px;
-
-  --espaco-gutter: 20px;
-  --espaco-grande: 60px;
-  --espaco-linha-abaixo: 12px;
+  --fonte-1down: 0.84rem;
+  --fonte-base: 1rem;
+  --fonte-1up: 1.2rem;
+  --fonte-2up: 1.5rem;
+  --fonte-3up: 1.75rem;
+  --fonte-4up: 2rem;
+  font-variation-settings: 'wdth' 100;
 }
-
-/*novidades*/
-.texto-escuro {
-  color: var(--cor-texto-escuro);
-}
-
-.width-wrapper {
-  max-width: 1280px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.large-spacer {
-  margin-bottom: var(--espaco-grande);
-}
-
-.linha-header {
-  display: inline-block;
-  padding-top: .5rem;
-  margin-top: -2px;
-  border-top: 3px solid var(--cor-tema);
-  width: fit-content;
-}
-
-.linha-header-longa {
-  border-top: 1px solid var(--cor-linha);
-}
-
-.linha-abaixo {
-  padding-bottom: var(--espaco-linha-abaixo);
-  border-bottom: 1px solid var(--cor-linha);
-}
-
-.flex-grow-parent {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-grow {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-
-/*fim novidades*/
 
 a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
 
-p {  
+p {
+  
   font-weight: 400;
   line-height: 1.45;
-  color: var(--cor-texto-escuro);    
+  color: var(--cor-texto-escuro);  
+  margin-bottom: var(--fonte-base);
   font-size: var(--fonte-base);
-  margin-bottom: 1em;
   hyphens: auto;
+  /*font-family: 'Charis SIL', Georgia;*/
 }
+
 
 p a, .wp-block-list a {  
   color: var(--cor-tema);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 p a:visited, .wp-block-list a:visited {
   color: #551A8B;
 }
 
-p a:hover, .wp-block-list a:hover {  
+p a:hover, .wp-block-list a:hover {
+  
   text-decoration: underline;
 }
 
@@ -149,27 +105,45 @@ p a:hover, .wp-block-list a:hover {
 }
 
 h1 {
-  font-size: var(--fonte-titulo);
-  font-weight: 600;
-  line-height: 1.20;
+  font-size: var(--fonte-2up);
+  font-weight: 700;
+  line-height: 1.1;
   color: var(--cor-texto-escuro);
-  margin-bottom: 1rem;
+  margin-bottom: var(--fonte-base);
+  text-wrap: wrap;
+  font-variation-settings: 'wdth';
 }
 
 .bigode {
+  /*font-family: 'Charis SIL', Georgia;*/
   color: var(--cor-texto-medio);
-  font-size: var(--fonte-header);
-  margin-bottom: 1rem;
-  font-weight: 500;
+  font-size: var(--fonte-2up);
+  margin-bottom: var(--fonte-2up);
+  font-weight: 700;
   font-style: italic;
 }
 
-h2 {
-  font-size: var(--fonte-header);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--cor-texto-escuro);
+.evento-ficha i {
+  width: 22px;
+  margin-right: .5rem;
+}
+
+.evento-ficha p {
+  margin-left: 1rem;
   margin-bottom: .5rem;
+}
+
+.evento-ficha {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: var(--fonte-1up);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--cor-texto-escuro);
+  margin-bottom: var(--fonte-base);
+  font-variation-settings: 'wdth' 100;
 }
 
 img {
@@ -233,6 +207,33 @@ strong {
   
 #footer-brasil {
   display: none;
+}
+
+a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover div:nth-child(2), .destaque-solo:hover div:first-child, .wp-block-media-text:hover {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 6px -6px rgba(0,0,0,0.2);
+}
+
+.camada-2 {
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.33) ;
+}
+
+
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "topo"
+    "imagem"
+    "noticias"
+    "links"
+    "apresentacao"
+    "mapa"
+    "footer";
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .topo {
@@ -784,8 +785,14 @@ input[type="search"]:focus {
 }
 
 .imagem {
-  height: 300px;
+  height: 30vh;
   width: 100%;
+  /*background-image: url("img/banner.jpg");
+  background-position: center;
+  background-size: cover; */  
+  position: relative;
+  bottom: 0;
+  right: 0;
 }
 
 .imagem-sombra {
@@ -814,10 +821,13 @@ input[type="search"]:focus {
 
 .corpo-wrapper {
   width: 100%;
-  max-width: 1320px;
-  background: var(--cor-background);
-  margin-top: -150px;
-  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+
+  gap: calc(2 * var(--fonte-3up));
+  margin-bottom: calc(2 * var(--fonte-3up));
+  margin-top: calc(1 * var(--fonte-3up));  
 }
 
 .corpo-wrapper p {
@@ -829,11 +839,14 @@ input[type="search"]:focus {
 }
 
 #conteudo_pagina.corpo .imagem {
-  height: 300px;
+  height: 15vh;
 }
 
 #conteudo_pagina.corpo .imagem-grande {
-  height: 300px;
+  height: 30vh;
+  position: relative;
+  bottom: 0;
+  right: 0;
   width: 100%;
 }
 
@@ -1668,12 +1681,17 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .mais-link, .menu-lateral .page_item a  {
-  font-style: italic;
-  font-weight: 600;
+  display: inline;
+  flex-shrink: 1; 
+    
+  font-style: normal;
+  font-weight: 700;
+  font-size: var(--fonte-base);
+  line-height: 1.15;
+
+  /* identical to box height, or 111% */
+
   color: var(--cor-tema);
-  width: fit-content;
-  font-family: 'IBM Plex Mono', sans-serif;
-  line-height: 1;
 }
 
 .content-grid .wp-block-button__link {
@@ -1707,14 +1725,23 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 .mais-link::after, .menu-lateral .page_item a::after, .wp-block-button__link::after {
   font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f061";
+  color: inherit;
+
   margin-left: 0.5rem;  
+
   display: inline-block;
   font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
 
   transition-property: transform;
   transition-duration: 150ms;
   transition-timing-function: ease-out;
+  transition-delay: 0s;
+  line-height: 1;
 }
 
 .mais-link:hover::after, .menu-lateral .page_item a:hover::after, .wp-block-button__link:hover::after {
@@ -1799,17 +1826,23 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 .links {  
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: var(--espaco-gutter);
+  width: 100%;
+  gap: 30px;
+  height: auto;  
 }
 
 .link-full {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  padding: 0px;
+  gap: var(--fonte-base);
+  padding: var(--fonte-base) var(--fonte-base) var(--fonte-1up);
+  box-sizing: border-box;
+  background: var(--cor-middleground);
   width: 100%;
   max-width: 370px;
-  padding-top: var(--espaco-linha-abaixo);
+  transition: 0.15s;
 }
 
 .link-full:hover {
@@ -1817,10 +1850,21 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .link-image-wrapper {
+  /*! width: 100px; */
+  /*! height: 100px; */
+  /*! border: 3px solid var(--cor-tema); */
   color: var(--cor-tema);
+  /*! border-radius: 50%; */
   display: flex;
-  font-size: 80px;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.75rem;
 } 
+
+.link-full:hover .link-image-wrapper{
+  /*! color: var(--cor-background); */
+  /*! background-color: var(--cor-tema); */
+}
 
 .link-full:hover .link-text{
   text-decoration: underline;
@@ -1832,10 +1876,19 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   height: 60%;
 }
 
-.link-text {  
-  font-weight: 400;
-  line-height: 1.2;
+.link-text {
+  /*! width: 100%; */
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--fonte-base);
+  line-height: 1.15;
+
+  /* or 125% */
   text-align: center;
+
+  color: var(--cor-texto-escuro);
+  /*! max-width: ; */
 }
 
 .apresentacao {
@@ -2156,15 +2209,35 @@ footer a:hover {
   background: var(--cor-middleground-hover);
 }
 
+.destaque-wrapper {
+  margin: 0 auto;
+  padding: 0 30px;
+  max-width: 1230px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .destaque-solo {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: calc(33% - 15px) 1.5fr;
   grid-template-rows: auto;
-  gap: var(--espaco-gutter);  
+  margin: 2rem 0;
+  
 }
 
 .destaque-solo.invertido {
   grid-template-columns: 1.5fr calc(33% - 15px);
+}
+
+.destaque-solo:hover img, .destaque:hover img {
+  transform: scale(1.015);
+}
+
+.destaque-solo div:first-child {
+  background-color:  var(--cor-middleground);
+  padding: var(--fonte-1up) var(--fonte-1up) var(--fonte-3up);
+  /*min-height: 350px;*/
+  transition: 0.15s;  
 }
 
 .destaque-solo.invertido div:first-child {
@@ -2172,18 +2245,28 @@ footer a:hover {
 }
 
 .destaque-solo-img {
-  height: 300px;
-  grid-area: 1/2/2/4;
-}
-
-.destaque-solo img {
-  width: 100%;
-  object-fit: cover;
+  position: relative;
+  width: calc(100% + 4rem);
+  height: calc(100% + 4rem);
+  margin-top: -2rem;
+  margin-left: -4rem;
+  z-index: -1;
+  overflow: hidden;
 }
 
 .destaque-solo-img.invertido {
   margin-right: -4rem;
   margin-left: 0;
+}
+
+.destaque-solo img {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;  
+  transition: .6s;
 }
 
 .destaque-dupla {
@@ -2343,23 +2426,17 @@ footer a:hover {
 
 /*=================================AUTISMO END==================================================*/
 
+@media only screen and (max-width: 1300px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+
 @media only screen and (max-width: 800px) {
   :root {
     font-size: 16px;
   }
-
-  body {
-    --espaco-linha-abaixo: 8px;
-  }
-
-  /*novidades*/
-
-  .width-wrapper {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  /*novidades end*/
 
   h1 {
     font-size: var(--fonte-2up);
@@ -2548,9 +2625,20 @@ footer a:hover {
     grid-template-rows: 1fr 1fr 1fr;
   }
 
-  .link-image-wrapper {
-    font-size: 40px;
+  .link-full {
+    padding: var(--fonte-1up) var(--fonte-base);
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
   }
+
+  
+
+  .link-image-wrapper {
+    font-size: 2rem;
+  } 
+
 
   .link-image {
     display: block;

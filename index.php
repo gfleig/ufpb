@@ -9,8 +9,7 @@
         echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
         /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
     }
-    ?>
-    <div class="imagem-sombra"></div>
+    ?>    
   </div> 
   <div class="corpo-wrapper">
 
@@ -26,8 +25,7 @@
         echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
         /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
     }
-    ?>
-    <div class="imagem-sombra"></div>
+    ?>    
   </div>      
 </div>
 	

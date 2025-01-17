@@ -140,7 +140,7 @@
 
   </div>
   </footer>
-</div> <!-- fecha footer wrapper -->
+ <!-- fecha footer wrapper -->
 
 </div>
 	
