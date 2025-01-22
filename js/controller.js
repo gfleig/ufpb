@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 sideBar.style.top = "75px"
             }            
         } else {
-            menuNav.style.top = "-48px";
+            menuNav.style.top = "-60px";
             if (sideBarPresente) {
                 sideBar.style.top = "27px"
             }             

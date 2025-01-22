@@ -1,4 +1,14 @@
 <?php
+/*
+//stylesheet da fonte
+function wpdocs_register_font_styles() {
+	wp_register_style( 'plex-sans', get_template_directory_uri().'/css/ibm-plex-sans-all.css' );
+	wp_enqueue_style( 'plex-sans' );
+}
+// Register style sheet.
+add_action( 'wp_enqueue_scripts', 'wpdocs_register_font_styles' );
+*/
+
 date_default_timezone_set('America/Recife');
 
 add_theme_support( 'post-thumbnails' );
@@ -942,44 +952,35 @@ class WidgetDestaqueDuplo extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        $pagina_link = $instance['pagina_link'];
-        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
-        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link));    
-        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
+        $pagina_link[0] = $instance['pagina_link'];
+        $titulo[0] = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link[0]));
+        $resumo[0] = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link[0]));    
+        $link_texto[0] = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
 
-        $pagina_link_2 = $instance['pagina_link_2'];
-        $titulo_2 = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link_2));
-        $resumo_2 = !empty($instance['resumo_2']) ? $instance['resumo_2'] : get_the_excerpt(url_to_postid($pagina_link_2));    
-        $link_texto_2 = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
+        $pagina_link[1] = $instance['pagina_link_2'];
+        $titulo[1] = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link[1]));
+        $resumo[1] = !empty($instance['resumo_2']) ? $instance['resumo_2'] : get_the_excerpt(url_to_postid($pagina_link[1]));    
+        $link_texto[1] = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
 
         echo $args['before_widget'];
 
-        echo '
-        <div class="destaque-wrapper destaque-dupla">  
-
-            <div class="destaque">
-                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link)) . '" alt="Imagem da página"></div>
-                <div class="camada-1">
-                    <h2>' . $titulo . '</h2>
-                    <p>' . $resumo . '</p>
-                    <div class="link-wrapper">
-                        <a class="mais-link" href=' . $pagina_link . '>' . $link_texto . '</a>           
-                    </div>
-                </div>
-            </div>
-
-            <div class="destaque">
-                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link_2)) . '" alt="Imagem da página"></div>
-                <div class="camada-1">
-                    <h2>' . $titulo_2 . '</h2>
-                    <p>' . $resumo_2 . '</p>
-                    <div class="link-wrapper">
-                        <a class="mais-link" href=' . $pagina_link_2 . '>' . $link_texto_2 . '</a>           
-                    </div>
-                </div>
-            </div>   
-
-        </div>';
+        echo '<div class="width-wrapper destaque-dupla large-spacer">';
+        for ($i = 0; $i < 2; $i++) {            
+            // decide se adiciona divisória vertical ou não (adicionar em todos menos no último elemento)
+            if ($i == 0) {
+                echo '<div class="flex-grow-parent divisoria-vertical">';
+            } else if ($i == 1){
+                echo '<div class="flex-grow-parent divisoria-espaco">';
+            }                 
+            echo '<div class="destaque-img"><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link[$i])) . '" alt="Imagem da página"></div>
+                <h2>' . $titulo[$i] . '</h2>
+                <div class="flex-grow linha-abaixo">
+                    <p>' . $resumo[$i] . '</p>
+                    <a class="mais-link" href=' . $pagina_link[$i] . '>' . $link_texto[$i] . '</a> 
+                </div> 
+            </div>';
+        }
+        echo '</div>';
         
         echo $args['after_widget']; 
     }
@@ -1070,60 +1071,42 @@ class WidgetDestaqueTriplo extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        $pagina_link = $instance['pagina_link'];
-        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
-        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link));    
-        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
+        $pagina_link[0] = $instance['pagina_link'];
+        $titulo[0] = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link[0]));
+        $resumo[0] = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link[0]));    
+        $link_texto[0] = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
 
-        $pagina_link_2 = $instance['pagina_link_2'];
-        $titulo_2 = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link_2));
-        $resumo_2 = !empty($instance['resumo_2']) ? $instance['resumo_2'] : get_the_excerpt(url_to_postid($pagina_link_2));    
-        $link_texto_2 = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
+        $pagina_link[1] = $instance['pagina_link_2'];
+        $titulo[1] = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link[1]));
+        $resumo[1] = !empty($instance['resumo_2']) ? $instance['resumo_2'] : get_the_excerpt(url_to_postid($pagina_link[1]));    
+        $link_texto[1] = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
 
-        $pagina_link_3 = $instance['pagina_link_3'];
-        $titulo_3 = !empty($instance['titulo_3']) ? $instance['titulo_3'] : get_the_title(url_to_postid($pagina_link_3));
-        $resumo_3 = !empty($instance['resumo_3']) ? $instance['resumo_3'] : get_the_excerpt(url_to_postid($pagina_link_3));    
-        $link_texto_3 = !empty($instance['link_texto_3']) ? $instance['link_texto_3'] : 'Saiba mais';
+        $pagina_link[2] = $instance['pagina_link_3'];
+        $titulo[2] = !empty($instance['titulo_3']) ? $instance['titulo_3'] : get_the_title(url_to_postid($pagina_link[2]));
+        $resumo[2] = !empty($instance['resumo_3']) ? $instance['resumo_3'] : get_the_excerpt(url_to_postid($pagina_link[2]));    
+        $link_texto[2] = !empty($instance['link_texto_3']) ? $instance['link_texto_3'] : 'Saiba mais';
 
         echo $args['before_widget'];
 
-        echo '
-        <div class="destaque-wrapper destaque-trio">  
-
-            <div class="destaque">
-                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link)) . '" alt="Imagem da página"></div>
-                <div class="camada-1">
-                    <h2>' . $titulo . '</h2>
-                    <p>' . $resumo . '</p>
-                    <div class="link-wrapper">
-                        <a class="mais-link" href=' . $pagina_link . '>' . $link_texto . '</a>           
-                    </div>
-                </div>
-            </div>
-
-            <div class="destaque">
-                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link_2)) . '" alt="Imagem da página"></div>
-                <div class="camada-1">
-                    <h2>' . $titulo_2 . '</h2>
-                    <p>' . $resumo_2 . '</p>
-                    <div class="link-wrapper">
-                        <a class="mais-link" href=' . $pagina_link_2 . '>' . $link_texto_2 . '</a>           
-                    </div>
-                </div>
-            </div>   
-
-            <div class="destaque">
-                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link_3)) . '" alt="Imagem da página"></div>
-                <div class="camada-1">
-                    <h2>' . $titulo_3 . '</h2>
-                    <p>' . $resumo_3 . '</p>
-                    <div class="link-wrapper">
-                        <a class="mais-link" href=' . $pagina_link_3 . '>' . $link_texto_3 . '</a>           
-                    </div>
-                </div>
-            </div>
-
-        </div>';
+        echo '<div class="width-wrapper destaque-trio large-spacer">';
+        for ($i = 0; $i < 3; $i++) {            
+            // decide se adiciona divisória vertical ou não (adicionar em todos menos no último elemento)
+            if ($i == 0) {
+                echo '<div class="flex-grow-parent divisoria-vertical">';
+            } else if ($i == 1){
+                echo '<div class="flex-grow-parent divisoria-vertical divisoria-espaco">';
+            } else if ($i == 2){
+                echo '<div class="flex-grow-parent divisoria-espaco">';
+            }                 
+            echo '<div class="destaque-img"><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link[$i])) . '" alt="Imagem da página"></div>
+                <h2>' . $titulo[$i] . '</h2>
+                <div class="flex-grow linha-abaixo">
+                    <p>' . $resumo[$i] . '</p>
+                    <a class="mais-link" href=' . $pagina_link[$i] . '>' . $link_texto[$i] . '</a> 
+                </div> 
+            </div>';
+        }
+        echo '</div>';
         
         echo $args['after_widget']; 
     }
