@@ -797,18 +797,14 @@ input[type="search"]:focus {
 }
 
 .corpo-grid {
-  max-width: 1230px;
   display: grid;
   grid-template-columns: 8fr .5fr 3.5fr;
-  gap: 30px;
-  padding: 0 30px 60px;
-  margin-top: var(--fonte-2up);
-  grid-template-areas:
-    "ct spacer sb";
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
+  grid-template-columns: 200px 780px auto;
+  grid-template-areas: "sb ct";
 }
 
 .sidebar {
@@ -820,6 +816,7 @@ input[type="search"]:focus {
   top: 75px;
   grid-area: sb;
   transition: .15s;
+  margin-top: 40px;
 }
 
 .sidebar h2 {
@@ -829,6 +826,13 @@ input[type="search"]:focus {
 
 .content-grid {
   grid-area: ct;
+  margin-top: -150px;
+  background: var(--cor-background);
+  padding-top: 40px;
+  max-width: 780px;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .menu-lateral {
@@ -1589,7 +1593,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   height: min-content;
 }
 
-.mais-link, .menu-lateral .page_item a  {
+.mais-link, .menu-lateral .page_item a {
   font-style: italic;
   font-weight: 600;
   color: var(--cor-tema);
@@ -2374,7 +2378,7 @@ footer a:hover {
   }
 
   .content-grid {
-    grid-area: ct;
+    
   }
 
   .sidebar {
