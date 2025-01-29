@@ -12,12 +12,11 @@
 </div> 
 <div class="corpo width-wrapper" id="conteudo_pagina">
     <div class="corpo-grid">
-        <div class="sidebar">
-              
+        <div class="sidebar">              
             <?php
                 if (has_children() OR $post->post_parent > 0) { ?>                
 
-                    <div class="menu-navegacao">
+                    <div class="menu-navegacao linha-header-longa linha-abaixo">
                         <h2 class="parent-link">
                             <a href="<?php echo get_the_permalink(get_top_ancestor_id()); ?>">
                                 <?php
@@ -39,17 +38,7 @@
                     </div>
             <?php } ?>                
                     <?php 
-                        summon_side_menu();
-                        /*wp_nav_menu(   
-                            array ( 
-                                'theme_location' => 'side-menu',
-                                'items_wrap' => '%3$s',
-                                'container' => false,
-                                'link_class'   => 'mais-link',
-                                'fallback_cb' => '__return_false',
-                                'items_wrap' => '<div><h2 class="menu-lateral-h2">Acesso Rápido</h2><ul class="menu-lateral">%3$s</ul></div>'
-                            ) 
-                        ); */
+                        summon_side_menu();                        
                     ?>             
                             
         </div>

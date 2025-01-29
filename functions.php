@@ -9,6 +9,18 @@ function wpdocs_register_font_styles() {
 add_action( 'wp_enqueue_scripts', 'wpdocs_register_font_styles' );
 */
 
+add_filter('render_block', function ($blockContent, $block) {
+
+    if ($block['blockName'] !== 'core/heading') {
+        return $blockContent;
+    }           
+
+    $pattern = '/(<h[^>]*>)(.*)(<\/h[2]{1}>)/i';
+    $replacement = '$1<div class="linha-header">$2</div>$3';
+    return preg_replace($pattern, $replacement, $blockContent);
+
+}, 10, 2);
+
 date_default_timezone_set('America/Recife');
 
 add_theme_support( 'post-thumbnails' );
@@ -1881,9 +1893,9 @@ function summon_side_menu() {
             'theme_location' => 'side-menu',
             'items_wrap' => '%3$s',
             'container' => false,
-            'link_class'   => 'mais-link',
+            //'link_class'   => 'linha-abaixo',
             'fallback_cb' => '__return_false',
-            'items_wrap' => '<div><h2 class="menu-lateral-h2">Acesso Rápido</h2><ul class="menu-lateral">%3$s</ul></div>'
+            'items_wrap' => '<div class="linha-header-longa linha-abaixo"><h2 class="menu-lateral-h2">Acesso Rápido</h2><ul class="menu-lateral">%3$s</ul></div>'
         ) 
     ); 
 }
