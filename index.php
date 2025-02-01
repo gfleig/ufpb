@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <div class="corpo" id="conteudo_pagina">
-  <div class="imagem">
+  <!--div class="imagem">
     <?php
     // Obtém a URL da imagem do Customizer
     $imagem_banner_url = get_theme_mod('imagem_banner');
@@ -10,13 +10,13 @@
         /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
     }
     ?>    
-  </div> 
+  </div--> 
   <div class="corpo-wrapper">
 
     <?php $widget_values = dynamic_sidebar('widgets-da-home'); ?>      
 
   </div>
-  <div class="imagem-grande">
+  <!--div class="imagem-grande">
     <?php
     // Obtém a URL da imagem do Customizer
     $imagem_banner_url = get_theme_mod('imagem_banner');
@@ -26,7 +26,7 @@
         /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
     }
     ?>    
-  </div>      
+  </div-->      
 </div>
 	
 	

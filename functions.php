@@ -1,13 +1,4 @@
 <?php
-/*
-//stylesheet da fonte
-function wpdocs_register_font_styles() {
-	wp_register_style( 'plex-sans', get_template_directory_uri().'/css/ibm-plex-sans-all.css' );
-	wp_enqueue_style( 'plex-sans' );
-}
-// Register style sheet.
-add_action( 'wp_enqueue_scripts', 'wpdocs_register_font_styles' );
-*/
 
 add_filter('render_block', function ($blockContent, $block) {
 
@@ -89,6 +80,21 @@ function adicionar_controle_imagem_banner($wp_customize) {
     )));
 }
 add_action('customize_register', 'adicionar_controle_imagem_banner');
+
+function summon_banner(){
+    // Obtém a URL da imagem do Customizer
+    $imagem_banner_url = get_theme_mod('imagem_banner');
+
+    echo '<div class="imagem">';
+
+    if (!empty($imagem_banner_url)) {
+        echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
+    } else {
+        echo '<img src="' , get_bloginfo("template_directory") , '/decoration.jpg" alt="Imagem decorativa do site">';
+    }        
+    echo '</div>'; 
+}
+
 
 //registrar menus
 function register_menus() { 
@@ -444,7 +450,7 @@ function customizer_contato($wp_customize) {
 }
 add_action('customize_register', 'customizer_contato');
 
-// Registrar Widget de Destaque solo
+// Registrar Widget de Noticias antigo
 function registrar_widget_noticias_antiga() {
     register_widget('WidgetNoticiasAntiga');
 }
@@ -1101,7 +1107,9 @@ class WidgetDestaqueTriplo extends WP_Widget {
         echo $args['before_widget'];
 
         echo '<div class="width-wrapper destaque-trio large-spacer">';
-        for ($i = 0; $i < 3; $i++) {            
+        
+        for ($i = 0; $i < 3; $i++) {  
+            if(has_post_thumbnail(url_to_postid($pagina_link[$i]))){          
             // decide se adiciona divisória vertical ou não (adicionar em todos menos no último elemento)
             if ($i == 0) {
                 echo '<div class="flex-grow-parent divisoria-vertical">';
@@ -1117,6 +1125,7 @@ class WidgetDestaqueTriplo extends WP_Widget {
                     <a class="mais-link" href=' . $pagina_link[$i] . '>' . $link_texto[$i] . '</a> 
                 </div> 
             </div>';
+            }
         }
         echo '</div>';
         

@@ -1,19 +1,20 @@
 <?php get_header(); ?>
-<div class="imagem">
-    <?php
-    // Obtém a URL da imagem do Customizer
-    $imagem_banner_url = get_theme_mod('imagem_banner');
-
-    if (!empty($imagem_banner_url)) {
-        echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
-        /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
-    }
-    ?>    
-</div> 
 <div class="corpo width-wrapper" id="conteudo_pagina">
     <div class="corpo-grid">
-        <div class="sidebar">              
-            <?php
+        <div class="sidebar"> 
+            <ul class="side-menu linha-header-longa linha-abaixo">
+                <?php 
+                    wp_nav_menu(   
+                        array ( 
+                            'theme_location' => 'main-menu',
+                            'items_wrap' => '%3$s',
+                            'container' => false,
+                        ) 
+                    ); 
+                ?>
+            </ul>             
+            <?php          
+
                 if (has_children() OR $post->post_parent > 0) { ?>                
 
                     <div class="menu-navegacao linha-header-longa linha-abaixo">
@@ -57,20 +58,7 @@
 
                        
         </div>
-    </div>
-
-        <div class="imagem-grande">
-            <?php
-            // Obtém a URL da imagem do Customizer
-            $imagem_banner_url = get_theme_mod('imagem_banner');
-
-            if (!empty($imagem_banner_url)) {
-                echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
-                /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
-            }
-            ?>    
-        </div>
-
+    </div> 
     </div>
 </div>
 

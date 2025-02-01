@@ -101,6 +101,7 @@
                 </div>
             </div>      
         </div>
+        <?php summon_banner(); ?>
         <div id="menu-overlay" class="top-fixed-overlay menu-hidden">
             <ul id="mobile-menu">            
                 <?php 

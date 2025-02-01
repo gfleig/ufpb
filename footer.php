@@ -1,5 +1,6 @@
+<?php summon_banner(); ?>
 <div id="footer-wrapper">
-  <footer>
+  <footer class="width-wrapper">
   <div id="footer-top">
       <div id="footer-dados">
         <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/ufpb-brasao-pb.png"></a>
