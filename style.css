@@ -186,13 +186,9 @@ address {
 /*=========== ESTILOS CONTEÚDO DE PÁGINAS ==========================*/
 
 .wp-block-list {
-  margin-left: calc(2 * var(--fonte-base));
-  margin-bottom: var(--fonte-base);  
+  margin-left: 2rem;
+  margin-bottom: 1rem;
   color: var(--cor-texto-escuro);
-  /*font-family: 'Charis SIL', Georgia;*/
-}
-
-ul.wp-block-list {
   list-style: square;
 }
 
@@ -201,13 +197,9 @@ ul.wp-block-list {
   padding-left: 1em;
 }
 
-ol.wp-block-list li::marker {
+ol.wp-block-list li::marker, ul.wp-block-list li::marker {
   font-size: var(--fonte-pequena);
   font-weight: 600;
-}
-
-ul.wp-block-list li::marker {
-  font-size: var(--fonte-1down);
 }
 
 .wp-block-heading {
@@ -240,7 +232,6 @@ strong {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  grid-area: topo;
   margin: 0 auto;
 }
 
@@ -631,14 +622,12 @@ input[type="search"]:focus {
   color: var(--cor-texto-escuro);
   font-weight: 500;
   list-style-type: none;
-  line-height: 1;
 }
 
 
 .menu ul li a{  
   height: 60px;
   display: flex;
-  padding: 10px 0px;
   align-items: center;
   position: relative;
 }
@@ -669,7 +658,24 @@ input[type="search"]:focus {
   transform: rotate(180deg);
 }
 
-.menu > ul > li > a:hover::before, .menu > ul > .current_page_item > a::before, .menu > ul > .current_page_ancestor > a::before {
+.menu>ul>.current_page_item>a::before,
+.menu>ul>.current_page_ancestor>a::before,
+.menu>ul>.menu-item-type-post_type:hover>a::before,
+.menu>ul>.current-menu-ancestor>a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0;
+  bottom: 8px;
+  background-color: var(--cor-linha);
+}
+
+.menu ul li ul .current_page_item:hover a::before {
+  display: none;
+}
+
+.menu ul li ul li:hover a::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -680,33 +686,25 @@ input[type="search"]:focus {
 }
 
 .menu ul li ul {  
-  margin-top: 0px;
   display: none;
   position: absolute;
-  background-color: var(--cor-background);
-  min-width: 200px;
-  box-shadow: 0 10px 10px rgba(0,0,0,.05), 0 3px 3px rgba(0,0,0,.05);
+  background-color: var(--cor-background);  
+  border: 1px solid var(--cor-linha);
+  border-top: 0;
+  flex-direction: column;
+  gap: 0;
   z-index: 1;
 }
 
-.menu ul li ul li a{
+.menu ul li ul li a {
   display: flex;
-  color: var(--cor-texto-escuro);
-  font-size: 16px;
-  font-weight: 600;
-  list-style-type: none;
-  padding: 10px 16px 10px;
-  margin: 0;
-  text-decoration: none;
-  transition: 0.15s;
-  border-bottom: 3px solid var(--cor-background);
-}
-
-.menu ul li ul li a:hover {
-  background-color: var(--cor-middleground-hover);
-  text-decoration: none;
-  border-bottom: 3px solid var(--cor-middleground-hover);
-  /*! color: var(--cor-tema); */
+  height: fit-content;
+  margin: 0 var(--espaco-gutter) 0;
+  position: relative;
+  width: fit-content;
+  padding: var(--espaco-linha-abaixo) 0;
+  max-width: 250px;
+  line-height: 1.45;
 }
 
 .menu ul li ul .current_page_item {
@@ -715,8 +713,7 @@ input[type="search"]:focus {
 }
 
 .menu ul li ul .current_page_item a {
-  color: #b0b0b0;
-  font-weight: 500;
+  color: var(--cor-linha);
 }
 
 .menu ul li ul .current_page_item a:hover {
@@ -728,7 +725,7 @@ input[type="search"]:focus {
 }
 
 .menu ul li:hover ul {
-  display: block;
+  display: flex;
 }
 
 .imagem {
@@ -803,7 +800,7 @@ input[type="search"]:focus {
   top: 75px;
   grid-area: sb;
   transition: .15s;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .sidebar h2 {
@@ -841,7 +838,7 @@ input[type="search"]:focus {
 
 .sidebar .current_page_item a {
   cursor: default;
-  color: var(--cor-texto-medio);
+  color: var(--cor-linha);
 }
 
 .side-menu .menu-item-has-children>a::after {
@@ -1185,9 +1182,6 @@ input[type="search"]:focus {
   background: var(--cor-middleground-hover);
 }
 
-.noticia-grande-wrapper {
-}
-
 .noticia-primeira {
   grid-area: n1;
 }
@@ -1201,7 +1195,6 @@ input[type="search"]:focus {
   height: 100%;
   position: absolute;
   object-fit: cover;
-  transition: 0.6s;
 }
 
 .noticia-img2-wrapper {
@@ -1218,7 +1211,6 @@ input[type="search"]:focus {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 0.6s;
 }
 
 .noticia-wrapper:hover .noticia-img, .noticia-wrapper:hover .noticia-img2, .evento-wrapper-solo:hover .noticia-img2 {
@@ -2284,7 +2276,7 @@ footer a:hover {
   }
 
   .wp-block-list {
-    margin-left: calc(1 * var(--fonte-base));
+    margin-left: 1rem;
   }
 
   .cabecalho{

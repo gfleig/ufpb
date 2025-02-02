@@ -74,12 +74,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (prevScrollpos > currentScrollPos) {
             menuNav.style.top = "0";
             if (sideBarPresente) {
-                sideBar.style.top = "75px"
+                sideBar.style.top = menuHeight - 1 + "px"
             }            
         } else {
             menuNav.style.top = "-" + menuHeight + "px";
             if (sideBarPresente) {
-                sideBar.style.top = "27px"
+                sideBar.style.top = "60px"
             }             
         }        
 

@@ -46,7 +46,7 @@
         <?php
         while ( have_posts() ) :
         the_post(); ?>
-        <div class="content-grid">            
+        <div class="content-grid large-spacer">            
             <h1><?php the_title(); ?></h1>           
 
             <div class="the-content-container">
