@@ -2,7 +2,7 @@
 <div class="corpo width-wrapper" id="conteudo_pagina">
     <div class="corpo-grid">
         <div class="sidebar"> 
-            <ul class="side-menu linha-header-longa linha-abaixo">
+            <ul class="side-menu">
                 <?php 
                     wp_nav_menu(   
                         array ( 

@@ -3,7 +3,7 @@ Theme Name: UFPB
 Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI
 Author URI: https://github.com/gfleig
-Description: Tema de torar feito inhouse, artesanalmente (zero plugins), e com carinho. Possui funcionalidades incríveis como, além do óbvio, sistema de eventos, widgets de destaque, navegação via menus dinâmicos (sidebar) e flexibilidade de customização gráfica e de conteúdo. 
+Description: Tema de torar feito inhouse (na minha casa), artesanalmente (zero plugins), e com carinho (recebendo bolsa). Possui funcionalidades incríveis como, além do óbvio, sistema de eventos, widgets de destaque, navegação via menus dinâmicos (sidebar) e flexibilidade de customização gráfica e de conteúdo. 
 Version: 0
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -69,7 +69,7 @@ body {
   width: fit-content;
 }
 
-.linha-header-longa, h2.wp-block-heading {
+.linha-header-longa, h2.wp-block-heading, .side-menu ul {
   border-top: 1px solid var(--cor-linha);
   width: 100%;
 }
@@ -78,7 +78,7 @@ h2.wp-block-heading::before {
   border-top: 3px solid var(--cor-tema);
 }
 
-.linha-abaixo {
+.linha-abaixo, .side-menu {
   padding-bottom: var(--espaco-linha-abaixo);
   border-bottom: 1px solid var(--cor-linha);
 }
@@ -159,14 +159,6 @@ h1 {
   color: var(--cor-texto-escuro);
 }
 
-.bigode {
-  color: var(--cor-texto-medio);
-  font-size: var(--fonte-header);
-  margin-bottom: 1rem;
-  font-weight: 500;
-  font-style: italic;
-}
-
 h2, h3 {
   font-size: var(--fonte-header);
   font-weight: 600;
@@ -218,6 +210,114 @@ strong {
 
 /*=========== FIM ESTILOS CONTEÚDO DE PÁGINAS ======================*/
 
+/*=========== NOTICIAS NOVAS =======================================*/
+
+.noticias-widget {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  min-height: 500px;
+  gap: var(--espaco-gutter);
+}
+
+.noticia-card {
+  min-height: 300px;
+  color: var(--cor-texto-escuro);
+}
+.noticia-card a:hover {
+  text-decoration: underline;
+}
+
+.noticia-card:first-child .small-spacer {
+  margin-bottom: var(--espaco-linha-abaixo);
+}
+
+.noticia-card .small-spacer {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.noticia-card .noticia-card-imagem.small-spacer {
+  margin-bottom: var(--espaco-linha-abaixo);
+}
+
+.noticia-card .categorias {
+  color: var(--cor-tema);
+  font-size: var(--fonte-pequena);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.noticia-card .titulo {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.noticia-card:first-child .titulo {
+  font-weight: 600;
+  font-size: var(--fonte-header);
+}
+
+.noticia-card .bigode {
+  color: var(--cor-texto-medio);
+  font-style: italic;
+}
+
+.noticia-card:first-child .categorias {
+  font-size: var(--fonte-base);
+}
+
+.noticia-card .data {
+  font-size: var(--fonte-pequena);
+  color: var(--cor-texto-medio);
+  line-height: 1;
+}
+
+.noticia-card:first-child .data {
+  font-size: var(--fonte-base);
+}
+
+.noticias-widget .noticia-card:first-child {
+  grid-area: 1 / 1 / 3 / 3;
+}
+
+.noticias-widget .noticia-card:first-child .noticia-card-imagem {
+  height: 50%;
+}
+
+.noticia-card-imagem {
+  height: 150px;
+  display: block;
+  position: relative;
+  z-index: 3;
+}
+
+.noticia-card-imagem img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.noticia-card-imagem::before {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  /*! display: block; */
+  background: var(--cor-tema);
+  top: 0px;
+  position: absolute;
+  left: 0px;
+  z-index: -1;
+  transition: 0.15s;
+}
+
+.noticia-card-imagem:hover::before {
+  top: 3px;
+  left: 3px;
+}
+
+/*=========== NOTICIAS NOVAS FIM ===================================*/
 
 #barra-brasil {
   display: none;
@@ -343,27 +443,15 @@ strong {
   font-weight: 500;
 }
 
-#menu-overlay li a{
-  border-bottom: 1px solid var(--cor-middleground);
-}
-
-#menu-overlay li a:hover {
-  border-bottom: 1px solid var(--cor-middleground);
-  background: var(--cor-middleground);
-}
-
-#menu-overlay li:hover > a {
-  padding: 10px 20px 10px;
-}
-
 #menu-overlay li a {
   display: block;  
   width: 100%;
   font-weight: 600;
   font-size: var(--fonte-base);
   line-height: 1.15;
-  color: var(--cor-tema);
-  padding: 10px 20px;
+  color: var(--cor-texto-escuro);
+  border-bottom: 1px solid var(--cor-linha);
+  padding: var(--espaco-gutter);
 }
 
 #menu-overlay li .sub-menu li a {
@@ -372,13 +460,8 @@ strong {
   font-weight: 600;
   font-size: var(--fonte-base);
   line-height: 1.15;
-  color: var(--cor-tema);
-  padding: 10px 20px 10px 40px;
-}
-
-#menu-overlay li .sub-menu li a:hover {
-  border-bottom: 1px solid var(--cor-middleground);
-  background: var(--cor-middleground);
+  padding: var(--espaco-gutter);
+  padding-left: calc(2*var(--espaco-gutter));
 }
 
 .stop-scrolling {
@@ -615,21 +698,34 @@ input[type="search"]:focus {
   gap: 0;
 }
 
+#mobile-menu .menu-item-has-children.submenu-aberto a::after {
+  transform: rotate(180deg);
+}
+
+#mobile-menu .menu-item-has-children ul {
+  display: none;
+}
+
+#mobile-menu .menu-item-has-children.submenu-aberto ul{
+  display: block;
+}
+
 .menu ul {
   z-index: 2;
   display: flex;  
-  gap: 20px;
+  gap: var(--espaco-gutter);
   color: var(--cor-texto-escuro);
   font-weight: 500;
   list-style-type: none;
 }
 
 
-.menu ul li a{  
-  height: 60px;
+.menu ul li a {  
   display: flex;
   align-items: center;
   position: relative;
+  padding: var(--espaco-gutter) 0;
+  line-height: 1;
 }
 
 .menu-item-has-children > a::after {
@@ -667,7 +763,7 @@ input[type="search"]:focus {
   width: 100%;
   height: 1px;
   left: 0;
-  bottom: 8px;
+  bottom: 12px;
   background-color: var(--cor-linha);
 }
 
@@ -705,6 +801,7 @@ input[type="search"]:focus {
   padding: var(--espaco-linha-abaixo) 0;
   max-width: 250px;
   line-height: 1.45;
+  font-weight: 400;
 }
 
 .menu ul li ul .current_page_item {
@@ -731,20 +828,24 @@ input[type="search"]:focus {
 .imagem {
   height: 300px;
   width: 100%;
+  position: relative;
+  z-index: -1;
 }
 
-.imagem-sombra {
-  box-shadow: inset 0px 6px 6px rgba(0, 0, 0, 0.16), inset 0px -6px 6px rgba(0, 0, 0, 0.16);
+/*
+.imagem::before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.35) 100%);
+  content: "";
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  mix-blend-mode: multiply;
 }
+*/
 
-.imagem img, .imagem-grande img {
+.imagem img {
   object-fit: cover;
   width: 100%;
-  /*box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.16);*/
 }
 
 .corpo {
@@ -820,17 +921,18 @@ input[type="search"]:focus {
   padding-right: 50px;
 }
 
-.side-menu {
-  padding-top: var(--espaco-linha-abaixo);
-}
-
 .side-menu .current-menu-parent, .side-menu .sub-menu{
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
+.side-menu ul {
+  padding-top: var(--espaco-linha-abaixo);
+}
+
 .side-menu .current-menu-parent > a {
+  font-size: var(--fonte-header);
   font-weight: 600;
   color: var(--cor-texto-escuro);
   cursor: default;
@@ -1634,41 +1736,22 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   display: none;
 }
 
-.mais-link:hover, .wp-block-button__link:hover {
+.mais-link:hover, .wp-block-button__link:hover, .mais-link-header:hover {
   text-decoration: underline;
 }
 
-.mais-link::after, .wp-block-button__link::after {
+.mais-link::after, .wp-block-button__link::after, .mais-link-header::after {
   font-family: "Font Awesome 6 Free";
   content: "\f061";
   margin-left: 0.5rem;  
   display: inline-block;
   font-style: normal;
 
-  transition-property: transform;
-  transition-duration: 150ms;
-  transition-timing-function: ease-out;
+  transition: .15s ease-out;
 }
 
-.mais-link:hover::after, .wp-block-button__link:hover::after {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  content: "\f061";
-  color: inherit;
-
-  margin-left: 0.5rem; 
-
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  --webkit-font-smoothing: antialiased;
-
-  transform: translateX(5px);
-  transition-property: transform;
-  transition-duration: 150ms;
-  transition-timing-function: ease-out;
-  transition-delay: 0s;
+.mais-link:hover::after, .wp-block-button__link:hover::after, .mais-link-header:hover::after {
+  margin-left: .8rem;   
 }
 
 .editais {
@@ -2035,6 +2118,7 @@ footer a:hover {
 
 .destaque-img {
   height: 300px;
+  margin-bottom: var(--espaco-linha-abaixo);
 }
 
 .destaque-img img {
@@ -2094,7 +2178,7 @@ footer a:hover {
 }
 
 .destaque-trio h2, .destaque-dupla h2 {
-  margin-top: 1rem;
+  margin-bottom: var(--espaco-linha-abaixo);
 }
 
 
@@ -2295,7 +2379,7 @@ footer a:hover {
   }
 
   #mobile-menu .menu-item-has-children>a::after {
-    display: none;
+    /*display: none;*/
   }
 
   .imagem {

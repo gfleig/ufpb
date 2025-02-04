@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    const arrowButton = document.querySelectorAll("#mobile-menu .menu-item-has-children");
+
+    arrowButton.forEach((el) =>
+        el.addEventListener("click", (event) => {
+            console.log("clickou buceta");
+            const subMenu = event.currentTarget;
+            subMenu.classList.toggle("submenu-aberto");
+        })
+    );
+
     var windowHeight = window.innerHeight;
 
     var overlay = document.getElementById('menu-overlay');
@@ -114,3 +124,4 @@ function autismo() {
      localStorage.setItem('xAutismo', 1);
     }
 }
+
