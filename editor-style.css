@@ -12,7 +12,7 @@ a {
 }
 
 html :where(.editor-styles-wrapper) {
-    font-family: 'Open Sans';
+    font-family: 'IBM Plex Sans';
     color: #383838;
 }
 

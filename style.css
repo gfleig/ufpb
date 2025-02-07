@@ -307,7 +307,7 @@ strong {
   object-fit: cover;
 }
 
-/*=========== NOTICIAS NOVAS FIM ===================================*/
+/*=========== LINKS MARCAS ===================================*/
 
 .acesso-marcas-widget {
   width: 100%;
@@ -319,8 +319,27 @@ strong {
 
 .acesso-marcas-widget .link-full img{
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   height: 150px;
+}
+
+/*=========== LINKS OITO COMPACTO ===================================*/
+
+.acesso-links-oito-widget {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espaco-gutter);
+  grid-template-rows: 1fr 1fr;
+}
+
+.acesso-links-oito-widget .link-full {
+  flex-direction: row;
+  padding: var(--espaco-linha-abaixo);
+}
+
+.link-oito-icon-wrapper {
+  font-size: 40px;
+  color: var(--cor-tema);
 }
 
 #barra-brasil {
@@ -2397,7 +2416,31 @@ footer a:hover {
     margin-bottom: var(--espaco-linha-abaixo);
   }
 
-  /* ===================== CARD-MOBILE END ===============*/
+  /* ===================== WIDGET MARCAS ===============*/
+
+  .acesso-marcas-widget {
+    grid-template-rows: repeat(2, min-content);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .acesso-marcas-widget .link-full img {
+    height: min-content;
+  }
+
+  .acesso-marcas-widget .link-full {
+    justify-content: center;
+  }
+
+  /* ===================== WIDGET RAPDISO OITO COMPACTO ===============*/
+
+  .acesso-links-oito-widget {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, min-content);
+  }
+
+  .link-oito-icon-wrapper {
+    font-size: 30px;
+  }
 
   .wp-block-list li{
     padding-left: .5em;
