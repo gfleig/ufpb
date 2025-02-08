@@ -342,6 +342,26 @@ strong {
   color: var(--cor-tema);
 }
 
+/*=========== LINKS IMAGENS ===================================*/
+
+.acesso-imagens-widget {
+  display: grid;
+  gap: var(--espaco-gutter);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, min-content);
+}
+
+.acesso-imagens-widget .link-full {
+  padding-top: 0;
+}
+
+.acesso-imagens-widget img {
+  aspect-ratio: 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 #barra-brasil {
   display: none;
 }
@@ -1332,10 +1352,6 @@ input[type="search"]:focus {
   object-fit: cover;
 }
 
-.noticia-wrapper:hover .noticia-img, .noticia-wrapper:hover .noticia-img2, .evento-wrapper-solo:hover .noticia-img2 {
-  transform: scale(1.015);
-}
-
 .noticia-sem-img {
   position: relative;
   width: 100%;
@@ -1839,7 +1855,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: var(--espaco-linha-abaixo);
   width: 100%;
   max-width: 370px;
   padding-top: var(--espaco-linha-abaixo);
@@ -1872,30 +1888,13 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .apresentacao {
-  /* Auto layout */
   display: grid;
-  grid-template-columns: calc(33% - 15px) auto;
-  grid-template-rows: auto;  
-  margin: 0rem auto;
-  max-width: 1230px;
-  padding: 0 30px;
-  column-gap: 30px;
-  width: 100%;
-
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--espaco-gutter);
+  grid-template-areas:
+    "tx media media";
+  grid-template-rows: min-content;
   height: auto;
-
-  /* BG BLOCO */
-  align-items: center;
-}
-
-.apresentacao > div:nth-child(1) {
-  padding: var(--fonte-1up) var(--fonte-1up) var(--fonte-3up);
-  background: var(--cor-middleground);
-  width: calc(100% + 30px + 4rem);
-  padding-right: calc(30px + 4rem);
-  height: fit-content;
-  transition: 0.15s;
-  /*! align-self: center; */
 }
 
 .apresentacao-links {
@@ -1908,18 +1907,13 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   list-style-type: none;
 }
 
-.youtube {
-  /*width: 100%;
-  aspect-ratio: 16/9;*/
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
+.youtube {  
+  grid-area: media;
+  aspect-ratio: 16/9;
+  margin-bottom: -5px;
 }
 
 .youtube iframe, .youtube img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2431,7 +2425,7 @@ footer a:hover {
     justify-content: center;
   }
 
-  /* ===================== WIDGET RAPDISO OITO COMPACTO ===============*/
+  /* ===================== WIDGET RAPIDOS OITO COMPACTO ===============*/
 
   .acesso-links-oito-widget {
     grid-template-columns: repeat(2, 1fr);
@@ -2440,6 +2434,13 @@ footer a:hover {
 
   .link-oito-icon-wrapper {
     font-size: 30px;
+  }
+
+  /* ===================== WIDGET RAPIDOS IMAGENS ===============*/  
+
+  .acesso-imagens-widget {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, min-content);
   }
 
   .wp-block-list li{
@@ -2560,11 +2561,6 @@ footer a:hover {
     gap: 0;
   }
 
-  .apresentacao {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
   .mapa {
     padding: 0 16px;
   }  
@@ -2623,41 +2619,13 @@ footer a:hover {
     text-align: center;
   }
 
-  .corpo .apresentacao {
-    /* Auto layout */
+  .apresentacao {
     display: grid;
-    grid-template-columns: 1fr ;
-    grid-template-rows: auto auto;    
-    padding: 0;
-    margin: 0 16px;
-    column-gap: 30px;
-    row-gap: 0;
-    max-width: 1110px;
-    height: auto;
-    /* BG BLOCO */
-  }
-  
-  .youtube {
-    /*width: calc(100% + 32px);*/
-    margin: 0;
-    margin-left: -1rem;
-  }
-
-  .apresentacao > div:nth-child(1) {
-    width: calc(100% - 2 * 16px);
-    margin: 0 auto;
-    padding-right: var(--fonte-1up);
-    grid-row: 2;
-    
-  }
-
-  .mapa .mapa-grid {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr 1fr 1fr;  
-    grid-template-areas: 'mapa' 'mapa' 'foto2';
-    gap: 20px;
-    max-height: 800px;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content;
+    grid-template-areas:
+        "media"
+        "tx   ";
   }
 
   .cabecalho {

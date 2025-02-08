@@ -2,6 +2,9 @@
 
 include get_theme_file_path('/widgets/WidgetLinksMarcas.php');
 include get_theme_file_path('/widgets/WidgetLinksRapidosOito.php');
+include get_theme_file_path('/widgets/WidgetLinksImagens.php');
+include get_theme_file_path('/widgets/WidgetApresentacao.php');
+include get_theme_file_path('/widgets/WidgetEventos.php');
 
 add_filter('render_block', function ($blockContent, $block) {
 
@@ -15,7 +18,7 @@ add_filter('render_block', function ($blockContent, $block) {
 
 }, 10, 2);
 
-date_default_timezone_set('America/Recife');
+//date_default_timezone_set('America/Recife');
 
 add_theme_support( 'post-thumbnails' );
 
@@ -547,146 +550,7 @@ class WidgetNoticiasAntiga extends WP_Widget {
         echo $args['after_widget']; 
     }
 }
-// Widget de eventos
-function registrar_widget_eventos() {
-    register_widget('WidgetEventos');
-}
-add_action('widgets_init', 'registrar_widget_eventos');
 
-class WidgetEventos extends WP_Widget {
-
-    public function __construct() {
-        parent::__construct(
-            'Widget_Eventos',
-            'Widget de Eventos',
-            array(
-                'description' => 'Exibe até 3 dos próximos eventos mais próximos que acontecerão. Widget fica invisível se não existe nenhum evento vindo aí'
-            )
-        );
-    }
-
-    public function widget($args, $instance) {
-
-        $posts_per_page = 3;
-        $the_query = new WP_Query( array(
-            'posts_per_page' => $posts_per_page,
-            'post_type' => 'evento',
-            'meta_key' => '__data_inicio',  // Pega a metakey de data
-            'orderby' => 'meta_value',      // e organiza a query
-            'order' => 'ASC',               // em ordem do mais velho pro mais novo
-            'meta_query' => array(
-                array(
-                    'key' => '__data_fim',  // usa a data de fim do evento
-                    'value' => current_time('timestamp') - 86400, // - 3 * 3600,
-                    'compare' => '>='       // pra comprar com a data atual. 
-                )                           // (eventos que já acabaram não são exibidos)
-            )
-        ));
-
-        echo $args['before_widget'];
-        
-        if ($the_query->have_posts()){  
-            echo '
-            <div class="noticias-wrapper">
-                <div class="eventos">
-                    <h2>Eventos</h2>';
-                    if ($the_query->post_count == 1) {
-                        // classe com 1 coluna especial
-                        // data, nome, excerpt
-                        echo '<div class="conteudo2-eventos-solo">';
-                        $postCount = 0;
-                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                            $postCount++;
-                            $the_query->the_post();
-                                   
-                                echo '<a href="' , esc_url(the_permalink()) , '" class="evento-wrapper-solo camada-1">';
-                                if (has_post_thumbnail()) {
-                                    echo '<div class="evento-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-                                }
-                                                            
-                            $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
-                            $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
-
-                            echo '<div class="evento-sem-img">'; 
-                                echo '<div class="rotulo-evento">';                                                               
-                                echo '<div>';
-                                
-                                if (empty($data_fim) || $data_inicio == $data_fim) {
-                                    echo wp_date('j \d\e F \d\e Y', $data_inicio), '</div>';
-                                } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                    echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                } else {
-                                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                }
-                                
-                                echo '
-                                
-                                </div><!-- fecha div rotulo -->';
-                                echo '<h2>' , esc_html(the_title()) , '</h2>';
-                                echo  esc_html(the_excerpt());                                     
-                                
-                                echo '</div>'; //noticia-com/sem-img
-                            echo '</a>'; //noticia-wrapper                            
-                        }
-                    } else {
-                    if ($the_query->post_count == 2) {
-                        // classe com 3 colunas
-                        echo '<div class="conteudo2-eventos-dupla">';
-                    } else if ($the_query->post_count == 3) {
-                        // classe com 2 colunas
-                        echo '<div class="conteudo2-eventos-trio">';
-                    } 
-                        
-                        $postCount = 0;
-                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                            $postCount++;
-                            $the_query->the_post();
-
-                            if ($postCount < 4) {                                    
-                                echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
-                                if (has_post_thumbnail()) {
-                                    echo '<div class="evento-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-                                }
-                                                            
-                            $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
-                            $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
-
-                            echo '<div class="evento-sem-img">'; 
-                                echo '<div class="rotulo-evento">';                                                               
-                                echo '<div>';
-                                
-                                if (empty($data_fim) || $data_inicio == $data_fim) {
-                                    echo wp_date('j \d\e F \d\e Y', $data_inicio), '</div>';
-                                } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                    echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                } else {
-                                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                }
-                                
-                                echo '
-                                
-                                </div><!-- fecha div rotulo -->';
-                                echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
-                                
-                                echo '</div>'; //noticia-com/sem-img
-                            echo '</a>'; //noticia-wrapper
-                            }
-                        }  
-                    }          
-            echo
-            '       
-                    
-            </div>
-            <div class="link-wrapper justify-end">
-            <a class="mais-link" href="', get_home_url(), '/eventos/">Todos os Eventos</a>           
-            </div>
-            </div>
-            </div>';
-        
-        }
-        echo $args['after_widget']; 
-    }
-}
 
 // Registrar Widget de Noticias novo
 function registrar_widget_noticias() {
@@ -761,72 +625,6 @@ class WidgetNoticias extends WP_Widget {
             echo '</div>';
         }
 
-        /*
-        echo '
-        <div class="noticias-wrapper">
-            <div class="noticias">
-                <h2>Notícias</h2>
-                <div class="conteudo2">';
-                    $posts_per_page = 5;
-                    $the_query = new WP_Query( array(
-                        'posts_per_page' => $posts_per_page
-                    ));
-                    if ( $the_query->have_posts() ) {
-                        $postCount = 0;
-                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                            $postCount++;
-                            $the_query->the_post();
-
-                            if ($postCount < 3) {
-                                if ($postCount == 1){
-                                    echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-primeira">';
-                                } else {
-                                    echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-segunda">';
-                                }
-                                if (has_post_thumbnail()) {
-                                    echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-                                }
-                            } else {
-                                echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';                                 
-                            } 
-                                                                    
-                                    echo '<div class="noticia-sem-img">'; 
-                                        echo '<div class="rotulo-escuro">';                                                               
-                                        echo '
-                                        <div>' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>';
-                                        /*echo '<div class="categorias">';
-                                            $categories = get_the_category();
-                                            
-                                            if ($categories) {
-                                                $categories = array_slice($categories, 0, 2);
-                                                foreach ($categories as $category) {                                                    
-                                                    echo '<div>' , esc_html($category->name) , '</div>';
-                                                    if (next($categories)) {
-                                                        echo ', ';
-                                                    }
-                                                }
-                                            }
-                                        echo '    
-                                            </div>';<!-- fecha div categorias -->
-                                        echo '</div><!-- fecha div rotulo -->';
-                                        echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
-                                
-                                echo '</div>'; //noticia-com/sem-img
-                            echo '</a>'; //noticia-wrapper
-                        }
-                    }
-
-        
-        echo
-        '       
-                <div class="link-wrapper justify-end">
-                <a class="mais-link" href="', get_home_url(), '/noticias/">Mais Notícias</a>           
-                </div>
-                </div>
-            </div>
-        </div>';
-
-        */
         echo $args['after_widget']; 
     }
 }
@@ -1286,114 +1084,6 @@ class WidgetDestaqueTriplo extends WP_Widget {
         $instance['titulo_3'] = !empty($new_instance['titulo_3']) ? esc_html($new_instance['titulo_3']) : ''; 
         $instance['resumo_3'] = !empty($new_instance['resumo_3']) ? esc_html($new_instance['resumo_3']) : ''; 
         $instance['link_texto_3'] = !empty($new_instance['link_texto_3']) ? esc_html($new_instance['link_texto_3']) : ''; 
-        return $instance;
-    }
-}
-
-// Registrar o widget personalizado p/ home
-function registrar_widget_apresentacao() {
-    register_widget('Widget_Apresentacao');
-}
-add_action('widgets_init', 'registrar_widget_apresentacao');
-
-// Criar a classe do widget personalizado
-class Widget_Apresentacao extends WP_Widget {
-    public function __construct() {
-        parent::__construct(
-            'widget_apresentacao',
-            'Widget de Apresentação com Vídeo',
-            array(
-                'description' => 'Um widget personalizado para apresentar a instituição, com título, vídeo, links, fotos e localização.'
-            )
-        );
-    }
-
-    // Função para exibir o widget no frontend
-    public function widget($args, $instance) {
-        echo $args['before_widget'];
-
-        echo '
-        <div class="apresentacao">
-            <div class="camada-1">                 
-                <h2>' . nl2br(esc_html($instance['titulo'])) . '</h2>
-                <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
-                <div class="apresentacao-links">';
-
-                if (!empty($instance['link1']) && !empty($instance['link1_nome'])) {
-                    echo
-                    '<div class="link-wrapper">
-                        <a class="mais-link" href="', $instance['link1'] ,'">', $instance['link1_nome'] ,'</a>           
-                    </div>';
-                }
-                 if (!empty($instance['link2']) && !empty($instance['link2_nome'])) {
-                    echo
-                    '<div class="link-wrapper">
-                        <a class="mais-link" href="', $instance['link2'] ,'">', $instance['link2_nome'] ,'</a>           
-                    </div>';
-                }
-                 if (!empty($instance['link3']) && !empty($instance['link3_nome'])) {
-                    echo
-                    '<div class="link-wrapper">
-                        <a class="mais-link" href="', $instance['link3'] ,'">', $instance['link3_nome'] ,'</a>           
-                    </div>';
-                }                
-
-                echo '</div>
-            </div>';
-
-            if (!empty($instance['video-institucional'])) {
-                $url = esc_url($instance['video-institucional']);
-                $embed_url = str_replace("watch?v=", "embed/", $url);
-                echo '<div class="youtube"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
-            } else if (!empty($instance['localizacao'])) {
-                echo '<div class="youtube">' , $instance['localizacao'] , '</div>';
-            } else if (!empty($instance['img_url'])) {
-                echo '<div class="youtube"><img src="' , $instance['img_url'] , '"></div>';
-            }
-        echo '</div>';   
-
-        echo $args['after_widget'];
-    }
-
-    // Função para exibir o formulário de configuração do widget no painel de controle
-    public function form($instance) {
-        // Campos do widget
-        $campos = array(
-            'titulo' => 'Título da Apresentação',
-            'texto-apresentacao' => 'Texto sobre a instituição',
-            'link1' => 'Link 1 de apresentação',
-            'link1_nome' => 'Nome de exibição do Link 1',
-            'link2' => 'Link 2 de apresentação',
-            'link2_nome' => 'Nome de exibição do Link 2',
-            'link3' => 'Link 3 de apresentação',
-            'link3_nome' => 'Nome de exibição do Link 3',
-            'video-institucional' => 'Vídeo Institucional',            
-            'localizacao' => 'Localização (cole apenas a URL de Incorporação do Google Maps)',
-            'img_url' => 'Imagem a ser exibida'
-        );
-
-        echo '<p> Apenas a opção não-vazia mais acima entre <strong>Vídeo, Localização e Imagem</strong> será considerada na configuração do Widget.
-            <br><br>Por exemplo, se este Widget conter um vídeo e localização ao mesmo tempo, apenas a localização será considerada.</p>
-            <br><br>Os links são <strong>opcionais</strong>, mas recomendados. Preencha-os com sabedoria.</p>';
-
-		// Exibir campos do formulário
-		$index = 0;
-		foreach ($campos as $campo => $label) {
-		    $valor = !empty($instance[$campo]) ? esc_attr($instance[$campo]) : '';
-		    echo '<p>';
-		    echo '<label for="' . $this->get_field_id($campo) . '">' . esc_html($label) . ':</label>';		    
-		    echo '<input class="widefat" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" type="text" value="' . $valor . '">';
-		    echo '</p>';
-		    $index = $index + 2;
-		}
-    }
-
-    // Função para atualizar os valores do widget no painel de controle
-    public function update($new_instance, $old_instance) {
-        $instance = array();
-        foreach ($new_instance as $campo => $valor) {
-            $instance[$campo] = (!empty($valor)) ? $valor : '';
-        }
         return $instance;
     }
 }
