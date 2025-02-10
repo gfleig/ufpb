@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="corpo" id="conteudo_pagina">
+<div class="corpo width-wrapper" id="conteudo_pagina">
     <div class="corpo-grid">
         <div class="sidebar">
             <?php
@@ -35,16 +35,11 @@
                         echo 'Categorias:&nbsp';
                     }
 
-                    // Verifica se existem categorias
                     if ($categories) {
-                        // Limita a exibição a duas categorias
-                        //$categories = array_slice($categories, 0, 2);
-
                         // Loop pelas categorias
                         foreach ($categories as $category) {
                             // Exibe o nome da categoria como um link
                             echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-
                             // Adiciona uma vírgula após a categoria, exceto pela última
                             if (next($categories)) {
                                 echo ',&nbsp';
@@ -78,20 +73,7 @@
 
             <?php cats_related_post() ?>            
         </div>
-    </div>
-
-        <div class="imagem-grande">
-            <?php
-            // Obtém a URL da imagem do Customizer
-            $imagem_banner_url = get_theme_mod('imagem_banner');
-
-            if (!empty($imagem_banner_url)) {
-                echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
-                /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
-            }
-            ?>
-            <div class="imagem-sombra"></div>
-        </div>    
+    </div>            
 
     </div>
 </div>

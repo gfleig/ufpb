@@ -1651,6 +1651,7 @@ function create_editais() {
 	);
 }
 
+// invoca wp_nav_menu e css deixa só com o submenu atual, se tiver
 function summon_side_menu() {
     wp_nav_menu(   
         array ( 
@@ -1671,13 +1672,13 @@ function summon_categorias_menu() {
         "order"     => "ASC"
     )); 
     if (!empty($categorias)) {
-        echo '<div>';
-        echo '<h2 class="menu-lateral-h2">Categorias</h2>';
-        echo '<ul class="menu-lateral">';
-        foreach ($categorias as $categoria){
-            echo '<li><a class="mais-link" href="' , esc_url(get_category_link($categoria->term_id)) , '">', esc_html($categoria->name) ,'</a></li>';
-        }
-        echo '</ul>';
+        echo '<div class="side-menu-categorias">';
+            echo '<h2 class="menu-lateral-h2">Categorias</h2>';
+            echo '<ul class="menu-lateral linha-abaixo linha-header-longa">';
+            foreach ($categorias as $categoria){
+                echo '<li><a class="side-menu-button" href="' , esc_url(get_category_link($categoria->term_id)) , '">', esc_html($categoria->name) ,'</a></li>';
+            }
+            echo '</ul>';
         echo '</div>';
     }
 }

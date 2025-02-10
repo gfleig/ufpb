@@ -71,29 +71,29 @@ document.addEventListener('DOMContentLoaded', function () {
     let scrollTimeout
     var prevScrollpos = window.scrollY;
     var sideBar = document.getElementsByClassName("sidebar")[0];
-
+    
     window.addEventListener('scroll', function () {
         var currentScrollPos = window.scrollY;
-        var sideBarPresente;
-        if (typeof sideBar !== 'undefined'){
-            sideBarPresente = true;
-        } else {
-            sideBarPresente = false;
-        }
+        //var sideBarPresente;
+        //if (typeof sideBar !== 'undefined'){
+        //    sideBarPresente = true;
+        //} else {
+        //    sideBarPresente = false;
+        //}
 
         if (prevScrollpos > currentScrollPos) {
             menuNav.style.top = "0";
-            if (sideBarPresente) {
-                sideBar.style.top = menuHeight - 1 + "px"
-            }            
+            //if (sideBarPresente) {
+            //    sideBar.style.top = menuHeight + 3 + "px"
+            //}            
         } else {
             menuNav.style.top = "-" + menuHeight + "px";
-            if (sideBarPresente) {
-                sideBar.style.top = "60px"
-            }             
+            //if (sideBarPresente) {
+            //    sideBar.style.top = "62px"
+            //}             
         }        
 
-        clearTimeout(scrollTimeout)
+        clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(function () {
             prevScrollpos = currentScrollPos;
         }, 0);

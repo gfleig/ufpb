@@ -30,7 +30,7 @@ class WidgetEventos extends WP_Widget {
             'meta_query' => array(
                 array(
                     'key' => '__data_fim',  // usa a data de fim do evento
-                    'value' => current_time('timestamp') - 86400, // - 3 * 3600,
+                    'value' => current_time('timestamp') - 86400 - 3 * 3600,
                     'compare' => '>='       // pra comprar com a data atual. 
                 )                           // (eventos que já acabaram não são exibidos)
             )
