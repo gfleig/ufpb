@@ -2,6 +2,9 @@
 
 <div class="corpo width-wrapper" id="conteudo_pagina">
     <div class="corpo-grid">
+        
+        <?php cats_related_post() ?>
+        
         <div class="sidebar">
             <?php
             summon_categorias_menu();
@@ -11,7 +14,7 @@
         <?php
         while ( have_posts() ) :
         the_post(); ?>
-        <div class="content-grid">            
+        <div class="content-grid large-spacer">            
             <h1 class="noticia-pagina-titulo"><?php the_title(); ?></h1>
             <?php if ( has_excerpt() ) : ?>
                 <h2 class="bigode"><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
@@ -71,7 +74,7 @@
                 </div>
             </div>
 
-            <?php cats_related_post() ?>            
+                       
         </div>
     </div>            
 

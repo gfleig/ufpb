@@ -129,7 +129,6 @@ function add_menu_link_class( $atts, $item, $args ) {
 add_filter( 'nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );
 
 function cats_related_post() {
-
     $post_id = get_the_ID();
     $cat_ids = array();
     $categories = get_the_category( $post_id );
@@ -146,51 +145,39 @@ function cats_related_post() {
         'category__in'   => $cat_ids,
         'post_type'      => $current_post_type,
         'post__not_in'    => array($post_id),
-        'posts_per_page'  => '2',
+        'posts_per_page'  => '4',
      );
 
     $related_cats_post = new WP_Query( $query_args );
 
     if($related_cats_post->have_posts()){
-        echo '<h2 id="outras-n">Notícias Relacionadas</h2>
-        <div class="noticias-relacionadas">';
-        while($related_cats_post->have_posts()){
-            $related_cats_post->the_post();
-            echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
-            if (has_post_thumbnail()) {
-                echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-            }
-            echo '<div class="noticia-sem-img">'; 
-                echo '<div class="rotulo-escuro">';                                                               
-                echo '
-                <div>' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>';
-                /*echo '<div class="categorias">';
-                    $categories = get_the_category();
+        $first_post = true; // usado para daicionar linha acima no primeiro post apenas
+        echo '<div class="sidebar-noticias">
+            <h2 class="menu-lateral-h2">Notícias Relacionadas</h2>
+            <div class="noticias-relacionadas">';
+            while($related_cats_post->have_posts()){
+                $related_cats_post->the_post();
+                    if ($first_post) {
+                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper linha-abaixo linha-acima">';
+                        $first_post = false;
+                    } else {
+                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper linha-abaixo">';
+                    }               
                     
-                    if ($categories) {
-                        $categories = array_slice($categories, 0, 2);
-                        foreach ($categories as $category) {                                                    
-                            echo '<div>' , esc_html($category->name) , '</div>';
-                            if (next($categories)) {
-                                echo ', ';
-                            }
-                        }
-                    }
-                echo '    
-                    </div>';<!-- fecha div categorias -->*/
-                echo '</div><!-- fecha div rotulo -->';
-                echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
-        
-                echo '</div>'; //noticia-com/sem-img
-            echo '</a>'; //noticia-wrapper 
-        }
+                    echo '<div class="noticia-relacionada-imagem">
+                        <img src="', esc_url(the_post_thumbnail_url()), '">
+                    </div>';        
+                                
+                    echo '<div class="noticia-relacionada-titulo">' , esc_html(the_title()) , '</div>';
+                echo '</a>'; //noticia-wrapper 
+            }
     }
-        // Restore original Post Data
-        wp_reset_postdata();
-        ?> 
-        </div> <!-- fecha div noticias-relacionadas -->
-        <?php
-
+            // Restore original Post Data
+            wp_reset_postdata();
+            ?> 
+            </div> <!-- fecha div noticias-relacionadas -->
+        </div>
+    <?php
 }
 
 // Registrar widgets

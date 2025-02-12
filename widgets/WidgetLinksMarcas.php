@@ -26,7 +26,7 @@ class WidgetLinksMarcas extends WP_Widget {
 
             for ($i = 1; $i < 7; $i++) {
                 echo '
-                <a class="linha-abaixo linha-header-longa link-full" href="' . esc_url($instance['link'][$i]) . '">
+                <a class="linha-abaixo linha-acima link-full" href="' . esc_url($instance['link'][$i]) . '">
                     <img src="' , esc_url($instance['imagem'][$i]) , '" alt="' , image_alt_by_url($instance['imagem'][$i]) , '">
                 </a>';
             }        
