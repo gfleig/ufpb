@@ -28,7 +28,7 @@ class WidgetLinksImagens extends WP_Widget {
                 echo '
                 <a class="linha-abaixo link-full" href="' . esc_url($instance['link'][$i]) . '">
                     <img src="' , esc_url($instance['imagem'][$i]) , '" alt="' , image_alt_by_url($instance['imagem'][$i]) , '">
-                    <div>' , esc_html($instance['texto'][$i]) , '</div>
+                    <div class="link-text texto-escuro">' , esc_html($instance['texto'][$i]) , '</div>
                 </a>';
             }        
         

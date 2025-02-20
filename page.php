@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="corpo width-wrapper" id="conteudo_pagina">
+<div class="corpo width-wrapper large-spacer" id="conteudo_pagina">
     <div class="corpo-grid">
         <div class="sidebar"> 
             <ul class="side-menu">
@@ -46,7 +46,7 @@
         <?php
         while ( have_posts() ) :
         the_post(); ?>
-        <div class="content-grid large-spacer">            
+        <div class="content-grid">            
             <h1><?php the_title(); ?></h1>           
 
             <div class="the-content-container">
