@@ -79,7 +79,12 @@
                         ); 
                     ?>
                 </ul>            
-                <div class="busca-teste hidden" id="busca-barra">                    
+                
+                <div id="menu-buttons">
+                    <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
+                    <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a> 
+                    <div class="busca-teste hidden" id="busca-barra">                    
                     <div>
                         <?php get_search_form(); ?>
                         <!--form action="">
@@ -89,14 +94,7 @@
                         </form-->
                         <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                </div>
-                <div id="menu-buttons">
-                    <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
-                    <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a>
-                    
-                    
-
+                </div> 
                 </div>
             </div>      
         </div>
