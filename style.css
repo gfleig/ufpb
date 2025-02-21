@@ -52,12 +52,12 @@ body {
 }
 
 .width-wrapper {
-  max-width: 1400px;
+  max-width: 1468px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--espaco-gutter);
+  padding-right: var(--espaco-gutter);
 }
 
 .large-spacer {
@@ -91,7 +91,6 @@ h2.wp-block-heading::before {
 .linha-abaixo, .side-menu {
   padding-bottom: var(--espaco-linha);
   border-bottom: 1px solid var(--cor-linha);
-  transition: .0s;
 }
 
 a.linha-acima:hover, a.linha-header-longa:hover{
@@ -320,11 +319,13 @@ strong {
 }
 
 .noticias-widget .noticia-card:first-child .noticia-card-imagem {
-  height: 300px;
+  /*height: 300px;*/
 }
 
 .noticia-card-imagem {
-  height: 150px;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16/9;
   display: block;
   position: relative;
   z-index: 3;
@@ -334,6 +335,7 @@ strong {
 .noticia-card-imagem img {
   width: 100%;
   object-fit: cover;
+  margin-bottom: -5px;
 }
 
 /*=========== LINKS MARCAS ===================================*/
@@ -871,7 +873,6 @@ input[type="search"]:focus {
   flex-direction: column;
   gap: 0;
   z-index: 1;
-  margin-top: 1px;
   padding-bottom: calc(var(--espaco-linha) / 2);
 }
 
@@ -904,7 +905,6 @@ input[type="search"]:focus {
 
 .menu ul li {
   cursor: pointer;  
-  margin-bottom: 1px;
 }
 
 .menu ul li:hover {
@@ -950,10 +950,10 @@ input[type="search"]:focus {
 
 .corpo-wrapper {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1528px;
   background: var(--cor-background);
   margin-top: -150px;
-  padding-top: 40px;
+  padding-top: 42px;
 }
 
 .corpo-wrapper p {
@@ -1009,7 +1009,7 @@ input[type="search"]:focus {
 }
 
 .noticia-relacionada-imagem {
-  height: 80px;
+  height: 110px;
   width: auto;
   aspect-ratio: 1;
 }
@@ -1022,7 +1022,7 @@ input[type="search"]:focus {
 .noticia-relacionada-titulo {
   font-weight: 500;
   font-size: var(--fonte-base);
-  line-height: 1.45;
+  line-height: 1.2;
 }
 
 .noticia-wrapper:hover {
@@ -1702,6 +1702,8 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   color: var(--cor-tema);
   margin-bottom: var(--fonte-base);
   word-break: break-word;
+  font-family: "IBM Plex Mono";
+  font-style: italic;
 }
 
 .wp-block-file {
@@ -1803,12 +1805,11 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 .content-grid .wp-block-button__link {
   color: var(--cor-tema);
   background-color: transparent;
-  border-radius: 0px;
-  box-shadow: none;
-  text-decoration: none;
+  font-style: italic;
+  font-family: "IBM Plex Mono";
   padding: 0;
-  font-size: 1rem;
-  font-weight: 650;
+  font-size: var(--fonte-base);
+  font-weight: 600;
 }
 
 .content-grid .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content {
@@ -2413,8 +2414,8 @@ footer a:hover {
   /*novidades*/
 
   .width-wrapper {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: var(--espaco-gutter);
+    padding-right: var(--espaco-gutter);
   }
 
   .corpo-wrapper {
@@ -2456,7 +2457,11 @@ footer a:hover {
   }
 
   .noticia-card-imagem {
-    height: 100px;
+    aspect-ratio: 1;
+  }
+
+  .sidebar-noticias {
+    margin-top: 0;
   }
 
   .noticia-card.linha-abaixo {
@@ -2541,26 +2546,15 @@ footer a:hover {
     height: 10vh;
   }
 
-
-  #index.corpo {
-    margin-top: var(--fonte-1up);
-  }
-
   .corpo {
-    margin-top: var(--fonte-1up);
-    gap: 30px;
+    gap: var(--espaco-gutter);
   }
 
   .corpo-grid {
-    max-width: 1230px;
-    display: block;
-    grid-template-columns: 9fr 3fr;
-    gap: 30px;
-    padding: var(--fonte-1down) 16px var(--fonte-2up);
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--espaco-gutter);
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
   }
 
   .eventos {
@@ -2593,9 +2587,10 @@ footer a:hover {
   }
 
   .content-grid {
-    margin-top: 0;
+    margin-top: var(--espaco-gutter);
     padding-left: 0;
     padding-right: 0;
+    padding-top: 0;
   }
 
   .sidebar {

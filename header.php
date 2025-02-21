@@ -3,7 +3,7 @@
 <head>
     <style>
     :root {
-        --cor-tema: <?php echo get_theme_mod('cor_padrao', '#102d69'); ?>;    
+        --cor-tema: <?php echo get_theme_mod('cor_padrao', '#20409a'); ?>;    
     }
     </style>
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">   
@@ -56,7 +56,7 @@
                 <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br" class="brasao">
                     <div class="ufpb-nome">UNIVERSIDADE<br>FEDERAL<br>DA PARAÍBA</div>
                     <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg"-->
-                    <img src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao_gradiente.png">
+                    <img src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao_beta.png">
                 </a>
             </div>
             
