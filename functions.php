@@ -152,7 +152,7 @@ function cats_related_post() {
     $related_cats_post = new WP_Query( $query_args );
 
     if($related_cats_post->have_posts()){
-        $first_post = true; // usado para daicionar linha acima no primeiro post apenas
+        $first_post = true; // usado para adicionar linha acima no primeiro post apenas
         echo '<div class="sidebar-noticias">
             <h2 class="menu-lateral-h2">Notícias Relacionadas</h2>
             <div class="noticias-relacionadas">';

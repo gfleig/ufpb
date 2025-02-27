@@ -23,7 +23,8 @@ class WidgetNoticias extends WP_Widget {
 
         $posts_per_page = 7;
         $the_query = new WP_Query( array(
-            'posts_per_page' => $posts_per_page
+            'posts_per_page' => $posts_per_page,
+            'no_found_rows' => true
         ));
 
         if ( $the_query->have_posts() ) {
@@ -37,7 +38,7 @@ class WidgetNoticias extends WP_Widget {
                 $postCount++;
                 $the_query->the_post();
 
-                echo '<div class="noticia-card linha-abaixo flex-grow-parent">';
+                echo '<div class="noticia-card linha-abaixo">';
                     echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-imagem  small-spacer">';
                     echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
                     echo '</a>'; //noticia-imagem
