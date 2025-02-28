@@ -32,6 +32,33 @@ add_post_type_support( 'page', 'excerpt' );
 //Cor personalizada
 function meu_tema_personalizado($wp_customize) {
 
+    /**
+    ------------------------------------------------------------
+    SECTION: Header
+    ------------------------------------------------------------
+    **/
+    $wp_customize->add_section('section_header', array(
+        'title'          => esc_html__('Header do Site', 'meu-tema'),
+        'description'    => esc_attr__( 'Escolha entre 2 estilo de header para o site:', 'meu-tema' ),
+        'priority'       => 1,
+    ));
+
+        /**
+        Header Styles
+        **/
+        $wp_customize->add_setting( 'header_styles', array(
+            'default'    => 'headerPadrao',
+        ));
+        $wp_customize->add_control( 'header_styles', array(
+            'label'      => esc_html__( 'Estilos de Header', 'meu-tema' ),
+            'section'    => 'section_header',
+            'type'       => 'select',
+            'choices'    => array(
+                'headerPadrao'    => esc_html__('Header Padrão', 'meu-tema'),
+                'headerPortal'    => esc_html__('Header para Portal', 'meu-tema')            
+            )
+        ));
+
     // Adicionando a seção de cores personalizadas
     $wp_customize->add_section('cores_personalizadas', array(
       'title' => __('Cor do site', 'meu-tema'),
@@ -94,7 +121,21 @@ function adicionar_controle_imagem_banner($wp_customize) {
 }
 add_action('customize_register', 'adicionar_controle_imagem_banner');
 
-function summon_banner(){
+function summon_banner_top(){
+    // Obtém a URL da imagem do Customizer
+    $imagem_banner_url = get_theme_mod('imagem_banner');
+
+    echo '<div class="imagem banner-topo">';
+
+    if (!empty($imagem_banner_url)) {
+        echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
+    } else {
+        echo '<img src="' , get_bloginfo("template_directory") , '/decoration.jpg" alt="Imagem decorativa do site">';
+    }        
+    echo '</div>'; 
+}
+
+function summon_banner_bottom(){
     // Obtém a URL da imagem do Customizer
     $imagem_banner_url = get_theme_mod('imagem_banner');
 
@@ -107,6 +148,7 @@ function summon_banner(){
     }        
     echo '</div>'; 
 }
+
 
 
 //registrar menus

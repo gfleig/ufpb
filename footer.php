@@ -1,4 +1,4 @@
-<?php summon_banner(); ?>
+<?php summon_banner_bottom(); ?>
 <div id="footer-wrapper">
   <footer class="width-wrapper">
   <div id="footer-top">
