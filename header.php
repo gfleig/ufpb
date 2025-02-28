@@ -12,15 +12,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wdth,wght@0,75..100,100..700;1,75..100,100..700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
 
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/fontawesome.css" rel="stylesheet">
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/brands.css" rel="stylesheet">
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/solid.css" rel="stylesheet">
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/regular.css" rel="stylesheet">
-    <script type="text/javascript" src="<?php echo get_bloginfo("template_directory"); ?>/js/controller.js"></script>
+    <script type="text/javascript" src="<?php echo get_bloginfo("template_directory"); ?>/js/controller.js" defer></script>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo get_bloginfo( 'name' ); ?> - UFPB</title>

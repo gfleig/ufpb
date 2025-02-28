@@ -43,6 +43,33 @@
 </div>
 
 <?php if(!is_home()) summon_banner_top(); ?>
+
+<section aria-label="Carrossel">    
+    <div class="carrossel" data-carrossel>
+        <button class="carrossel-button prev" data-carrossel-button="prev">ant</button>
+        <button class="carrossel-button next" data-carrossel-button="next">prox</button>
+        <ul data-slides>
+            <li class="slide" data-active>
+                <div class="width-wrapper">
+                    <div class ="slide-texto-box">
+                        <div class="linha-header-longa">
+                            <h2 class="linha-header">Ingressar na UFPB</h2>
+                        </div>                        
+                        <div class="texto">Ingressar na UFMG Informações sobre formas de acesso e políticas de apoio ao estudante brasileiro e estrangeiro</div>
+                    </div>                    
+                </div>                
+                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/mus2.jpg" alt="Biblioteca Central">
+            </li>
+            <li class="slide">
+                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/biblioteca.jpg" alt="Hospital Universitário">
+            </li>
+            <li class="slide">
+                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/ipe.jpg" alt="IPE">
+            </li>
+        </ul>
+    </div>
+</section>
+
 <div id="menu-overlay" class="top-fixed-overlay menu-hidden">
     <ul id="mobile-menu">            
         <?php 

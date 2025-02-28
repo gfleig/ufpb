@@ -99,6 +99,49 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 0);
     });
     
+    function nextSlide() {
+        const slides = document.querySelector("[data-carrossel]").querySelector("[data-slides]");
+        const activeSlide = slides.querySelector("[data-active]");
+        let newIndex = [...slides.children].indexOf(activeSlide) + 1;        
+        if (newIndex >= slides.childElementCount){
+            newIndex = 0;
+        }
+        
+        slides.children[newIndex].dataset.active = true;
+        delete activeSlide.dataset.active;
+    }
+
+    const timerInterval = 8000;                         // intervalo de tempo para passar slide do carrossel, em ms
+    //var slideTimer = setInterval(nextSlide, timerInterval);      // inicia slide automático do carrossel
+
+    const buttons = document.querySelectorAll("[data-carrossel-button]")
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            //clearInterval(slideTimer);                  // interrompe o timer de pasar automaticamente slide
+
+            const offset = button.dataset.carrosselButton === "next" ? 1 : -1;
+            const slides = button
+                .closest('[data-carrossel]')
+                .querySelector('[data-slides]');
+
+            const activeSlide = slides.querySelector("[data-active]");
+            let newIndex = [...slides.children].indexOf(activeSlide) + offset;
+            if (newIndex < 0) {
+                newIndex = slides.childElementCount - 1;
+            }
+            if (newIndex >= slides.childElementCount){
+                newIndex = 0;
+            }
+            
+            slides.children[newIndex].dataset.active = true;
+            delete activeSlide.dataset.active;
+
+            //slideTimer = setInterval(nextSlide, timerInterval);  // reinicia timer de pasar slide
+        })
+    })
+
+    
 });
 
 function altoContraste() {
