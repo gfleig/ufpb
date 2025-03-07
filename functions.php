@@ -6,6 +6,7 @@ include get_theme_file_path('/widgets/WidgetLinksImagens.php');
 include get_theme_file_path('/widgets/WidgetApresentacao.php');
 include get_theme_file_path('/widgets/WidgetEventos.php');
 include get_theme_file_path('/widgets/WidgetNoticias.php');
+include get_theme_file_path('/widgets/WidgetDestaqueSolo.php');
 
 add_filter('render_block', function ($blockContent, $block) {
 
@@ -149,14 +150,11 @@ function summon_banner_bottom(){
     echo '</div>'; 
 }
 
-
-
 //registrar menus
 function register_menus() { 
     register_nav_menus(
         array(
-            'main-menu' => 'Menu Principal',
-            'side-menu' => 'Menu lateral presente em todas as subpágias',            
+            'main-menu' => 'Menu Principal',          
         )
     ); 
 }
@@ -492,95 +490,6 @@ function customizer_contato($wp_customize) {
 }
 add_action('customize_register', 'customizer_contato');
 
-// Registrar Widget de Noticias antigo
-function registrar_widget_noticias_antiga() {
-    register_widget('WidgetNoticiasAntiga');
-}
-add_action('widgets_init', 'registrar_widget_noticias_antiga');
-
-class WidgetNoticiasAntiga extends WP_Widget {
-
-    public function __construct() {
-        parent::__construct(
-            'Widget_Noticias_Antiga',
-            '[Antigo] Widget de Notícias',
-            array(
-                'description' => 'Exibe as 3 últimas notícias (estilo antigo, não usar)'
-            )
-        );
-    }
-
-    public function widget($args, $instance) {
-        echo $args['before_widget'];
-        echo '
-        <div class="noticias-wrapper">
-            <div class="noticias">
-                <h2>Notícias</h2>
-                <div class="conteudo">';
-                    $posts_per_page = 3;
-                    $the_query = new WP_Query( array(
-                        'posts_per_page' => $posts_per_page
-                    ));
-                    if ( $the_query->have_posts() ) {
-                        $postCount = 0;
-                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                            $postCount++;
-                            $the_query->the_post();
-
-                            if ($postCount == 1) {
-                                echo '<div class="noticia-wrapper camada-1 noticia-primeira">';
-                            } else {
-                                echo '<div class="noticia-wrapper camada-1">';                                 
-                            }
-                                if (has_post_thumbnail()) {
-                                    echo '<div class="rotulo-claro">';
-                                } else {
-                                    echo '<div class="rotulo-escuro">';
-                                }                                
-                                    echo '
-                                    <div>' . get_the_date( 'j \d\e F Y' ) . '</div>
-                                    <div class="categorias">';
-                                        $categories = get_the_category();
-                                        
-                                        if ($categories) {
-                                            $categories = array_slice($categories, 0, 2);
-                                            foreach ($categories as $category) {                                                    
-                                                echo '<a href="' , esc_url(get_category_link($category->term_id)) , '">' , esc_html($category->name) , '</a>';
-                                                if (next($categories)) {
-                                                    echo ', ';
-                                                }
-                                            }
-                                        }
-                                echo '    
-                                    </div><!-- fecha div categorias -->
-                                </div><!-- fecha div rotulo -->';
-                            
-                                if ( has_post_thumbnail()) {                                    
-                                    echo '<img class="noticia-img" src="', esc_url(the_post_thumbnail_url()), '">';
-                                    echo '<a class="noticia-com-img" href="' , esc_url(the_permalink()) , '">';
-                                } else {
-                                    echo '<a class="noticia-sem-img" href="' , esc_url(the_permalink()) , '">'; 
-                                }                                    
-
-                                    echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';
-                                    
-                                
-                                echo '</a>'; //noticia-com/sem-img
-                            echo '</div>'; //noticia-wrapper
-                        }
-                    } 
-        //wrapper do que é dinâmico
-        echo
-        '       </div>
-                <div class="link-wrapper justify-end">
-                <a class="mais-link" href="', get_home_url(), '/noticias/">Mais Notícias</a>           
-                </div>
-            </div>
-        </div>';
-        echo $args['after_widget']; 
-    }
-}
-
 // Registrar Widget de Destaque solo
 function registrar_widget_destaque_solo_invertido() {
     register_widget('WidgetDestaqueSoloInvertido');
@@ -633,98 +542,6 @@ class WidgetDestaqueSoloInvertido extends WP_Widget {
         $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link) );    
         $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';   
         $img_link = !empty($instance['img_link']) ? $instance['img_link'] : get_the_post_thumbnail_url(url_to_postid($pagina_link));     
-
-        // Formulário de configuração do widget
-        ?>
-
-        <p>
-            <label for="<?php echo $this->get_field_id('pagina_link'); ?>">Link da página a ser destacada:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('pagina_link'); ?>" name="<?php echo $this->get_field_name('pagina_link'); ?>" type="text" value="<?php echo $pagina_link; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título do bloco de destaque (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('pagina_link'); ?>">Texto do bloco de destaque (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('resumo'); ?>" name="<?php echo $this->get_field_name('resumo'); ?>" type="text" value="<?php echo $resumo; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('link_texto'); ?>">Texto do link (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('link_texto'); ?>" name="<?php echo $this->get_field_name('link_texto'); ?>" type="text" value="<?php echo $link_texto; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('img_link'); ?>">Link da imagem personalizada do destaque:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('img_link'); ?>" name="<?php echo $this->get_field_name('img_link'); ?>" type="text" value="<?php echo $img_link; ?>">
-        </p>
-        
-        <?php
-    }
-
-    public function update($new_instance, $old_instance) {
-        // Atualizar os valores do widget
-        $instance = $old_instance;
-        $instance['pagina_link'] = !empty($new_instance['pagina_link']) ? esc_html($new_instance['pagina_link']) : ''; 
-        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : ''; 
-        $instance['resumo'] = !empty($new_instance['resumo']) ? esc_html($new_instance['resumo']) : ''; 
-        $instance['link_texto'] = !empty($new_instance['link_texto']) ? esc_html($new_instance['link_texto']) : ''; 
-        $instance['img_link'] = !empty($new_instance['img_link']) ? esc_html($new_instance['img_link']) : '';
-        return $instance;
-    }
-}
-
-// Registrar Widget de Destaque solo
-function registrar_widget_destaque_solo() {
-    register_widget('WidgetDestaqueSolo');
-}
-add_action('widgets_init', 'registrar_widget_destaque_solo');
-
-class WidgetDestaqueSolo extends WP_Widget {
-
-    public function __construct() {
-        parent::__construct(
-            'Widget_Destaque_Solo',
-            'Widget de Destaque Único',
-            array(
-                'description' => 'Destaca uma página do site de forma belíssima.'
-            )
-        );
-    }
-
-    public function widget($args, $instance) {
-        // Extrair os valores dos campos do widget
-        $pagina_link = esc_url($instance['pagina_link']);
-        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
-        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link));    
-        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
-        $img_link = !empty($instance['img_link']) ? $instance['img_link'] : get_the_post_thumbnail_url(url_to_postid($pagina_link));
-
-        echo $args['before_widget'];
-
-        echo '
-        <div class="width-wrapper destaque-solo large-spacer">  
-            <div class="linha-abaixo linha-header-longa flex-grow-parent">
-                <h2 class="linha-header">' . $titulo . '</h2>
-                <div class="flex-grow">
-                    <p>' . $resumo . '</p>
-                    <a class="mais-link" href=' . $pagina_link . '>' . $link_texto . '</a>
-                </div>                
-            </div>
-            <div class="destaque-solo-img">
-                <img src="' . $img_link . '" alt="Imagem da página">
-            </div>                
-        </div>';
-        
-        echo $args['after_widget']; 
-    }
-
-    public function form($instance) {
-        // Exibir o formulário de configuração do widget
-        $pagina_link = $instance['pagina_link'];
-        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
-        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link) );    
-        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';   
-        $img_link = !empty($instance['img_link']) ? $instance['img_link'] : '';     
 
         // Formulário de configuração do widget
         ?>
@@ -1561,6 +1378,7 @@ function create_eventos() {
                 'thumbnail'
             ),
             'show_in_rest' => true, //permite editor gutenberg
+            'hierarchical' => false,
             
 		)
 	);

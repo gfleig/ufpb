@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu-wrapper" id="menu-nav">
+                <div class="menu-wrapper" id="menu-nav-portal">
                     <div class="menu">
                         <button type="nav" id="hamburger">
                             <i id="hamburger-botao" class="fa-solid fa-bars"></i>
@@ -55,7 +55,7 @@
                         <div class="linha-header-longa">
                             <h2 class="linha-header">Ingressar na UFPB</h2>
                         </div>                        
-                        <div class="texto">Ingressar na UFMG Informações sobre formas de acesso e políticas de apoio ao estudante brasileiro e estrangeiro</div>
+                        <div class="texto">Informações sobre formas de acesso e políticas de apoio ao estudante brasileiro e estrangeiro</div>
                     </div>                    
                 </div>                
                 <img src="<?php echo get_bloginfo("template_directory"); ?>/img/mus2.jpg" alt="Biblioteca Central">

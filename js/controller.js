@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     arrowButton.forEach((el) =>
         el.addEventListener("click", (event) => {
-            console.log("clickou buceta");
             const subMenu = event.currentTarget;
             subMenu.classList.toggle("submenu-aberto");
         })
@@ -44,14 +43,20 @@ document.addEventListener('DOMContentLoaded', function () {
         windowHeight = window.innerHeight;
         
     })
+    try {
+        var menuNav = document.getElementById('menu-nav');   
+        var menuHeight = menuNav.offsetHeight;
+    } catch {
+        menuHeight = 0;
+    }        
 
-    var menuNav = document.getElementById('menu-nav');    
     var cabecalho = document.getElementById('cabecalho-id');
     var offsetValue = cabecalho.offsetHeight;
-    var menuHeight = menuNav.offsetHeight;    
+     
     
 
     function toggleMenuOverlay() {  
+
         offsetValue = cabecalho.offsetHeight;     
         if (window.scrollY < offsetValue) {
             overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
@@ -112,13 +117,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const timerInterval = 8000;                         // intervalo de tempo para passar slide do carrossel, em ms
-    //var slideTimer = setInterval(nextSlide, timerInterval);      // inicia slide automático do carrossel
+    var slideTimer = setInterval(nextSlide, timerInterval);      // inicia slide automático do carrossel
 
     const buttons = document.querySelectorAll("[data-carrossel-button]")
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            //clearInterval(slideTimer);                  // interrompe o timer de pasar automaticamente slide
+            clearInterval(slideTimer);                  // interrompe o timer de pasar automaticamente slide
 
             const offset = button.dataset.carrosselButton === "next" ? 1 : -1;
             const slides = button
@@ -137,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             slides.children[newIndex].dataset.active = true;
             delete activeSlide.dataset.active;
 
-            //slideTimer = setInterval(nextSlide, timerInterval);  // reinicia timer de pasar slide
+            slideTimer = setInterval(nextSlide, timerInterval);  // reinicia timer de pasar slide
         })
     })
 

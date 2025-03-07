@@ -102,7 +102,7 @@
           <a class="logo-acesso-footer" target="_blank" rel="noopener noreferrer" href="https://www.gov.br/acessoainformacao/pt-br" title="Acesse o portal sobre o acesso à informação">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="100%" width="auto" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
               <defs>
-                <style type="text/css">.a {font: normal bold 11px Open Sans, sans-serif;}</style>
+                <style type="text/css">.a {font: normal bold 11px IBM Plex Sans, sans-serif;}</style>
               </defs>
               <circle cx="22" cy="23" r="22" fill="#fff"></circle>
               <path style="stroke:var(--cor-tema);stroke-width:9;stroke-linecap:round;" d="m 22,23 v 13"></path>
