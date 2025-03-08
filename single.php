@@ -17,11 +17,14 @@
         <div class="content-grid">            
             <h1 class="noticia-pagina-titulo"><?php the_title(); ?></h1>
             <?php if ( has_excerpt() ) : ?>
-                <h2 class="bigode"><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
+                <h2 class="bigode"><?php echo the_excerpt(); ?></h2>
             <?php endif; ?>             
             <div class="noticia-h2">
                 <div>
-                    <div><?php echo get_the_date( 'l, j \d\e F \d\e Y' ); ?></div>                    
+                    <div><?php echo get_the_date( 'l, j \d\e F \d\e Y' ); ?></div> 
+                    <?php if ( get_the_modified_time( 'U' ) > get_the_time( 'U' ) ) {
+                        echo '<div>Última atualização: ' , get_the_modified_time( 'l, j \d\e F \d\e Y' ) , '</div>';
+                    } ?>             
                 </div>  
                 <?php
                 // Obtém as categorias do post

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="corpo" id="conteudo_pagina">
+<div class="corpo large-spacer" id="conteudo_pagina">
     <div class="corpo-grid">
         <div class="sidebar">
             <?php
@@ -15,15 +15,15 @@
             <h1 class="noticia-pagina-titulo"><?php the_title(); ?></h1>
             
             <?php if ( has_excerpt() ) : ?>
-                <h2 class="bigode"><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
+                <h2 class="bigode"><?php echo the_excerpt(); ?></h2>
             <?php endif; ?> 
 
             <div class="the-content-container">                             
                 <?php the_content(); ?>
             </div>
 
-            <div class = "evento-ficha">                
-                <h2>Serviço</h2>
+            <div class = "evento-ficha linha-header-longa linha-abaixo">                
+                <h2 class="linha-header small-spacer">Serviço</h2>
                 <?php
                 $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
                 $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );
@@ -42,7 +42,7 @@
                 } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
                     echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
                 } else {
-                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
+                    echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
                 }                
                 if (!empty($horario)) {
                     echo '<p><i class="fa-solid fa-clock"></i><strong>Horário: </strong>', esc_html($horario),  '</p>';
@@ -100,20 +100,7 @@
                 </div>
             </div>                        
         </div>
-    </div>
-
-        <div class="imagem-grande">
-            <?php
-            // Obtém a URL da imagem do Customizer
-            $imagem_banner_url = get_theme_mod('imagem_banner');
-
-            if (!empty($imagem_banner_url)) {
-                echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
-                /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
-            }
-            ?>
-            <div class="imagem-sombra"></div>
-        </div>    
+    </div>         
 
     </div>
 </div>

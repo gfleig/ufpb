@@ -17,20 +17,20 @@ class Widget_Apresentacao extends WP_Widget {
 
         echo '
         <div class="apresentacao large-spacer width-wrapper">
-            <div class="linha-abaixo linha-header-longa flex-grow-parent">                 
+            <div class="linha-header-longa flex-grow-parent">                 
                 <h2 class="linha-header">' . nl2br(esc_html($instance['titulo'])) . '</h2>
                 <div class="flex-grow">
                 <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
                     <div class="apresentacao-links">';
 
                     if (!empty($instance['link1']) && !empty($instance['link1_nome'])) {
-                        echo '<a class="mais-link" href="', $instance['link1'] ,'">', $instance['link1_nome'] ,'</a>';
+                        echo '<a class="mais-link linha-acima" href="', $instance['link1'] ,'">', $instance['link1_nome'] ,'</a>';
                     }
                     if (!empty($instance['link2']) && !empty($instance['link2_nome'])) {
-                        echo '<a class="mais-link" href="', $instance['link2'] ,'">', $instance['link2_nome'] ,'</a>';
+                        echo '<a class="mais-link linha-acima" href="', $instance['link2'] ,'">', $instance['link2_nome'] ,'</a>';
                     }
                     if (!empty($instance['link3']) && !empty($instance['link3_nome'])) {
-                        echo '<a class="mais-link" href="', $instance['link3'] ,'">', $instance['link3_nome'] ,'</a>';
+                        echo '<a class="mais-link linha-acima" href="', $instance['link3'] ,'">', $instance['link3_nome'] ,'</a>';
                     }                
 
                     echo '</div>

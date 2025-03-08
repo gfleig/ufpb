@@ -44,6 +44,8 @@
 
 <?php if(!is_home()) summon_banner_top(); ?>
 
+<?php if(is_home()) : ?>
+
 <section aria-label="Carrossel">    
     <div class="carrossel" data-carrossel>
         <button class="carrossel-button prev" data-carrossel-button="prev">ant</button>
@@ -69,6 +71,8 @@
         </ul>
     </div>
 </section>
+
+<?php endif ?>
 
 <div id="menu-overlay" class="top-fixed-overlay menu-hidden">
     <ul id="mobile-menu">            
