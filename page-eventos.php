@@ -24,40 +24,31 @@
                 if ($post_query->have_posts() ) {
                     while ($post_query->have_posts()){
                         $post_query->the_post(); 
-                        $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
-                        $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );                     
-                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
-                        if (has_post_thumbnail()) {
-                            echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-                        }
-                        echo '<div class="noticia-sem-img">'; 
-                            echo '<div class="rotulo-escuro">';
-                            if (empty($data_fim) || $data_inicio == $data_fim) {
-                                echo wp_date('l, j \d\e F \d\e Y', $data_inicio), '</p>';
-                            } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
-                            } else {
-                                echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
-                            }
-                            /*echo '<div class="categorias">';
-                                $categories = get_the_category();
-                                
-                                if ($categories) {
-                                    $categories = array_slice($categories, 0, 2);
-                                    foreach ($categories as $category) {                                                    
-                                        echo '<div>' , esc_html($category->name) , '</div>';
-                                        if (next($categories)) {
-                                            echo ', ';
-                                        }
-                                    }
-                                }
-                            echo '    
-                                </div>';<!-- fecha div categorias -->*/
-                            echo '</div><!-- fecha div rotulo -->';
-                            echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
-                    
-                            echo '</div>'; //noticia-com/sem-img
-                        echo '</a>'; //noticia-wrapper    
+                        
+                        echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card linha-acima linha-abaixo">';
+                        
+                            echo '
+                            <div class="evento-card-imagem"><img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '"></div>
+                            <div>
+                                <div class="evento-data small-spacer">';
+
+                                    $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
+                                    $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );   
+
+                                    if (empty($data_fim) || $data_inicio == $data_fim) {
+                                        echo wp_date('j \d\e F \d\e Y', $data_inicio);
+                                    } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
+                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim);
+                                    } else {
+                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F \d\e Y', $data_fim);    
+                                    }         
+                                echo '</div>'; //data
+
+                                echo '
+                                <h2 class="evento-titulo small-spacer">' , esc_html(the_title()) , '</h2>
+                                <div class="bigode">', esc_html(the_excerpt()) ,'</div>
+                            </div>
+                        </a>';   
                     }
                     echo '
                     <div class="paginas-nav">

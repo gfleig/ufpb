@@ -968,7 +968,7 @@ input[type="search"]:focus {
 
 .carrossel {
   width: 100%;
-  height: 500px;
+  height: 550px;
   position: relative;
   list-style: none;
 }
@@ -982,13 +982,32 @@ input[type="search"]:focus {
 }
 
 .slide-texto-box {
-  margin-left: calc(-1 * var(--espaco-gutter));
   position: absolute;
-  top: 66%;  
-  transform: translateY(-50%);
-  padding: var(--espaco-gutter);
+  bottom: 42px;
+  padding: 36px 48px 48px;
   background-color: var(--cor-background);
-  max-width: 600px;
+  max-width: 550px;
+  box-shadow: 12px 12px var(--cor-tema);
+}
+
+.slide-texto-box h2 {
+  font-size: 48px;
+  margin-bottom: 24px;
+  color: var(--cor-tema);
+  font-weight: 500;
+}
+
+.slide-texto-box .texto {
+  color: var(--cor-texto-escuro);
+  margin-bottom: 24px;
+}
+
+.slide-texto-box .mais-link {
+  display: inline-block;
+}
+
+a.linha-abaixo.mais-link:hover {
+  margin-bottom: 0;
 }
 
 .slide > img {
@@ -1511,9 +1530,14 @@ input[type="search"]:focus {
   margin-bottom: 1rem;
 }
 
+.evento-ficha.linha-abaixo {
+  padding-bottom: 1rem;
+}
+
 .evento-ficha i {
   font-size: var(--fonte-base);
   margin-right: .5rem;
+  color: var(--cor-texto-medio);
 }
 
 .conteudo2-eventos-solo {
@@ -1815,6 +1839,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 h2.bigode p {
   font-size: var(--fonte-pagina);
+  font-weight: 500;
 }
 
 .noticia-h2 .noticia-categorias {
@@ -3048,6 +3073,6 @@ footer a:hover {
     height: 48px;
     display: flex;
     align-items: center;
-    font-size: var(--fonte-4up);
+    font-size: 28px;
   }
 }

@@ -33,9 +33,72 @@ add_editor_style( 'editor-style.css' );
 // Adding excerpt for page
 add_post_type_support( 'page', 'excerpt' );
 
-//Cor personalizada
-function meu_tema_personalizado($wp_customize) {
+// Hero Image
+function adicionar_controle_heroimage($wp_customize) {
+    $wp_customize->add_section('secao_heroimage', array(
+        'title' => 'Hero Image',
+        'priority' => 30,
+    ));
 
+    $wp_customize->add_setting('heroimage', array(
+        'default' => '',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'heroimage', array(
+        'label' => 'Escolha a imagem que servirá como Hero Image. Tamanho mínimo: 1920 x 550 (Use https://tinypng.com/ para otimizar o carregamento).',
+        'section' => 'secao_heroimage',
+        'settings' => 'heroimage',
+    )));
+
+    // Campo de Título
+    $wp_customize->add_setting('heroimage_titulo', array(
+        'default' => 'Título massa da Hero Image!',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('heroimage_titulo', array(
+        'label' => 'Título da Hero Image',
+        'section' => 'secao_heroimage',
+        'type' => 'text',
+    ));
+
+    // Campo de Subtítulo
+    $wp_customize->add_setting('heroimage_subtitulo', array(
+        'default' => 'Subtítulo interessante, mantenha ele curto, por favor…',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('heroimage_subtitulo', array(
+        'label' => 'Subtítulo da Hero Image',
+        'section' => 'secao_heroimage',
+        'type' => 'text',
+    ));
+
+    // Campo de Subtítulo
+    $wp_customize->add_setting('heroimage_link_titulo', array(
+        'default' => 'Descubra Mais',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('heroimage_link_titulo', array(
+        'label' => 'Título do Link da Hero Image',
+        'section' => 'secao_heroimage',
+        'type' => 'text',
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('heroimage_link_url', array(
+        'default' => 'http://ufpb.br',
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('heroimage_link_url', array(
+        'label' => 'URL do link da Hero Image',
+        'section' => 'secao_heroimage',
+        'type' => 'url',
+    ));
+}
+add_action('customize_register', 'adicionar_controle_heroimage');
+
+//Cor personalizada
+function meu_tema_personalizado($wp_customize) {   
     /**
     ------------------------------------------------------------
     SECTION: Header
@@ -137,6 +200,17 @@ function summon_banner_top(){
         echo '<img src="' , get_bloginfo("template_directory") , '/decoration.jpg" alt="Imagem decorativa do site">';
     }        
     echo '</div>'; 
+}
+
+function get_heroimage_url(){
+    // Obtém a URL da imagem do Customizer
+    $imagem_url = get_theme_mod('heroimage');
+
+    if (!empty($imagem_url)) {
+        return esc_url($imagem_url);
+    } else {
+        return esc_url(get_bloginfo("template_directory") , '/decoration.jpg');
+    }        
 }
 
 function summon_banner_bottom(){

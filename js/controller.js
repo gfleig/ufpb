@@ -116,14 +116,14 @@ document.addEventListener('DOMContentLoaded', function () {
         delete activeSlide.dataset.active;
     }
 
-    const timerInterval = 8000;                         // intervalo de tempo para passar slide do carrossel, em ms
-    var slideTimer = setInterval(nextSlide, timerInterval);      // inicia slide automático do carrossel
+    //const timerInterval = 8000;                         // intervalo de tempo para passar slide do carrossel, em ms
+    //var slideTimer = setInterval(nextSlide, timerInterval);      // inicia slide automático do carrossel
 
     const buttons = document.querySelectorAll("[data-carrossel-button]")
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            clearInterval(slideTimer);                  // interrompe o timer de pasar automaticamente slide
+            //clearInterval(slideTimer);                  // interrompe o timer de pasar automaticamente slide
 
             const offset = button.dataset.carrosselButton === "next" ? 1 : -1;
             const slides = button
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             slides.children[newIndex].dataset.active = true;
             delete activeSlide.dataset.active;
 
-            slideTimer = setInterval(nextSlide, timerInterval);  // reinicia timer de pasar slide
+            //slideTimer = setInterval(nextSlide, timerInterval);  // reinicia timer de pasar slide
         })
     })
 

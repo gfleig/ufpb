@@ -47,27 +47,26 @@
 <?php if(is_home()) : ?>
 
 <section aria-label="Carrossel">    
-    <div class="carrossel" data-carrossel>
-        <button class="carrossel-button prev" data-carrossel-button="prev">ant</button>
-        <button class="carrossel-button next" data-carrossel-button="next">prox</button>
+    <div class="carrossel" data-carrossel>        
         <ul data-slides>
             <li class="slide" data-active>
                 <div class="width-wrapper">
                     <div class ="slide-texto-box">
-                        <div class="linha-header-longa">
-                            <h2 class="linha-header">Ingressar na UFPB</h2>
-                        </div>                        
-                        <div class="texto">Informações sobre formas de acesso e políticas de apoio ao estudante brasileiro e estrangeiro</div>
+                        <h2 class="">
+                            <?php echo esc_html(get_theme_mod('heroimage_titulo', 'Título massa da Hero Image!')); ?>
+                        </h2>
+                        <div class="texto">
+                            <?php echo esc_html(get_theme_mod('heroimage_subtitulo', 'Subtítulo interessante, mantenha ele curto, por favor…')); ?>
+                        </div>
+                        <a href="
+                            <?php echo esc_url(get_theme_mod('heroimage_link_url', 'https://www.ufpb.br')); ?>
+                        " class="mais-link linha-acima linha-abaixo">
+                            <?php echo esc_html(get_theme_mod('heroimage_link_titulo', 'Descubra Mais')); ?>
+                        </a>
                     </div>                    
                 </div>                
-                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/mus2.jpg" alt="Biblioteca Central">
-            </li>
-            <li class="slide">
-                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/biblioteca.jpg" alt="Hospital Universitário">
-            </li>
-            <li class="slide">
-                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/ipe.jpg" alt="IPE">
-            </li>
+                <img src="<?php echo get_heroimage_url(); ?>" alt="<?php echo image_alt_by_url(get_heroimage_url()); ?>">
+            </li>            
         </ul>
     </div>
 </section>
