@@ -10,6 +10,7 @@ include get_theme_file_path('/widgets/WidgetDestaqueSolo.php');
 include get_theme_file_path('/widgets/WidgetDestaqueTriplo.php');
 include get_theme_file_path('/widgets/WidgetDestaqueDuplo.php');
 include get_theme_file_path('/widgets/WidgetDestaqueSoloInvertido.php');
+include get_theme_file_path('/widgets/WidgetEditais.php');
 
 add_filter('render_block', function ($blockContent, $block) {
 
@@ -147,7 +148,7 @@ function meu_tema_personalizado($wp_customize) {
 }
 add_action('customize_register', 'meu_tema_personalizado');
 
-//pega alt text da imagem upada na biblioteca a partir da url
+//pega f text da imagem upada na biblioteca a partir da url
 function image_alt_by_url($image_url) {
     $image_id = attachment_url_to_postid($image_url);
     $alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
@@ -1127,10 +1128,26 @@ function create_editais() {
                 'thumbnail'
             ),
             'show_in_rest' => true, //permite editor gutenberg
+            //'taxonomies' => array('edital_type', 'edital')
             
 		)
 	);
+    
+    register_taxonomy(  
+        'edital_type',  
+        'edital',  // this is the custom post type(s) I want to use this taxonomy for
+            array(  
+                'hierarchical' => true,  
+                'label' => 'Categoria do Edital',  
+                'query_var' => true,  
+                'rewrite' => true,
+                'meta_box_cb' => true,
+                'show_in_rest' =>true, 
+            )  
+        );  
+    
 }
+
 
 // invoca wp_nav_menu e css deixa só com o submenu atual, se tiver
 function summon_side_menu() {
@@ -1164,87 +1181,22 @@ function summon_categorias_menu() {
     }
 }
 
-//============================EDITAIS===================================//
-
-class WidgetEditais extends WP_Widget {
-    public function __construct() {
-        parent::__construct(
-            'widget_editais',
-            'Widget de Editais',
-            array(
-                'description' => 'Widget para exibir os últimos editais cadastrados ou atualizados'
-            )
-        );
-    }
-
-    public function widget($args, $instance) {
-        $titulo = $instance['titulo']; 
-        $the_query = new WP_Query( array(
-            'posts_per_page' => 4,
-            'post_type' => 'edital',
-            'orderby' => 'modified',
-        ));
-
-        echo $args['before_widget'];
-
-        if ($the_query->have_posts()) {
-            echo '
-            <div class="links-wrapper">
-            <h2> ' , esc_html($titulo) , ' </h2>
-            <div class="editais">';
-            $postCount = 0;
-            while ($the_query->have_posts() && $postCount < 4) {
-                $postCount++;
-                $the_query->the_post();
-                echo '
-                <a href="' , esc_url(the_permalink()) , '" class="edital-full camada-1">
-                    <div class="link-image-wrapper">';    
-                    if ($postCount == 1){
-                        echo '<i class="fa-solid fa-file-circle-exclamation"></i>';
-                    } else {
-                        echo '<i class="fa-solid fa-file"></i>';
-                    }         
-                                      
-                echo '</div>     
-                    <div>
-                        <div class="edital-data" href="#">' , esc_html(the_modified_date('j \d\e F \d\e Y')) , '</div>
-                        <div class="edital-text" href="#">' , esc_html(the_title()) , '</div>
-                    </div>                      
-                </a>';
+function summon_categorias_edital_menu() {
+    $categorias = get_terms(array(
+        "taxonomy" => "edital_type",    
+        "orderby"   => "name",
+        "order"     => "ASC"
+    )); 
+    if (!empty($categorias)) {
+        echo '<div class="side-menu-categorias">';
+            echo '<h2 class="menu-lateral-h2">Categorias</h2>';
+            echo '<ul class="menu-lateral linha-abaixo linha-header-longa">';
+            foreach ($categorias as $categoria){
+                echo '<li><a class="side-menu-button" href="' , esc_url(get_category_link($categoria->term_id)) , '">', esc_html($categoria->name) ,'</a></li>';
             }
-
-            echo
-        '       </div>
-                <div class="link-wrapper justify-end">
-                <a class="mais-link" href="', get_home_url(), '/editais/">Mais Editais</a>           
-                </div>                
-            </div>';
-        }
-        echo $args['after_widget'];            
+            echo '</ul>';
+        echo '</div>';
     }
-
-    public function form($instance) { 
-        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Editais';
-        ?>
-        <p>
-            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>
-            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
-        </p>
-        <?php
-    }
-
-    public function update($new_instance, $old_instance) {
-        $instance = $old_instance;
-        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : 'erro';
-        return $instance;
-    }    
 }
-
-function registrar_widget_editais() {
-    register_widget('WidgetEditais');
-}
-add_action('widgets_init', 'registrar_widget_editais');
-
-
 
 ?>

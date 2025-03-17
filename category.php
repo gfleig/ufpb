@@ -13,7 +13,6 @@
             <div class="cards-lista">';
 
             if(have_posts()){
-                $first_post = true; // usado para adicionar linha acima no primeiro post apenas
                 echo '<div class="sidebar-noticias">
                     <div class="noticias-relacionadas">';
                     while(have_posts()){

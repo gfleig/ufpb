@@ -7,8 +7,7 @@
         
         <div class="sidebar">
             <?php
-            summon_categorias_menu();
-            summon_side_menu();             
+            summon_categorias_menu();            
             ?>                                
         </div>
         <?php

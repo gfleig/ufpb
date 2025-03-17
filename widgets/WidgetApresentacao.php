@@ -16,9 +16,9 @@ class Widget_Apresentacao extends WP_Widget {
         echo $args['before_widget'];
 
         echo '
-        <div class="apresentacao large-spacer width-wrapper">
+        <div class="destaque-solo large-spacer width-wrapper">
             <div class="linha-header-longa flex-grow-parent">                 
-                <h2 class="linha-header">' . nl2br(esc_html($instance['titulo'])) . '</h2>
+                <h2 class="linha-header small-spacer">' . nl2br(esc_html($instance['titulo'])) . '</h2>
                 <div class="flex-grow">
                 <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
                     <div class="apresentacao-links">';
@@ -40,11 +40,11 @@ class Widget_Apresentacao extends WP_Widget {
             if (!empty($instance['video-institucional'])) {
                 $url = esc_url($instance['video-institucional']);
                 $embed_url = str_replace("watch?v=", "embed/", $url);
-                echo '<div class="youtube"><iframe src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
+                echo '<div class="destaque-solo-img"><iframe src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
             } else if (!empty($instance['localizacao'])) {
-                echo '<div class="youtube">' , $instance['localizacao'] , '</div>';
+                echo '<div class="destaque-solo-img">' , $instance['localizacao'] , '</div>';
             } else if (!empty($instance['img_url'])) {
-                echo '<div class="youtube"><img src="' , $instance['img_url'] , '"></div>';
+                echo '<div class="destaque-solo-img"><img src="' , $instance['img_url'] , '"></div>';
             }
         echo '</div>';   
 

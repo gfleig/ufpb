@@ -1,10 +1,10 @@
 <?php get_header(); ?>
 
-<div class="corpo" id="conteudo_pagina">
+<div class="corpo width-wrapper large-spacer" id="conteudo_pagina">
     <div class="corpo-grid">
         <div class="sidebar">
             <?php
-            summon_side_menu();  
+            summon_categorias_edital_menu();  
             ?>                              
         </div>
         <?php
@@ -19,16 +19,13 @@
             <div class="noticia-h2">
                 <div>
                     <div>Publicado: <?php echo get_the_date( 'j \d\e F \d\e Y' ); ?></div> 
-                    <?php
-                    if(get_the_date() != get_the_modified_date()) {
-                        echo '<div>Atualizado: ', get_the_modified_date( 'j \d\e F \d\e Y' ), '</div>';
-                    }
-                    ?>
-                                       
+                    <?php if ( get_the_modified_time( 'U' ) > get_the_time( 'U' ) ) {
+                        echo '<div>Última atualização: ' , get_the_modified_time( 'l, j \d\e F \d\e Y' ) , '</div>';
+                    } ?>                                        
                 </div>  
                 <?php
                 // Obtém as categorias do post
-                $categories = get_the_category();
+                $categories = get_the_terms( get_the_ID(), 'edital_type' );
                 $categories_num = count($categories);
                 ?>
                 <div class="noticia-categorias">
@@ -82,20 +79,7 @@
                 </div>
             </div>                        
         </div>
-    </div>
-
-        <div class="imagem-grande">
-            <?php
-            // Obtém a URL da imagem do Customizer
-            $imagem_banner_url = get_theme_mod('imagem_banner');
-
-            if (!empty($imagem_banner_url)) {
-                echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
-                /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
-            }
-            ?>
-            <div class="imagem-sombra"></div>
-        </div>    
+    </div>       
 
     </div>
 </div>
