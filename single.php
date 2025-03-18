@@ -13,7 +13,31 @@
         <?php
         while ( have_posts() ) :
         the_post(); ?>
-        <div class="content-grid">            
+        <div class="content-grid">      
+            <div class="noticia-categorias linha-header-longa">               
+                <?php
+                    $categories = get_the_category();
+                    $categories_num = count($categories);
+                    /*(if ($categories_num == 0) {
+                        // faça nada
+                    } else if ($categories_num == 1) {
+                        echo 'Categoria:&nbsp';
+                    } else {
+                        echo 'Categorias:&nbsp';
+                    }*/
+                    if ($categories) {
+                        // Loop pelas categorias
+                        foreach ($categories as $category) {
+                            // Exibe o nome da categoria como um link
+                            echo '<a class="linha-header" href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+                            // Adiciona uma vírgula após a categoria, exceto pela última
+                            if (next($categories)) {
+                                echo ',&nbsp';
+                            }
+                        }
+                    }
+                ?>
+            </div>       
             <h1 class="noticia-pagina-titulo"><?php the_title(); ?></h1>
             <?php if ( has_excerpt() ) : ?>
                 <h2 class="bigode"><?php echo the_excerpt(); ?></h2>
@@ -22,37 +46,11 @@
                 <div>
                     <div><?php echo get_the_date( 'l, j \d\e F \d\e Y' ); ?></div> 
                     <?php if ( get_the_modified_time( 'U' ) > get_the_time( 'U' ) ) {
-                        echo '<div>Última atualização: ' , get_the_modified_time( 'l, j \d\e F \d\e Y' ) , '</div>';
+                        echo '<div class="data-atualizado">atualizado em ' , get_the_modified_time( 'l, j \d\e F \d\e Y' ) , '</div>';
                     } ?>             
                 </div>  
-                <?php
-                // Obtém as categorias do post
-                $categories = get_the_category();
-                $categories_num = count($categories);
-                ?>
-                <div class="noticia-categorias">
-                <?php
-                    if ($categories_num == 0) {
-                        // faça nada
-                    } else if ($categories_num == 1) {
-                        echo 'Categoria:&nbsp';
-                    } else {
-                        echo 'Categorias:&nbsp';
-                    }
-
-                    if ($categories) {
-                        // Loop pelas categorias
-                        foreach ($categories as $category) {
-                            // Exibe o nome da categoria como um link
-                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-                            // Adiciona uma vírgula após a categoria, exceto pela última
-                            if (next($categories)) {
-                                echo ',&nbsp';
-                            }
-                        }
-                    }
-                ?>
-            </div>                                      
+                
+                                                     
             </div>
 
             <div class="the-content-container">

@@ -203,6 +203,11 @@ h1 {
   margin-bottom: var(--espaco-gutter);
 }
 
+h1.noticia-pagina-titulo {
+  font-size: 48px;
+  margin-bottom: var(--espaco-pequeno);
+}
+
 h2, h3 {
   font-size: var(--fonte-header);
   font-weight: 500;
@@ -1753,7 +1758,6 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   display: flex;
   flex-direction: row; 
   gap: var(--espaco-pequeno);
-  justify-content: space-between;
 }
 
 #noticias .noticia-wrapper:hover .noticia-sem-img{
@@ -1859,8 +1863,12 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 .noticia-h2 {
   line-height: 1.45;
-  color: var(--cor-texto-escuro);
+  color: var(--cor-texto-medio);
   margin-bottom: 2rem;
+}
+
+.data-atualizado {
+  font-size: var(--fonte-pequena);
 }
 
 .bigode p{
@@ -1871,8 +1879,13 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 h2.bigode p {
-  font-size: var(--fonte-pagina);
-  font-weight: 500;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h2.bigode:has(p) {
+  margin-bottom: var(--espaco-gutter);
 }
 
 .noticia-h2 .noticia-categorias {
@@ -1885,6 +1898,12 @@ h2.bigode p {
   font-weight: 600;
   font-family: "IBM Plex Mono";
   font-style: italic;
+  margin-bottom: var(--espaco-linha);
+  
+}
+
+.noticia-categorias.linha-header-longa a {
+  font-size: var(--fonte-pagina);
 }
 
 .noticia-categorias a:hover {
@@ -2652,9 +2671,18 @@ footer a:hover {
     --fonte-pequena: 14px;
     --fonte-header: 24px;
     --fonte-titulo: 28px;
+    --fonte-pagina: 20px
   }
 
   /*novidades*/
+
+  h1.noticia-pagina-titulo {
+    font-size: 30px;
+  }
+
+  h2.bigode p {
+    font-size: 24px;
+  }
 
   .width-wrapper {
     padding-left: var(--espaco-gutter);

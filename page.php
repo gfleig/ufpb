@@ -52,7 +52,7 @@
             <div class="the-content-container">
                 <?php the_content(); ?>
 
-                <p>Última atualização: <?php echo get_the_modified_time( 'l, j \d\e F \d\e Y' ); ?></p>
+                <p class="data-atualizado">Última atualização: <?php echo get_the_modified_time( 'l, j \d\e F \d\e Y' ); ?></p>
             </div>
 
             
