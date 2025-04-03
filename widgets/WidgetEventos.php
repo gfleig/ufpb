@@ -42,132 +42,46 @@ class WidgetEventos extends WP_Widget {
         if ($the_query->have_posts()){  
             echo '
             <div class="width-wrapper large-spacer">
-                    <h2 class="linha-header-longa">                
-                        <a class="mais-link-header linha-header" href="', get_home_url(), '/eventos/">Eventos</a>
-                    </h2>';
-                    echo '<div class="eventos-grid">';
-                        while ( $the_query->have_posts() ) {
-                            $the_query->the_post();
-                            
-
-                            if ($the_query->post_count == 1) {
-                                echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card solo linha-acima linha-abaixo">';
-                            } else {
-                                echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card linha-acima linha-abaixo">';
-                            }
-                                echo '
-                                <div class="evento-card-imagem"><img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '"></div>
-                                <div>
-                                    <div class="evento-data small-spacer">';
-
-                                        $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
-                                        $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );   
-
-                                        if (empty($data_fim) || $data_inicio == $data_fim) {
-                                            echo wp_date('j \d\e F \d\e Y', $data_inicio);
-                                        } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                            echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim);
-                                        } else {
-                                            echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F \d\e Y', $data_fim);    
-                                        }         
-                                    echo '</div>'; //data
-
-                                    echo '
-                                    <h2 class="evento-titulo small-spacer">' , esc_html(the_title()) , '</h2>
-                                    <div class="bigode">', esc_html(the_excerpt()) ,'</div>
-                                </div>
-                            </a>';
-                        }
-
-                    echo '</div>';
-                    /*
-                    if ($the_query->post_count == 1) {
-                        // classe com 1 coluna especial
-                        // data, nome, excerpt
-                        echo '<div class="conteudo2-eventos-solo">';
-                        $postCount = 0;
-                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                            $postCount++;
-                            $the_query->the_post();
-                                   
-                                echo '<a href="' , esc_url(the_permalink()) , '" class="evento-wrapper-solo camada-1">';
-                                if (has_post_thumbnail()) {
-                                    echo '<div class="evento-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-                                }
-                                                            
-                            $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
-                            $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
-
-                            echo '<div class="evento-sem-img">'; 
-                                echo '<div class="rotulo-evento">';                                                               
-                                echo '<div>';
-                                
-                                if (empty($data_fim) || $data_inicio == $data_fim) {
-                                    echo wp_date('j \d\e F \d\e Y', $data_inicio), '</div>';
-                                } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                    echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                } else {
-                                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                }
-                                
-                                echo '
-                                
-                                </div><!-- fecha div rotulo -->';
-                                echo '<h2>' , esc_html(the_title()) , '</h2>';
-                                echo  esc_html(the_excerpt());                                     
-                                
-                                echo '</div>'; //noticia-com/sem-img
-                            echo '</a>'; //noticia-wrapper                            
-                        }
-                    } else {
-                    if ($the_query->post_count == 2) {
-                        // classe com 3 colunas
-                        echo '<div class="conteudo2-eventos-dupla">';
-                    } else if ($the_query->post_count == 3) {
-                        // classe com 2 colunas
-                        echo '<div class="conteudo2-eventos-trio">';
-                    } 
+                <h2 class="linha-header-longa">                
+                    <a class="mais-link-header linha-header" href="', get_home_url(), '/eventos/">Eventos</a>
+                </h2>';
+                echo '<div class="eventos-grid">';
+                    while ( $the_query->have_posts() ) {
+                        $the_query->the_post();
                         
-                        $postCount = 0;
-                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                            $postCount++;
-                            $the_query->the_post();
 
-                            if ($postCount < 4) {                                    
-                                echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
-                                if (has_post_thumbnail()) {
-                                    echo '<div class="evento-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-                                }
-                                                            
-                            $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
-                            $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
+                        if ($the_query->post_count == 1) {
+                            echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card solo linha-acima linha-abaixo">';
+                        } else {
+                            echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card linha-acima linha-abaixo">';
+                        }
+                            echo '
+                            <div class="evento-card-imagem"><img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '"></div>
+                            <div>
+                                <div class="evento-data small-spacer">';
 
-                            echo '<div class="evento-sem-img">'; 
-                                echo '<div class="rotulo-evento">';                                                               
-                                echo '<div>';
-                                
-                                if (empty($data_fim) || $data_inicio == $data_fim) {
-                                    echo wp_date('j \d\e F \d\e Y', $data_inicio), '</div>';
-                                } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                    echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                } else {
-                                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
-                                }
-                                
+                                    $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
+                                    $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );   
+
+                                    if (empty($data_fim) || $data_inicio == $data_fim) {
+                                        echo wp_date('j \d\e F \d\e Y', $data_inicio);
+                                    } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
+                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim);
+                                    } else {
+                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F \d\e Y', $data_fim);    
+                                    }         
+                                echo '</div>'; //data
+
                                 echo '
-                                
-                                </div><!-- fecha div rotulo -->';
-                                echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
-                                
-                                echo '</div>'; //noticia-com/sem-img
-                            echo '</a>'; //noticia-wrapper
-                            }
-                        }  
-                    }*/          
+                                <h2 class="evento-titulo small-spacer">' , esc_html(the_title()) , '</h2>
+                                <div class="bigode">', esc_html(the_excerpt()) ,'</div>
+                            </div>
+                        </a>';
+                    }
+
+                echo '</div>'; //eventos-grid                         
             echo
-            '   
-            </div>
-            </div>';
+            '</div>'; //width-wrapper
         
         }
         echo $args['after_widget']; 

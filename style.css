@@ -181,7 +181,11 @@ p a:hover, .wp-block-list a:hover {
 }
 
 .the-content-container .wp-block-media-text .wp-block-media-text__content {
-  padding: var(--fonte-1up) var(--fonte-1up) var(--fonte-2up);
+  height: 100%;
+  border-top: 1px solid var(--cor-linha);
+  border-bottom: 1px solid var(--cor-linha);
+  margin-left: var(--espaco-linha);  
+  padding: var(--espaco-linha) 0;
 }
 
 .wp-block-media-text {
@@ -214,6 +218,10 @@ h2, h3 {
   line-height: 1.2;
   color: var(--cor-texto-escuro);
   margin-bottom: 1em;
+}
+
+h2 a {
+  color: var(--cor-tema);
 }
 
 img {
@@ -349,7 +357,7 @@ strong {
   font-size: var(--fonte-header);
 }
 
-.noticia-card:first-child .categorias {
+.noticias-widget .noticia-card:first-child .categorias {
   font-size: var(--fonte-base);
 }
 
@@ -931,6 +939,7 @@ input[type="search"]:focus {
   z-index: 1;
   padding-bottom: calc(var(--espaco-linha) / 2);
   left: calc(-1 * var(--espaco-gutter));
+  min-width: calc(100% + 3 * var(--espaco-linha));
 }
 
 .menu ul li ul li a {
@@ -2234,36 +2243,16 @@ h2.bigode:has(p) {
   object-fit: cover;
 }
 
-.mapa {  
-  display: grid;
-  grid-template-rows: min-content min-content;  
-  max-width: 1230px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 30px;
-}
-
 .mapa-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;  
-  grid-template-areas: 'mapa  foto2';
-  gap: 30px;
-  max-height: 400px;
+  gap: var(--espaco-gutter);
 }
 
-#mapa-inlay {
-  grid-area: mapa;
-}
-
-#mapa-inlay iframe {
+.mapa iframe {
   width: 100%;
   height: 100%;
-}
-
-.foto {
-  height: 100%;
-  max-height: 370px;
 }
 
 .foto2 img {
@@ -2272,23 +2261,10 @@ h2.bigode:has(p) {
   width: 100%;
 }
 
-#foto1 {
-  grid-area: foto1;
-}
-
-#foto2 {
-  grid-area: foto2;
-}
-
-#mapa-coluna1 {
-  grid-area: mapa-e-foto;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 30px;
-}
-
-#mapa-coluna2 {
-  grid-area: so-foto;
+.foto {
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: 100%;
 }
 
 .mapa img {
@@ -2517,21 +2493,31 @@ footer a:hover {
 
 /*=================================CONTRASTE START==============================================*/
 
-.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link {
+body.contraste {
+  --cor-tema: #ff0
+}
+
+.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link, .contraste .corpo-wrapper, .contraste .slide-texto-box, .contraste  .menu-wrapper, .contraste #footer-wrapper, .contraste .busca-teste, .contraste input[type="text"], .contraste .content-grid {
   background-color: black;
 }
 
-.contraste a, .contraste #menu-buttons i, .contraste .menu ul li ul li a, .contraste .noticia-titulo, .contraste .noticia-titulo, .contraste .link-full div, .contraste .link-full:hover .link-text, .contraste .ufpb-nome, .contraste #footer-dados .mais-link, .contraste button[type="nav"] i, .contraste button[type="nav"] div, .contraste .menu-lateral .page_item a, .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a, .contraste .wp-block-file a::before, .contraste .content-grid .wp-block-button__link{
+.contraste a, .contraste #menu-buttons i, .contraste .menu ul li ul li a, .contraste .noticia-titulo, .contraste .noticia-titulo, .contraste .link-full div, .contraste .link-full:hover .link-text, .contraste .ufpb-nome, .contraste #footer-dados .mais-link, .contraste button[type="nav"] i, .contraste button[type="nav"] div, .contraste .menu-lateral .page_item a, .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a, .contraste .wp-block-file a::before, .contraste .content-grid .wp-block-button__link, .contraste button[type="submit"]{
   color: #ff0;
 }
 
-.contraste p, .contraste strong, .contraste .wp-block-list, .contraste h2, .contraste .rotulo-escuro, .contraste .rotulo-evento, .contraste h1, .contraste .wp-block-image :where(figcaption), .contraste .noticia-compartilhe, .contraste .noticia-h2, .contraste .parent-link > a:nth-child(1) {
+.contraste .mais-link::after, .contraste .wp-block-button__link::after, .contraste  .mais-link-header::after, .contraste .evento-card h2 {
+  color: #ff0;
+}
+
+.contraste p, .contraste strong, .contraste .wp-block-list, .contraste h2, .contraste h3, .contraste .rotulo-escuro, .contraste .rotulo-evento, .contraste h1, .contraste .wp-block-image :where(figcaption), .contraste .noticia-compartilhe, .contraste .noticia-h2, .contraste .parent-link > a:nth-child(1), .contraste .data, .contraste .evento-data, .contraste .slide-texto-box .texto, .contraste input[type="text"] {
   color: white;
 }
 
-.contraste .menu-wrapper, .contraste #footer-wrapper, .contraste .menu ul li ul, .contraste .noticia-sem-img, .contraste .noticia-wrapper, .contraste .link-full, .contraste .noticia-wrapper:hover .noticia-sem-img, .contraste .noticia-titulo, .contraste .noticia-titulo, .contraste .rotulo-escuro, .contraste #menu-overlay, .contraste .destaque-solo div:first-child,  .contraste .destaque > div:nth-child(2), .contraste .apresentacao > div:nth-child(1){
+/*
+{
   background-color: #333;
 }
+*/
 
 .contraste .link-full:hover .link-text, .contraste .departamento-titulo:hover, .contraste .centro-titulo:hover {
   color: #ff0;
@@ -2547,10 +2533,9 @@ footer a:hover {
   background-color: #ff0;
 }
 
-.contraste .menu ul li ul li a {
-  border-bottom: 3px solid #333;
+.contraste .menu ul li ul {
   color: #ff0;
-  background-color: #333;
+  background-color: #000;
 }
 
 .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a:hover {
@@ -2565,6 +2550,7 @@ footer a:hover {
 .contraste .menu-navegacao .menu-lateral .current_page_item a {
   color: #333;
 }
+
 
 /*=================================CONTRASTE END================================================*/
 
@@ -3109,12 +3095,7 @@ footer a:hover {
   .destaque-solo-img {
     height: auto;
     margin: 0 calc(-1 * var(--espaco-gutter));
-  }
-
-  /*.destaque-solo .linha-header,  {
-    border-top: none;
-    padding-top: 0;
-  }*/
+  }  
 
   .destaque-solo .linha-header-longa {
     border-top: 0;
@@ -3147,6 +3128,15 @@ footer a:hover {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     row-gap: var(--espaco-grande);
+  }
+
+  .mapa-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  #mapa-inlay {
+    height: 500px;
   }
 
   #footer-top {
