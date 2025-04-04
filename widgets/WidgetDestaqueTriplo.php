@@ -46,11 +46,12 @@ class WidgetDestaqueTriplo extends WP_Widget {
         for ($i = 1; $i < 4; $i++) {         
             if(!empty($instance['link'][$i][1])) {
 
-                if(has_post_thumbnail(url_to_postid($instance['link'][$i][1]))) {
-                    $instance['imagem'][$i] = get_the_post_thumbnail_url(url_to_postid($instance['link'][$i][1]));
-                }
+                
 
-                if (url_to_postid($instance['link'][$i][1])) {
+                if (url_to_postid($instance['link'][$i][1]) > 0) {
+                    if(has_post_thumbnail(url_to_postid($instance['link'][$i][1]))) {
+                        $instance['imagem'][$i] = get_the_post_thumbnail_url(url_to_postid($instance['link'][$i][1]));
+                    }
                     if(empty($instance['titulo'][$i])){
                         $instance['titulo'][$i] = get_the_title(url_to_postid($instance['link'][$i][1]));
                     }
