@@ -2484,9 +2484,11 @@ footer a:hover {
 
 .destaque-trio {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /*grid-template-columns: 1fr 1fr 1fr;*/
+  grid-auto-flow: column;
   grid-template-rows: auto;
   gap: var(--espaco-gutter);
+  grid-auto-columns: minmax(0, 1fr);
 }
 
 
