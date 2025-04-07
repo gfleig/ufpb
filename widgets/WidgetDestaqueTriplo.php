@@ -63,7 +63,7 @@ class WidgetDestaqueTriplo extends WP_Widget {
                 echo '<div class="flex-grow-parent">';                         
                     echo '<div class="destaque-img"><img src="' . esc_url($instance['imagem'][$i]) . '" alt="Imagem da página"></div>
                         <h2 class="small-spacer">' . esc_html($instance['titulo'][$i]) . '</h2>
-                        <div class="flex-grow">
+                        
                             <p>' . esc_html($instance['resumo'][$i]) . '</p>';
 
                             for($j = 1; $j < 6; $j++) {
@@ -72,7 +72,7 @@ class WidgetDestaqueTriplo extends WP_Widget {
                                 }
                             }
                             
-                    echo '</div> 
+                    echo ' 
                 </div>';
             }            
             
