@@ -455,6 +455,10 @@ strong {
   object-fit: cover;
 }
 
+#google_translate_element .skiptranslate.goog-te-gadget {
+  display: anone;
+}
+
 #barra-brasil {
   display: none;
 }
