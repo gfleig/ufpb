@@ -1124,4 +1124,38 @@ function summon_categorias_edital_menu() {
     }
 }
 
+
+/**
+Busca Custom https://inspirationalpixels.com/search-results-filter-wordpress/
+**/
+function ufpb_search_filter_item_class($passed_string = false) {
+    $post_type = (isset($_GET['post_type']) ? $_GET['post_type'] : false);
+
+    if($passed_string == $post_type) {
+        echo 'current';
+    }
+}
+
+function ufpb_search_filter($query) {
+	// Check we're not in admin area
+	if(!is_admin()) {
+		// Check if this is the main search query
+		if($query->is_main_query() && $query->is_search()) {
+			// Check if $_GET['post_type'] is set
+			if(isset($_GET['post_type']) && $_GET['post_type'] != '') {
+				// Filter it just to be safe
+				$post_type = sanitize_text_field($_GET['post_type']);
+
+				// Set the post type
+				$query->set('post_type', $post_type);
+			}
+		}
+	}
+
+	// Return query
+	return $query;
+}
+
+add_filter('pre_get_posts', 'ufpb_search_filter');
+
 ?>

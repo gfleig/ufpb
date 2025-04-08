@@ -38,8 +38,21 @@
             </ul>            
             
             <div id="menu-buttons">
-                <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <a id="google_translate_element" href="javascript:void(0);" onclick="//loadGoogleTranslate();//this.remove();"><!--i title="Alto Constraste" class="fa-solid fa-language"--></i></a>
+                <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>                
+                <div class="menu-traducao"><i title="Seleção de Língua" class="fa-solid fa-language"></i>
+                    <ul>
+                        <li>
+                            <a onclick="home();">
+                                <i title="Português Brasileiro" class="fa-solid fa-language"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="alemao();">
+                                <i title="Alemão" class="fa-solid fa-language"></i>
+                            </a>
+                        </li>
+                    </ul>                    
+                </div>
                 <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
                 <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a>                 
                 <div class="busca-teste hidden" id="busca-barra">                    

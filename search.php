@@ -9,8 +9,26 @@
         </div>
         
         <div class="content-grid"> <?php           
-            echo '<h1>Resultados para: ' . get_search_query() . '</h1>
-            <div class="cards-lista">';
+            echo '<h1>Resultados para: ' . get_search_query() . '</h1>'; ?>
+            <nav class="page-nav">
+                <a class="<?php echo (!isset($_GET['post_type']) ? 'current' : false); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>">
+                    All
+                </a>
+                <a class="<?php ufpb_search_filter_item_class('post'); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=post">
+                    Posts
+                </a>
+                <a class="<?php ufpb_search_filter_item_class('page'); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=page">
+                    Pages
+                </a>
+                <a class="<?php ufpb_search_filter_item_class('evento'); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=evento">
+                    Eventos
+                </a>
+                <a class="<?php ufpb_search_filter_item_class('edital'); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=edital">
+                    Editais
+                </a>
+            </nav>
+            <div class="cards-lista">
+                <?php
                 if(have_posts()){
                     $first_post = true; // usado para adicionar linha acima no primeiro post apenas
                     echo '<div class="sidebar-noticias">

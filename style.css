@@ -932,7 +932,7 @@ input[type="search"]:focus {
   color: var(--cor-tema);
 }
 
-.menu ul li ul {  
+.menu ul li ul, .menu-traducao ul {  
   display: none;
   position: absolute;
   background-color: var(--cor-background);  
@@ -984,7 +984,7 @@ input[type="search"]:focus {
   left: unset;
 }
 
-.menu ul li:hover ul {
+.menu ul li:hover ul, .menu-traducao:hover ul {
   display: flex;
 }
 
@@ -2389,6 +2389,10 @@ footer a:hover {
 .botao-menu {
   height: 100%;
   width: 25px;
+}
+
+.menu-traducao {
+  position: relative;
 }
 
 #footer-bottom {

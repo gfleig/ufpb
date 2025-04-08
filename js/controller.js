@@ -173,40 +173,18 @@ function autismo() {
     }
 }
 
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        //pageLanguage: 'pt-BR',
-        includedLanguages: 'de,en,es,fr,ja,ru,zh-CN,pt',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        'autoDisplay': false
-        }, 
-        'google_translate_element'
-    );
+function home() {
+    // get JSON url
+    var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
+    // then take out the '/wp-json/' part
+    var homeurl = WpJsonUrl.replace('/wp-json/','');
+    window.open(homeurl, "_self");
 }
 
-var i = 0;
-
-function loadGoogleTranslate() {
-
-
-    if (i == 0) {
-
-        i++;
-    
-    var googleTranslateScript = document.createElement('script');
-    googleTranslateScript.type = 'text/javascript';
-    googleTranslateScript.async = true;
-    googleTranslateScript.src = 'http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild(googleTranslateScript);
-
-    }
-    
-    //new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+function alemao() {
+    // get JSON url
+    var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
+    // then take out the '/wp-json/' part
+    var homeurl = WpJsonUrl.replace('/wp-json/','');
+    window.open("https://translate.google.com/translate?sl=auto&tl=de&u=" + homeurl , "_self");
 }
-
-/*
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'pt-br', 
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,}, 'google_translate_element');
-  }
-*/

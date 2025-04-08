@@ -18,35 +18,11 @@ class WidgetDestaqueTriplo extends WP_Widget {
         );
     }
 
-    public function widget($args, $instance) {
-        /*
-        $pagina_link[0] = $instance['pagina_link'];
-        $titulo[0] = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link[0]));
-        $resumo[0] = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link[0]));    
-        $link_texto[0] = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
-
-        $pagina_link[1] = $instance['pagina_link_2'];
-        $titulo[1] = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link[1]));
-        $resumo[1] = !empty($instance['resumo_2']) ? $instance['resumo_2'] : $instance['imagem'][$i]    
-        $link_texto[1] = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
-
-        $pagina_link[2] = $instance['pagina_link_3'];
-        $titulo[2] = !empty($instance['titulo_3']) ? $instance['titulo_3'] : get_the_title(url_to_postid($pagina_link[2]));
-        $resumo[2] = !empty($instance['resumo_3']) ? $instance['resumo_3'] : $instance['imagem'][$i];    
-        $link_texto[2] = !empty($instance['link_texto_3']) ? $instance['link_texto_3'] : 'Saiba mais';
-        */
-
-        
-        
-
-        echo $args['before_widget'];
-
+    public function widget($args, $instance) {    
         echo '<div class="width-wrapper destaque-trio large-spacer">';
         
         for ($i = 1; $i < 4; $i++) {         
             if(!empty($instance['link'][$i][1])) {
-
-                
 
                 if (url_to_postid($instance['link'][$i][1]) > 0) {
                     if(has_post_thumbnail(url_to_postid($instance['link'][$i][1]))) {
@@ -60,26 +36,23 @@ class WidgetDestaqueTriplo extends WP_Widget {
                     }
                 }
 
-                echo '<div class="flex-grow-parent">';                         
+                echo '<div class="">';                         
                     echo '<div class="destaque-img"><img src="' . esc_url($instance['imagem'][$i]) . '" alt="Imagem da página"></div>
                         <h2 class="small-spacer">' . esc_html($instance['titulo'][$i]) . '</h2>
                         
                             <p>' . esc_html($instance['resumo'][$i]) . '</p>';
 
+                            echo '<div class="flex-grow-parent">';
                             for($j = 1; $j < 6; $j++) {
                                 if (!empty($instance['link'][$i][$j])) {
                                     echo '<a class="mais-link linha-acima" href=' . esc_url($instance['link'][$i][$j]) . '>' . $instance['texto'][$i][$j] . '</a> ';
                                 }
                             }
-                            
-                    echo ' 
-                </div>';
-            }            
-            
+                            echo '</div>';
+                echo '</div>';
+            }  
         }
-        echo '</div>';
-        
-        echo $args['after_widget']; 
+        echo '</div>';        
     }
 
     public function form($instance) {
