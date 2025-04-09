@@ -8,17 +8,17 @@
             ?>                  
         </div>
         
-        <div class="content-grid"> <?php           
-            echo '<h1>Resultados para: ' . get_search_query() . '</h1>'; ?>
-            <nav class="page-nav">
-                <a class="<?php echo (!isset($_GET['post_type']) ? 'current' : false); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>">
-                    All
+        <div class="content-grid"> 
+            
+            <nav class="page-nav linha-header-longa">
+                <a class="<?php echo ((!isset($_GET['post_type']) || ($_GET['post_type'] == 'any') ) ? 'current' : false); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=any">
+                    Tudo
                 </a>
                 <a class="<?php ufpb_search_filter_item_class('post'); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=post">
-                    Posts
+                    Notícias
                 </a>
                 <a class="<?php ufpb_search_filter_item_class('page'); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=page">
-                    Pages
+                    Páginas
                 </a>
                 <a class="<?php ufpb_search_filter_item_class('evento'); ?>" href="<?php echo home_url(); ?>?s=<?php echo get_search_query(); ?>&post_type=evento">
                     Eventos
@@ -27,9 +27,17 @@
                     Editais
                 </a>
             </nav>
+            
+            <form class="busca-resultados" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">                
+                <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="O que você busca?" />
+                <input type="hidden" name="post_type" value="<?php echo (isset($_GET['post_type']) ? $_GET['post_type'] : 'any'); ?>" />
+                <button type="submit" class="fa-solid fa-magnifying-glass" > </button>                
+            </form>
+
             <div class="cards-lista">
                 <?php
-                if(have_posts()){
+                if(have_posts()){                             
+                    echo '<h2>' , $wp_query->found_posts , ' resultados para ' . get_search_query() . ':</h2>';
                     $first_post = true; // usado para adicionar linha acima no primeiro post apenas
                     echo '<div class="sidebar-noticias">
                         <div class="noticias-relacionadas">';
@@ -76,7 +84,7 @@
                             echo '</div>
                         </div>';
                 } else {
-                    echo '<p>Desculpe, nenhum post corresponde aos seus critérios.</p>';
+                    echo '<p>Desculpe, nenhum conteúdo corresponde aos seus critérios <i class="fa-solid fa-face-frown"></i></p>';
                 }
                 
         echo '</div> </div>

@@ -9,8 +9,8 @@
         </div>
         
         <div class="content-grid">            
-          <h1>Página não encontrada</h1>   
-          <p>A página solicitada não existe. Realize uma busca pelo termo desejado ou entre em contato.</p>      
+          <h1>Página não encontrada <i class="fa-solid fa-face-dizzy"></i></h1>   
+          <p>O endereço solicitada não existe. Talvez a página tenha migrado de lugar. Realize uma busca pelo termo desejado ou entre em contato.</p>      
                       
           
 

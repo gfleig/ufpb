@@ -15,7 +15,7 @@
             </ul>             
             <?php          
 
-                if (has_children() OR $post->post_parent > 0) { ?>                
+                if (false && has_children() OR $post->post_parent > 0) { ?>                
 
                     <div class="menu-navegacao linha-header-longa linha-abaixo">
                         <h2 class="parent-link">
@@ -39,7 +39,7 @@
                     </div>
             <?php } ?>                
                     <?php 
-                        summon_side_menu();                        
+                        //summon_side_menu();                        
                     ?>             
                             
         </div>

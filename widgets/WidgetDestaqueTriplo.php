@@ -25,7 +25,7 @@ class WidgetDestaqueTriplo extends WP_Widget {
             if(!empty($instance['link'][$i][1])) {
 
                 if (url_to_postid($instance['link'][$i][1]) > 0) {
-                    if(has_post_thumbnail(url_to_postid($instance['link'][$i][1]))) {
+                    if(has_post_thumbnail(url_to_postid($instance['link'][$i][1])) && empty($instance['imagem'][$i])) {
                         $instance['imagem'][$i] = get_the_post_thumbnail_url(url_to_postid($instance['link'][$i][1]));
                     }
                     if(empty($instance['titulo'][$i])){
@@ -36,9 +36,11 @@ class WidgetDestaqueTriplo extends WP_Widget {
                     }
                 }
 
-                echo '<div class="">';                         
-                    echo '<div class="destaque-img"><img src="' . esc_url($instance['imagem'][$i]) . '" alt="Imagem da página"></div>
-                        <h2 class="small-spacer">' . esc_html($instance['titulo'][$i]) . '</h2>
+                echo '<div class="">';         
+                    if (!empty($instance['imagem'][$i])) {
+                        echo '<div class="destaque-img"><img src="' . esc_url($instance['imagem'][$i]) . '" alt="Imagem da página"></div>';
+                    }
+                        echo '<h2 class="small-spacer">' . esc_html($instance['titulo'][$i]) . '</h2>
                         
                             <p>' . esc_html($instance['resumo'][$i]) . '</p>';
 

@@ -47,6 +47,32 @@ body {
 }
 
 /*novidades*/
+
+#pagina-404 {
+  min-height: 300px;
+}
+
+#pagina-404 + .imagem {
+  display: none;
+}
+
+.page-nav {
+  margin-bottom: var(--espaco-gutter);
+  color: var(--cor-texto-escuro);
+  display: flex;
+  flex-direction: row;
+  gap: var(--espaco-linha);
+  align-items: baseline;
+}
+
+.page-nav a {
+  font-weight: 500;
+}
+
+.page-nav .current, .page-nav a:hover {
+  color: var(--cor-tema);
+}
+
 .texto-escuro {
   color: var(--cor-texto-escuro);
 }
@@ -64,7 +90,7 @@ body {
   margin-bottom: var(--espaco-grande);
 }
 
-.linha-header{
+.linha-header, .page-nav .current, .page-nav a:hover{
   display: inline-block;
   padding-top: var(--espaco-linha);
   margin-top: -2px;
@@ -642,6 +668,17 @@ strong {
   position: static;
 }
 
+#searchform.busca-resultados {
+  margin-bottom: var(--espaco-gutter);
+  border: 1px solid var(--cor-linha);
+}
+
+.busca-resultados button[type="submit"]{
+  font-size: 24px;
+  width: auto;
+  padding: 0 var(--espaco-linha);
+}
+
 .busca-teste.hidden /*, #desktop-menu.hidden, #menu-buttons.hidden, #menu-overlay.hidden, #hamburger.hidden */ {
   display: none;
 }
@@ -689,7 +726,7 @@ button[type="submit"] {
   cursor: pointer;
   width: 48px;
   font-size: var(--fonte-base);
-  height: 48px;
+  min-height: 48px;
 }
 
 button[type="submit"] i {
@@ -1300,7 +1337,7 @@ a.linha-abaixo.mais-link:hover {
 .cards-lista {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  /*gap: 30px;*/
 }
 
 .wp-block-image :where(figcaption) {
@@ -2361,7 +2398,7 @@ footer a:hover {
 .redes-sociais {
   display: flex;
   flex-direction: row; 
-  gap: 10px;
+  gap: var(--espaco-linha);
 }
 
 
@@ -2378,7 +2415,7 @@ footer a:hover {
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0px;
-  gap: 24px;
+  gap: var(--espaco-gutter);
   height: 50px;
 }
 
@@ -2772,6 +2809,19 @@ body.contraste {
     margin-bottom: -4px;
   }
 
+  .page-nav {
+    gap: unset;
+    justify-content: space-between;
+  }
+
+  .busca-resultados button[type="submit"] {
+    font-size: var(--fonte-base);
+  }
+
+  button[type="submit"] {
+    min-height: unset;
+  }
+
   /* ===================== HERO IMAGE ================== */
 
 
@@ -3158,12 +3208,17 @@ body.contraste {
     justify-content: space-between;
   }  
 
+  #footer-dados > div {
+    margin-bottom: var(--espaco-gutter);
+  }
+
   .footer-direita {
     display: block;
   }
 
   #footer-creditos {
     justify-content: flex-start;
+    height: 44px;
   }
 
   #footer-logo {
