@@ -36,6 +36,55 @@ add_editor_style( 'editor-style.css' );
 // Adding excerpt for page
 add_post_type_support( 'page', 'excerpt' );
 
+function controle_linguas($wp_customize) {
+    $wp_customize->add_section('secao_traducao', array(
+        'title' => 'Tradução',
+        'priority' => 30,
+    ));
+
+    $wp_customize->add_setting('secao_traducao', array(
+        'default' => '',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_setting( 'traducao_geral', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'traducao_geral', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Menu de Tradução' ),
+        'description' => __( 'Se estiver marcado, o menu com as opções de línguas estará disponível no site.' ),
+    ));
+    function ufpb_sanitize_checkbox( $checked ) {
+        // Boolean check.
+        return ( ( isset( $checked ) && true == $checked ) ? true : false );
+    }
+
+    $wp_customize->add_setting( 'check_ingles', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'check_ingles', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Tradução para Inglês' ),
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('url_ingles', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('url_ingles', array(
+        'label' => 'URL do Site em Inglês',
+        'section' => 'secao_traducao',
+        'type' => 'url',
+    ));
+}
+add_action('customize_register', 'controle_linguas');
+
+
 // Hero Image
 function adicionar_controle_heroimage($wp_customize) {
     $wp_customize->add_section('secao_heroimage', array(

@@ -531,13 +531,13 @@ strong {
 .cabecalho-esquerda {
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: center;
   gap: var(--espaco-linha);
 }
 
 .logo img, .custom-logo {
   background-color: white;
-  height: 100px;
+  height: 80px;
   display: flex;
   width: 100%;
   object-fit: contain;

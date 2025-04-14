@@ -181,7 +181,31 @@ function home() {
     window.open(homeurl, "_self");
 }
 
-function alemao() {
+function traduzir_ingles() {
+    // get JSON url
+    var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
+    // then take out the '/wp-json/' part
+    var homeurl = WpJsonUrl.replace('/wp-json/','');
+    window.open("https://translate.google.com/translate?sl=auto&tl=en&u=" + homeurl , "_self");
+}
+
+function traduzir_espanhol() {
+    // get JSON url
+    var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
+    // then take out the '/wp-json/' part
+    var homeurl = WpJsonUrl.replace('/wp-json/','');
+    window.open("https://translate.google.com/translate?sl=auto&tl=es&u=" + homeurl , "_self");
+}
+
+function traduzir_frances() {
+    // get JSON url
+    var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
+    // then take out the '/wp-json/' part
+    var homeurl = WpJsonUrl.replace('/wp-json/','');
+    window.open("https://translate.google.com/translate?sl=auto&tl=fr&u=" + homeurl , "_self");
+}
+
+function traduzir_frances() {
     // get JSON url
     var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
     // then take out the '/wp-json/' part

@@ -38,21 +38,44 @@
             </ul>            
             
             <div id="menu-buttons">
-                <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>                
-                <div class="menu-traducao"><i title="Seleção de Língua" class="fa-solid fa-language"></i>
-                    <ul>
-                        <li>
-                            <a onclick="home();">
-                                <i title="Português Brasileiro" class="fa-solid fa-language"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a onclick="alemao();">
-                                <i title="Alemão" class="fa-solid fa-language"></i>
-                            </a>
-                        </li>
-                    </ul>                    
-                </div>
+                <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>       
+                <?php if ( get_theme_mod( 'traducao_geral' ) == 1 ) : ?>         
+                    <div class="menu-traducao"><i title="Seleção de Língua" class="fa-solid fa-language"></i>
+                        <ul>
+                            <li>
+                                <a onclick="home();">
+                                    <div>Português Brasileiro</div>
+                                </a>
+                            </li>
+                            <?php if ( get_theme_mod( 'check_ingles' ) == 1 ) : ?>
+                            <li>
+                                <?php if ( get_theme_mod( 'url_ingles' ) ) : ?>
+                                    <a href="<?php echo get_theme_mod( 'url_ingles' )?>">
+                                <?php else : ?>
+                                    <a onclick="traduzir_ingles();">
+                                <?php endif; ?>
+                                    <div>English</div>
+                                </a>
+                            </li>
+                            <?php endif; ?>
+                            <li>
+                                <a onclick="traduzir_espanhol();">
+                                    <div>Español</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a onclick="traduzir_frances();">
+                                    <div>Français</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a onclick="traduzir_alemao();">
+                                    <div>Deutsche</div>
+                                </a>
+                            </li>
+                        </ul>                    
+                    </div>
+                <?php endif; ?>
                 <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
                 <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a>                 
                 <div class="busca-teste hidden" id="busca-barra">                    
