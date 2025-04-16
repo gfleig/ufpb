@@ -44,15 +44,21 @@
                         while(have_posts()){
                             the_post();
                                 
-                                echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-categoria linha-abaixo">';                                          
-                                
-                                if(has_post_thumbnail($post->ID)) {
-                                echo '<div class="noticia-categoria-imagem">
-                                    <img src="', esc_url(the_post_thumbnail_url()), '">
-                                </div>'; 
+                            if(has_post_thumbnail($post->ID)) {                                
+                                echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-categoria linha-abaixo">'; 
+                                if(get_post_type() == 'evento') {
+                                    echo '<div class="evento-card-imagem">
+                                        <img src="', esc_url(the_post_thumbnail_url()), '">
+                                    </div>'; 
                                 } else {
-                                    echo '<div class="noticia-categoria-imagem"></div>';
-                                }       
+                                    echo '<div class="noticia-categoria-imagem">
+                                        <img src="', esc_url(the_post_thumbnail_url()), '">
+                                    </div>'; 
+                                }
+                                
+                            } else {
+                                echo '<a href="' , esc_url(the_permalink()) , '" class="linha-abaixo">';
+                            }       
                                         
                                 $categories = get_the_category(); //categorias
                                 if ($categories) {

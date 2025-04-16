@@ -20,7 +20,7 @@
                     
     </div> 
     <div class="menu-wrapper" id="menu-nav">
-        <div class="menu width-wrapper">
+        <nav class="menu width-wrapper">
             <button type="nav" id="hamburger">
                 <i id="hamburger-botao" class="fa-solid fa-bars"></i>
                 <div>Menu</div>
@@ -44,7 +44,7 @@
                         <ul>
                             <li>
                                 <a onclick="home();">
-                                    <div>Português Brasileiro</div>
+                                    <div>Português</div>
                                 </a>
                             </li>
                             <?php if ( get_theme_mod( 'check_ingles' ) == 1 ) : ?>
@@ -58,21 +58,39 @@
                                 </a>
                             </li>
                             <?php endif; ?>
+                            <?php if ( get_theme_mod( 'check_espanhol' ) == 1 ) : ?>
                             <li>
-                                <a onclick="traduzir_espanhol();">
+                                <?php if ( get_theme_mod( 'url_espanhol' ) ) : ?>
+                                    <a href="<?php echo get_theme_mod( 'url_espanhol' )?>">
+                                <?php else : ?>
+                                    <a onclick="traduzir_espanhol();">
+                                <?php endif; ?>
                                     <div>Español</div>
                                 </a>
                             </li>
+                            <?php endif; ?>
+                            <?php if ( get_theme_mod( 'check_frances' ) == 1 ) : ?>
                             <li>
-                                <a onclick="traduzir_frances();">
+                                <?php if ( get_theme_mod( 'url_frances' ) ) : ?>
+                                    <a href="<?php echo get_theme_mod( 'url_frances' )?>">
+                                <?php else : ?>
+                                    <a onclick="traduzir_frances();">
+                                <?php endif; ?>
                                     <div>Français</div>
                                 </a>
                             </li>
+                            <?php endif; ?>
+                            <?php if ( get_theme_mod( 'check_alemao' ) == 1 ) : ?>
                             <li>
-                                <a onclick="traduzir_alemao();">
-                                    <div>Deutsche</div>
+                                <?php if ( get_theme_mod( 'url_alemao' ) ) : ?>
+                                    <a href="<?php echo get_theme_mod( 'url_alemao' )?>">
+                                <?php else : ?>
+                                    <a onclick="traduzir_alemao();">
+                                <?php endif; ?>
+                                    <div>Deutsch</div>
                                 </a>
                             </li>
+                            <?php endif; ?>
                         </ul>                    
                     </div>
                 <?php endif; ?>
@@ -90,7 +108,7 @@
                 </div>
             </div> 
             </div>
-        </div>      
+        </nav>      
     </div>
     <?php summon_banner_top(); ?>
     <div id="menu-overlay" class="top-fixed-overlay menu-hidden">

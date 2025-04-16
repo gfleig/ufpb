@@ -81,6 +81,66 @@ function controle_linguas($wp_customize) {
         'section' => 'secao_traducao',
         'type' => 'url',
     ));
+
+    $wp_customize->add_setting( 'check_espanhol', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'check_espanhol', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Tradução para Espanhol' ),
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('url_espanhol', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('url_espanhol', array(
+        'label' => 'URL do Site em Espanhol',
+        'section' => 'secao_traducao',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting( 'check_frances', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'check_frances', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Tradução para Francês' ),
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('url_frances', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('url_frances', array(
+        'label' => 'URL do Site em Francês',
+        'section' => 'secao_traducao',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting( 'check_alemao', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'check_alemao', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Tradução para Alemão' ),
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('url_alemao', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('url_alemao', array(
+        'label' => 'URL do Site em Alemão',
+        'section' => 'secao_traducao',
+        'type' => 'url',
+    ));
 }
 add_action('customize_register', 'controle_linguas');
 
