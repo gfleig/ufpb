@@ -56,7 +56,7 @@ class WidgetEditais extends WP_Widget {
                         echo '</div>';
                     }
                     echo '<a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer" href="#">' , esc_html(the_title()) , '</a>';  
-                    echo '<div class="data small-spacer" href="#">Atualizado em ' , esc_html(the_modified_date('j/m/Y')) , '</div>';                                  
+                    echo '<div class="data" href="#">Atualizado em ' , esc_html(the_modified_date('j/m/Y')) , '</div>';                                  
                 echo '</div>';
             }
 
