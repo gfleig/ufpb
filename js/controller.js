@@ -230,12 +230,19 @@ Array.prototype.forEach.call(menuItems, function(el, i){
 //*
 
 var timer1, timer2;
-var menuItems = document.querySelectorAll('li.menu-item-has-children');
+var menuItems = document.querySelectorAll('#desktop-menu li.menu-item-has-children');
+//console.log(menuItems);
 Array.prototype.forEach.call(menuItems, function(el, i){
-    
+    ///*
     el.addEventListener("mouseover", function(event){
+        clearTimeout(timer1);
+        var opennav = document.querySelectorAll(".menu-item-has-children.menu-open");
+        opennav.forEach(element => {
+            element.classList.remove("menu-open");
+        });
+		//opennav.classList.remove("menu-open");
 		this.classList.add("menu-open");
-		clearTimeout(timer1);
+		
         this.setAttribute('aria-expanded', "true");
 	});
 	el.addEventListener("mouseout", function(event){
@@ -243,9 +250,9 @@ Array.prototype.forEach.call(menuItems, function(el, i){
             var opennav = document.querySelector(".menu-item-has-children.menu-open");
 			opennav.classList.remove("menu-open");
             opennav.querySelector('a').setAttribute('aria-expanded', "false");
-		}, 100);
+		}, 150);
 	}); 
-
+    //*/
 	el.querySelector('a').addEventListener("click",  function(event){
 		if (this.parentNode.classList.contains("menu-open")) {
 			this.parentNode.classList.toggle("menu-open");
@@ -257,7 +264,8 @@ Array.prototype.forEach.call(menuItems, function(el, i){
 		event.preventDefault();
 		return false;
 	});
-    var links = el.querySelectorAll('a');
+    var links = el.querySelectorAll('.sub-menu a');
+    console.log(links);
     Array.prototype.forEach.call(links, function(el, i){
         el.addEventListener("focus", function() {
             if (timer2) {
@@ -266,12 +274,21 @@ Array.prototype.forEach.call(menuItems, function(el, i){
             }
         });
         el.addEventListener("blur", function(event) {
+            console.log("saiu");
             timer2 = setTimeout(function () {
-                var opennav = document.querySelector(".menu-item-has-children.menu-open")
+                var opennav = document.querySelectorAll(".menu-item-has-children.menu-open")
+                if(opennav) {
+                    opennav.forEach(element => {
+                        element.classList.remove("menu-open");
+                        element.querySelector('a').setAttribute('aria-expanded', "false");
+                    });
+                }
+                /*
                 if (opennav) {
                     opennav.classList.remove("menu-open");
                     opennav.querySelector('a').setAttribute('aria-expanded', "false");
                 }
+                    */
             }, 10);
         });
     });
