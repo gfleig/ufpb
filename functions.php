@@ -935,7 +935,7 @@ function create_editais() {
 			),
 			'public'      => true,
 			'has_archive' => false,
-            'rewrite'     => array( 'slug' => 'editais' ), // my custom slug
+            'rewrite'     => array( 'slug' => 'edital' ), // my custom slug
             'menu_icon'   => 'dashicons-media-document',
             'supports'    => array(
                 'title',
