@@ -1967,6 +1967,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 .data-atualizado {
   font-size: var(--fonte-pequena);
+  margin-top: var(--espaco-gutter);
 }
 
 .bigode p{
