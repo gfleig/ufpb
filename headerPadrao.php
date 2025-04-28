@@ -13,7 +13,7 @@
             <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br" class="brasao">
                 <div class="ufpb-nome">UNIVERSIDADE<br>FEDERAL<br>DA PARAÍBA</div>
                 <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg"-->
-                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao_beta.png">
+                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao_gradiente.png">
             </a>
         </div>
         

@@ -179,7 +179,12 @@ p {
   margin-bottom: 1em;
 }
 
-p a, .wp-block-list a, .mais-link, .noticia-link-relacionado, .wp-block-file a {  
+.mais-link {
+  color: var(--cor-tema);
+  font-weight: 500;
+}
+
+p a, .wp-block-list a, .noticia-link-relacionado, .wp-block-file a {  
   color: var(--cor-tema);
   font-weight: 600;
 }
@@ -350,9 +355,9 @@ strong {
 .categorias {
   color: var(--cor-tema);
   font-size: var(--fonte-pequena);
-  font-family: 'IBM Plex Mono';
-  font-style: italic;
-  font-weight: 600;
+  /*/*font-family: 'IBM Plex Mono';*/
+  /*font-style: italic;*/
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -372,16 +377,19 @@ strong {
 }
 
 .edital-card .titulo {
-  /*font-size: var(--fonte-pagina);*/
+  font-size: var(--fonte-pequena);
 }
 
 .noticias-relacionadas .edital-card .titulo {
   margin-bottom: 0;
 }
 
-.edital-card .data,
-.edital-card .categorias {
+.edital-card .data {
   font-size: var(--fonte-pequena);
+}
+
+.edital-card .categorias {
+  font-size: var(--fonte-pagina);
 }
 
 .noticias-widget .noticia-card:first-child .titulo {
@@ -1994,9 +2002,9 @@ h2.bigode:has(p) {
 
 .noticia-categorias a {
   color: var(--cor-tema);  
-  font-weight: 600;
-  font-family: "IBM Plex Mono";
-  font-style: italic;
+  font-weight: 500;
+  /* font-family: "IBM Plex Mono"; */
+  /*font-style: italic;*/
   margin-bottom: var(--espaco-linha);
   
 }
@@ -2055,8 +2063,8 @@ h2.bigode:has(p) {
   color: var(--cor-tema);
   margin-bottom: var(--fonte-base);
   word-break: break-word;
-  font-family: "IBM Plex Mono";
-  font-style: italic;
+  /* font-family: "IBM Plex Mono"; */
+  /*font-style: italic;*/
 }
 
 .wp-block-file {
@@ -2148,8 +2156,8 @@ h2.bigode:has(p) {
 }
 
 .mais-link {
-  font-family: 'IBM Plex Mono';
-  font-style: italic;
+  /*font-family: 'IBM Plex Mono';*/
+  /*font-style: italic;*/
   color: var(--cor-tema);
   width: fit-content;
   line-height: 1.2;
@@ -2164,11 +2172,11 @@ h2.bigode:has(p) {
 .content-grid .wp-block-button__link {
   color: var(--cor-tema);
   background-color: transparent;
-  font-style: italic;
-  font-family: "IBM Plex Mono";
+  /*font-style: italic;*/
+  /* font-family: "IBM Plex Mono"; */
   padding: 0;
   font-size: var(--fonte-base);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: .5rem;
   line-height: 1.45;
 }
@@ -2841,18 +2849,18 @@ body.contraste {
 
   .noticia-card {
     min-height: 100px;
-    grid-template-columns: 110px 1fr;
+    /*grid-template-columns: 110px 1fr;
     grid-template-rows: min-content min-content 1fr;
     grid-template-areas: "imagem-card ." "imagem-card ." "imagem-card .";
-    column-gap: var(--espaco-pequeno);
+    column-gap: var(--espaco-pequeno);*/
   }
 
   .noticia-card .noticia-card-imagem.small-spacer {
-    margin-bottom: 0;
+    /*margin-bottom: 0;*/
   }
 
   .noticia-card-imagem {
-    aspect-ratio: 1;
+    /*aspect-ratio: 1;*/
   }
 
   .sidebar-noticias {
@@ -2947,7 +2955,7 @@ body.contraste {
   }
 
   .edital-card .titulo {
-    font-size: var(--fonte-base);
+    font-size: var(--fonte-pequena);
   }
 
   .noticias-relacionadas .edital-card .titulo {
