@@ -55,7 +55,7 @@ class WidgetNoticiasSimples extends WP_Widget {
                         echo '</a>'; //noticia-imagem
 
                         $categories = get_the_category(); //categorias
-                        if ($categories ) {
+                        if ($categories && empty($instance['tag'])) {
                             echo '<div class="categorias small-spacer">';
                             $categories = array_slice($categories, 0, 2);
                             foreach ($categories as $category) {                                                    

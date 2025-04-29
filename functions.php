@@ -934,7 +934,7 @@ function create_editais() {
                 'parent_item_colon' => ''
 			),
 			'public'      => true,
-			'has_archive' => false,
+			'has_archive' => true,
             'rewrite'     => array( 'slug' => 'edital' ), // my custom slug
             'menu_icon'   => 'dashicons-media-document',
             'supports'    => array(
