@@ -4,14 +4,21 @@
     <div class="corpo-grid">
         <div class="sidebar">  
             <?php
-            wp_get_archives(
-                array(
-                  'type'            => 'yearly',
-                  'post_type'       => 'edital',
-                )
-              );
             summon_categorias_edital_menu();
-            ?>                  
+            ?>
+            <div class="side-menu-archive">
+                <h2 class="menu-lateral-h2">Editais por Ano</h2>
+                <ul class="menu-lateral linha-abaixo linha-header-longa">
+                    <?php
+                    wp_get_archives(
+                        array(
+                        'type'            => 'yearly',
+                        'post_type'       => 'edital',
+                        )
+                    );
+                    ?>
+                </ul>
+            </div>          
         </div>
         
         <div class="content-grid">            

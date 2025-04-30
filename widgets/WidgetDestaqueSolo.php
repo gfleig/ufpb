@@ -38,8 +38,12 @@ class WidgetDestaqueSolo extends WP_Widget {
                     echo '<div class="apresentacao-links">';
                     for ($i = 1; $i < 6; $i++){
                         if(!empty($instance['pagina_link'][$i]) && !empty($instance['link_texto'][$i])) {
-                            echo '<a class="mais-link linha-acima" href=' . esc_url($instance['pagina_link'][$i]) . '>' . esc_html($instance['link_texto'][$i]) . '</a>';
-                        }
+                            if (wp_is_internal_link($instance['pagina_link'][$i])) {
+                                echo '<a class="mais-link linha-acima" href=' . esc_url($instance['pagina_link'][$i]) . '>' . esc_html($instance['link_texto'][$i]) . '</a>';
+                            } else {
+                                echo '<a class="mais-link linha-acima" href=' . esc_url($instance['pagina_link'][$i]) . ' target="_blank" rel="noopener noreferrer">' . esc_html($instance['link_texto'][$i]) . '</a>';
+                            }
+                        }                        
                     }                    
                     echo '</div>';                      
 

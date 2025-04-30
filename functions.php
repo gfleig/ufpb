@@ -8,7 +8,7 @@ include get_theme_file_path('/widgets/WidgetEventos.php');
 include get_theme_file_path('/widgets/WidgetNoticias.php');
 include get_theme_file_path('/widgets/WidgetDestaqueSolo.php');
 include get_theme_file_path('/widgets/WidgetDestaqueTriplo.php');
-include get_theme_file_path('/widgets/WidgetDestaqueDuplo.php');
+//include get_theme_file_path('/widgets/WidgetDestaqueDuplo.php'); //deprecado a favor de usar o destaque triplo para destaques duplos
 include get_theme_file_path('/widgets/WidgetDestaqueSoloInvertido.php');
 include get_theme_file_path('/widgets/WidgetEditais.php');
 include get_theme_file_path('/widgets/WidgetMapaEFoto.php');
@@ -897,8 +897,8 @@ function create_eventos() {
                 'parent_item_colon' => ''
 			),
 			'public'      => true,
-			'has_archive' => false,
-            'rewrite'     => array( 'slug' => 'eventos' ), // my custom slug
+			'has_archive' => 'eventos',
+            'rewrite'     => array( 'slug' => 'evento' ), // my custom slug
             'menu_icon'   => 'dashicons-calendar-alt',
             'supports'    => array(
                 'title',
@@ -934,7 +934,7 @@ function create_editais() {
                 'parent_item_colon' => ''
 			),
 			'public'      => true,
-			'has_archive' => true,
+			'has_archive' => 'editais',
             'rewrite'     => array( 'slug' => 'edital' ), // my custom slug
             'menu_icon'   => 'dashicons-media-document',
             'supports'    => array(

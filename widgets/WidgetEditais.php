@@ -37,7 +37,7 @@ class WidgetEditais extends WP_Widget {
             while ($the_query->have_posts() && $postCount < 4) {
                 $postCount++;
                 $the_query->the_post();
-                echo '<div class="edital-card linha-acima linha-abaixo">';
+                echo '<a href="' , esc_url(the_permalink()) , '" class="edital-card linha-acima linha-abaixo">';
                     $categories = get_the_terms( get_the_ID(), 'edital_type' );
                     //$categories = get_the_category(); //categorias
                     if ($categories) {
@@ -45,9 +45,9 @@ class WidgetEditais extends WP_Widget {
                         $categories = array_slice($categories, 0, 2);
                         foreach ($categories as $category) {                                                    
                             // Exibe o nome da categoria como um link
-                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+                            echo '<div>' . esc_html($category->name) . '</div>';
 
-                            // Adiciona uma vírgula após a categoria, exceto pela última
+                            // Adiciona um espaço após a categoria, exceto pela última
                             if (next($categories)) {
                                 //echo ',&nbsp';
                                 echo ' ';
@@ -55,9 +55,9 @@ class WidgetEditais extends WP_Widget {
                         }
                         echo '</div>';
                     }
-                    echo '<a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer" href="#">' , esc_html(the_title()) , '</a>';  
+                    echo '<div class="titulo small-spacer" href="#">' , esc_html(the_title()) , '</div>';  
                     echo '<div class="data" href="#">Atualizado em ' , esc_html(the_modified_date('j/m/Y')) , '</div>';                                  
-                echo '</div>';
+                echo '</a>';
             }
 
             echo '</div> </div>';

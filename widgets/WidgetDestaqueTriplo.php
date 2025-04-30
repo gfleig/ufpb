@@ -47,7 +47,12 @@ class WidgetDestaqueTriplo extends WP_Widget {
                             echo '<div class="flex-grow-parent">';
                             for($j = 1; $j < 6; $j++) {
                                 if (!empty($instance['link'][$i][$j])) {
-                                    echo '<a class="mais-link linha-acima" href=' . esc_url($instance['link'][$i][$j]) . '>' . $instance['texto'][$i][$j] . '</a> ';
+                                    if (wp_is_internal_link($instance['link'][$i][$j])) {
+                                        echo '<a class="mais-link linha-acima" href=' . esc_url($instance['link'][$i][$j]) . '>' . $instance['texto'][$i][$j] . '</a> ';
+                                    } else {
+                                        echo '<a class="mais-link linha-acima" href=' . esc_url($instance['link'][$i][$j]) . ' target="_blank" rel="noopener noreferrer">' . $instance['texto'][$i][$j] . '</a> ';
+                                    }
+                                    
                                 }
                             }
                             echo '</div>';
@@ -57,24 +62,7 @@ class WidgetDestaqueTriplo extends WP_Widget {
         echo '</div>';        
     }
 
-    public function form($instance) {
-        // Exibir o formulário de configuração do widget
-        $pagina_link = $instance['pagina_link'];
-        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
-        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link) );    
-        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';  
-        
-        $pagina_link_2 = $instance['pagina_link_2'];
-        $titulo_2 = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link_2));
-        $resumo_2 = !empty($instance['resumo_2']) ? $instance['resumo_2'] : get_the_excerpt(url_to_postid($pagina_link_2));    
-        $link_texto_2 = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
-
-        $pagina_link_3 = $instance['pagina_link_3'];
-        $titulo_3 = !empty($instance['titulo_3']) ? $instance['titulo_3'] : get_the_title(url_to_postid($pagina_link_3));
-        $resumo_3 = !empty($instance['resumo_3']) ? $instance['resumo_3'] : get_the_excerpt(url_to_postid($pagina_link_3));    
-        $link_texto_3 = !empty($instance['link_texto_3']) ? $instance['link_texto_3'] : 'Saiba mais';
-
-        //$titulo = !empty($instance['titulo'][$i]) ? esc_html($instance['titulo'][$i]) : get_the_title(url_to_postid($pagina_link));               
+    public function form($instance) {                       
         
         for ($i = 1; $i < 4; $i++) {
         echo '<div style="padding: 10px; background: gainsboro; margin-bottom: 15px">';
@@ -107,87 +95,11 @@ class WidgetDestaqueTriplo extends WP_Widget {
             echo '</div>';
             }
         echo '</div>';
-        }
-            
-        /*
-        // Formulário de configuração do widget
-        ?>
-        <div style="padding: 10px; border: 2px solid gray;">
-            <p>
-                <label for="<?php echo $this->get_field_id('pagina_link'); ?>">Link da primeira página a ser destacada:</label>
-                <input class="widefat" id="<?php echo $this->get_field_id('pagina_link'); ?>" name="<?php echo $this->get_field_name('pagina_link'); ?>" type="text" value="<?php echo $pagina_link; ?>">
-            </p>
-            <p>
-                <label for="<?php echo $this->get_field_id('titulo'); ?>">Título do bloco de destaque (opcional):</label>
-                <input class="widefat" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
-            </p>
-            <p>
-                <label for="<?php echo $this->get_field_id('resumo'); ?>">Texto do primeiro bloco de destaque (opcional):</label>
-                <input class="widefat" id="<?php echo $this->get_field_id('resumo'); ?>" name="<?php echo $this->get_field_name('resumo'); ?>" type="text" value="<?php echo $resumo; ?>">
-            </p>
-            <p>
-                <label for="<?php echo $this->get_field_id('link_texto'); ?>">Texto do primeiro link (opcional):</label>
-                <input class="widefat" id="<?php echo $this->get_field_id('link_texto'); ?>" name="<?php echo $this->get_field_name('link_texto'); ?>" type="text" value="<?php echo $link_texto; ?>">
-            </p>
-        </div>        
-
-        <p>
-            <label for="<?php echo $this->get_field_id('pagina_link_2'); ?>">Link da segunda página a ser destacada:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('pagina_link_2'); ?>" name="<?php echo $this->get_field_name('pagina_link_2'); ?>" type="text" value="<?php echo $pagina_link_2; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('titulo_2'); ?>">Título do segundo bloco de destaque (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('titulo_2'); ?>" name="<?php echo $this->get_field_name('titulo_2'); ?>" type="text" value="<?php echo $titulo_2; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('resumo_2'); ?>">Texto do segundo bloco de destaque (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('resumo_2'); ?>" name="<?php echo $this->get_field_name('resumo_2'); ?>" type="text" value="<?php echo $resumo_2; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('link_texto_2'); ?>">Texto do link (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('link_texto_2'); ?>" name="<?php echo $this->get_field_name('link_texto_2'); ?>" type="text" value="<?php echo $link_texto_2; ?>">
-        </p>
-
-        <p>
-            <label for="<?php echo $this->get_field_id('pagina_link_3'); ?>">Link da terceira página a ser destacada:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('pagina_link_3'); ?>" name="<?php echo $this->get_field_name('pagina_link_3'); ?>" type="text" value="<?php echo $pagina_link_3; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('titulo_3'); ?>">Título do terceiro bloco de destaque (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('titulo_3'); ?>" name="<?php echo $this->get_field_name('titulo_3'); ?>" type="text" value="<?php echo $titulo_3; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('resumo_3'); ?>">Texto do terceiro bloco de destaque (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('resumo_3'); ?>" name="<?php echo $this->get_field_name('resumo_3'); ?>" type="text" value="<?php echo $resumo_3; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('link_texto_3'); ?>">Texto do link (opcional):</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('link_texto_3'); ?>" name="<?php echo $this->get_field_name('link_texto_3'); ?>" type="text" value="<?php echo $link_texto_3; ?>">
-        </p>
-        
-        <?php
-        */
+        }        
     }
 
     public function update($new_instance, $old_instance) {
-        // Atualizar os valores do widget
-        //$instance = $old_instance;
-
-        /*
-        $instance['pagina_link'] = !empty($new_instance['pagina_link']) ? esc_html($new_instance['pagina_link']) : ''; 
-        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : ''; 
-        $instance['resumo'] = !empty($new_instance['resumo']) ? esc_html($new_instance['resumo']) : ''; 
-        $instance['link_texto'] = !empty($new_instance['link_texto']) ? esc_html($new_instance['link_texto']) : ''; 
-        $instance['pagina_link_2'] = !empty($new_instance['pagina_link_2']) ? esc_html($new_instance['pagina_link_2']) : ''; 
-        $instance['titulo_2'] = !empty($new_instance['titulo_2']) ? esc_html($new_instance['titulo_2']) : ''; 
-        $instance['resumo_2'] = !empty($new_instance['resumo_2']) ? esc_html($new_instance['resumo_2']) : ''; 
-        $instance['link_texto_2'] = !empty($new_instance['link_texto_2']) ? esc_html($new_instance['link_texto_2']) : ''; 
-        $instance['pagina_link_3'] = !empty($new_instance['pagina_link_3']) ? esc_html($new_instance['pagina_link_3']) : ''; 
-        $instance['titulo_3'] = !empty($new_instance['titulo_3']) ? esc_html($new_instance['titulo_3']) : ''; 
-        $instance['resumo_3'] = !empty($new_instance['resumo_3']) ? esc_html($new_instance['resumo_3']) : ''; 
-        $instance['link_texto_3'] = !empty($new_instance['link_texto_3']) ? esc_html($new_instance['link_texto_3']) : ''; 
-        */
-        //return $instance;
+        
         return $new_instance;
     }
 }

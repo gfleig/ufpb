@@ -384,6 +384,14 @@ strong {
   margin-bottom: 0;
 }
 
+.noticias-relacionadas .categorias.small-spacer {
+  font-size: var(--fonte-pequena);
+}
+
+.noticias-relacionadas .titulo.small-spacer {
+font-size: var(--fonte-base);
+}
+
 .edital-card .data {
   font-size: var(--fonte-pequena);
 }
@@ -1318,11 +1326,11 @@ a.linha-abaixo.mais-link:hover {
   padding-top: var(--espaco-linha);
 }
 
-.side-menu-button {
+.menu-lateral li a {
   font-weight: 500;
 }
 
-.side-menu-button:hover {
+.menu-lateral li a:hover {
   color: var(--cor-tema);
 }
 
