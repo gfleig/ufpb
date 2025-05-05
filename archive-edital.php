@@ -56,8 +56,9 @@
                                 }
                                 echo '</div>';
                             }
-                            echo '<div class="data small-spacer">Publicado em ' , get_the_date('j/m/Y') , '</div>';
-                            echo '<a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer" href="#">' , esc_html(the_title()) , '</a>';                
+                            
+                            echo '<a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer" href="#">' , esc_html(the_title()) , '</a>';  
+                            echo '<div class="data">Publicado em ' , get_the_date('j/m/Y') , '</div>';              
                         echo '</div>';    
                     }
                     echo '

@@ -1,13 +1,12 @@
 /*
-Theme Name: UFPB
+Theme Name: Oiticica
 Theme URI: https://github.com/gfleig/ufpb
-Author: Fleig {IL} + STI
+Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
-Description: Tema de torar feito inhouse (na minha casa), artesanalmente (zero plugins), e com carinho (recebendo bolsa). Possui funcionalidades incríveis como, além do óbvio, sistema de eventos, widgets de destaque, navegação via menus dinâmicos (sidebar) e flexibilidade de customização gráfica e de conteúdo. 
-Version: 0
+Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
+Version: 2.0
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations, accessibility-ready, blog, portfolio, news
 */
 
 * { 
@@ -47,6 +46,71 @@ body {
 }
 
 /*novidades*/
+
+/** SITEMAP **/
+
+.sitemap-wrapper {
+  background: var(--cor-tema);
+  color: white;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.sitemap {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;  
+}
+
+.sitemap > li {
+  width: 20%;
+  padding-right: var(--espaco-gutter);
+  margin-bottom: var(--espaco-gutter);
+}
+
+.sitemap li ul {
+  list-style: none;
+}
+
+.sitemap > li > a {
+  font-size: var(--fonte-base);
+  font-weight: 500;
+}
+
+.sitemap > li > ul {
+  font-size: var(--fonte-pequena);
+  line-height: 1.45;
+}
+
+.sitemap li ul li{
+  margin-bottom: var(--espaco-minimo);
+}
+
+.sitemap > li > ul {
+  margin-top: var(--espaco-minimo);
+}
+
+.sitemap li a::after {
+  display: none;
+}
+
+.sitemap > li > a {
+  cursor: pointer;
+}
+
+.sitemap > .menu-item-has-children > a {
+  cursor: default;
+}
+
+.sitemap > li:not(.menu-item-has-children) > a:hover {
+  text-decoration: underline;
+}
+
+.sitemap li ul li a:hover {
+  text-decoration: underline;
+}
+
+/* sitemap end */
 
 #pagina-404 {
   min-height: 300px;
@@ -378,10 +442,6 @@ strong {
 
 .edital-card .titulo {
   font-size: var(--fonte-pequena);
-}
-
-.noticias-relacionadas .edital-card .titulo {
-  margin-bottom: 0;
 }
 
 .noticias-relacionadas .categorias.small-spacer {
@@ -1050,7 +1110,7 @@ input[type="search"]:focus {
   line-height: 1.45;
   margin: 0 var(--espaco-linha) 0;
   padding: calc(var(--espaco-linha)/2);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .menu ul li ul .current_page_item {
@@ -2236,6 +2296,10 @@ h2.bigode:has(p) {
   
 }
 
+.mais-link.externo::after {  
+  content: "\f08e";  
+}
+
 .linha-acima.mais-link::after {
   position: absolute;
   right: .5rem;
@@ -2247,6 +2311,15 @@ h2.bigode:has(p) {
 
 .mais-link:hover::after, .wp-block-button__link:hover::after, .mais-link-header:hover::after {
   margin-left: .8rem;    
+}
+
+.mais-link.externo:hover::after {
+  margin-left: 0.5rem;  
+}
+
+.linha-acima.mais-link.externo:hover::after {
+  position: absolute;
+  right: .5rem;
 }
 
 .editais {
@@ -2318,6 +2391,7 @@ h2.bigode:has(p) {
   gap: var(--espaco-linha);
   width: 100%;
   max-width: 370px;
+  padding-top: var(--espaco-linha);
 }
 
 .link-full:hover {
@@ -2407,7 +2481,7 @@ h2.bigode:has(p) {
 
 #footer-wrapper {  
   width: 100%;
-  background-color: var(--cor-tema);  
+  background-color: color-mix(in Oklch, var(--cor-tema) 80%, black 20%); 
 }
 
 footer {    
@@ -2640,7 +2714,7 @@ body.contraste {
   --cor-tema: #ff0
 }
 
-.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link, .contraste .corpo-wrapper, .contraste .slide-texto-box, .contraste  .menu-wrapper, .contraste #footer-wrapper, .contraste .busca-teste, .contraste input[type="text"], .contraste .content-grid {
+.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link, .contraste .corpo-wrapper, .contraste .slide-texto-box, .contraste  .menu-wrapper, .contraste #footer-wrapper, .contraste .busca-teste, .contraste input[type="text"], .contraste .content-grid, .contraste #menu-overlay, .contraste .sitemap-wrapper {
   background-color: black;
 }
 
@@ -2806,7 +2880,7 @@ body.contraste {
   /*novidades*/
 
   .brasao {
-    height: 96px;
+    height: 80px;
   }
 
   .centro-titulo {
@@ -2814,7 +2888,7 @@ body.contraste {
   }
 
   .departamento-titulo {
-    font-stretch: 85%;
+    font-size: var(--fonte-base);
   }
 
   h1.noticia-pagina-titulo {
@@ -2982,10 +3056,6 @@ body.contraste {
     font-size: var(--fonte-pequena);
   }
 
-  .noticias-relacionadas .edital-card .titulo {
-    margin-bottom: 0;
-  }
-
   /* ===================== WIDGET MARCAS ===============*/
 
   .acesso-marcas-widget {
@@ -3102,7 +3172,7 @@ body.contraste {
 
   #menu-buttons i {
     min-width: 36px;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .content-grid {
@@ -3246,7 +3316,7 @@ body.contraste {
   }
 
   button[type="nav"] i {
-    font-size: 20px;
+    font-size: 16px;
     margin-right: var(--espaco-linha);
   }
 
@@ -3319,6 +3389,10 @@ body.contraste {
 
   #mapa-inlay {
     height: 500px;
+  }
+
+  .sitemap-wrapper {
+    display: none;
   }
 
   #footer-top {

@@ -50,7 +50,7 @@ class WidgetDestaqueTriplo extends WP_Widget {
                                     if (wp_is_internal_link($instance['link'][$i][$j])) {
                                         echo '<a class="mais-link linha-acima" href=' . esc_url($instance['link'][$i][$j]) . '>' . $instance['texto'][$i][$j] . '</a> ';
                                     } else {
-                                        echo '<a class="mais-link linha-acima" href=' . esc_url($instance['link'][$i][$j]) . ' target="_blank" rel="noopener noreferrer">' . $instance['texto'][$i][$j] . '</a> ';
+                                        echo '<a class="mais-link externo linha-acima" href=' . esc_url($instance['link'][$i][$j]) . ' target="_blank" rel="noopener noreferrer">' . $instance['texto'][$i][$j] . '</a> ';
                                     }
                                     
                                 }

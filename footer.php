@@ -1,4 +1,21 @@
 <?php summon_banner_bottom(); ?>
+<div class="sitemap-wrapper">
+  <div class="width-wrapper">
+    <div class="sitemap">
+    <?php 
+      wp_nav_menu(   
+          array ( 
+              'theme_location' => 'main-menu',
+              'items_wrap' => '%3$s',
+              'container' => false,
+              'menu_id' => 'sitemap'
+          ) 
+      ); 
+    ?>
+    </div>  
+  </div>
+</div>
+
 <div id="footer-wrapper">
   <footer class="width-wrapper">
   <div id="footer-top">
