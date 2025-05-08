@@ -1,4 +1,4 @@
-<?php summon_banner_bottom(); ?>
+<?php //summon_banner_bottom(); ?>
 <div class="sitemap-wrapper">
   <div class="width-wrapper">
     <div class="sitemap">

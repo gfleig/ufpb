@@ -17,15 +17,15 @@
 
                 if (false && has_children() OR $post->post_parent > 0) { ?>                
 
-                    <div class="menu-navegacao">
+                    <div class="side-menu-categorias">
                         
-                            <a href="<?php echo get_the_permalink(get_top_ancestor_id()); ?>">
+                            <h2 class="menu-lateral-h2" href="<?php echo get_the_permalink(get_top_ancestor_id()); ?>">
                                 <?php
                                 echo get_the_title(get_top_ancestor_id());
                                 ?>
-                            </a>    
+                            </h2>    
                         
-                        <ul class="menu-lateral linha-acima linha-abaixo">
+                        <ul class="menu-lateral">
                             <?php 
                             $args = array(
                                 'child_of' => get_top_ancestor_id(),
@@ -46,7 +46,7 @@
         <?php
         while ( have_posts() ) :
         the_post(); ?>
-        <div class="content-grid">            
+        <div class="content-grid">             
             <h1><?php the_title(); ?></h1>           
 
             <div class="the-content-container">

@@ -990,7 +990,7 @@ function summon_categorias_menu() {
     if (!empty($categorias)) {
         echo '<div class="side-menu-categorias">';
             echo '<h2 class="menu-lateral-h2">Categorias</h2>';
-            echo '<ul class="menu-lateral linha-abaixo linha-header-longa">';
+            echo '<ul class="menu-lateral">';
             foreach ($categorias as $categoria){
                 echo '<li><a class="side-menu-button" href="' , esc_url(get_category_link($categoria->term_id)) , '">', esc_html($categoria->name) ,'</a></li>';
             }
@@ -1008,7 +1008,7 @@ function summon_categorias_edital_menu() {
     if (!empty($categorias)) {
         echo '<div class="side-menu-categorias">';
             echo '<h2 class="menu-lateral-h2">Categorias</h2>';
-            echo '<ul class="menu-lateral linha-abaixo linha-header-longa">';
+            echo '<ul class="menu-lateral">';
             foreach ($categorias as $categoria){
                 echo '<li><a class="side-menu-button" href="' , esc_url(get_category_link($categoria->term_id)) , '">', esc_html($categoria->name) ,'</a></li>';
             }
@@ -1050,5 +1050,28 @@ function ufpb_search_filter($query) {
 }
 
 add_filter('pre_get_posts', 'ufpb_search_filter');
+
+/** 
+Breadcrumb de menu https://wordpress.stackexchange.com/questions/83190/making-breadcrumb-with-wp-nav-menu/109488#109488 
+**/
+function my_breadcrumb($theme_location = 'main-menu', $separator = ' &gt; ') {
+    
+    $theme_locations = get_nav_menu_locations();
+    
+    if( ! isset( $theme_locations[ $theme_location ] ) ) {
+        return '';
+    }
+    
+    $items = wp_get_nav_menu_items( $theme_locations[ $theme_location ] );
+    _wp_menu_item_classes_by_context( $items ); // Set up the class variables, including current-classes
+    $crumbs = array();
+
+    foreach($items as $item) {
+        if ($item->current_item_ancestor) {
+            $crumbs[] = "{$item->title}";
+        }
+    }
+    echo '<div class="linha-header-longa"><div class="linha-header">' , implode($separator, $crumbs) , '</div></div>';
+}
 
 ?>
