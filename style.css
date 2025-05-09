@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.0
+Version: 2.0.2
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -21,7 +21,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 body {
   margin-top: 0px;
-  font-family: 'IBM Plex Sans', 'Source Sans 3', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   background-color: var(--cor-background);
   margin: 0px;
 
@@ -281,6 +281,11 @@ p a:hover, .wp-block-list a:hover {
 .wp-block-media-text__content .wp-block-heading {
   margin-top: 0;  
   hyphens: none;
+}
+
+.the-content-container .wp-block-media-text .wp-block-media-text__content:has(.wp-block-heading) {
+  border-top: none;
+  padding-top: 0;
 }
 
 .wp-block-media-text p {
@@ -574,9 +579,6 @@ font-size: var(--fonte-base);
   object-fit: cover;
 }
 
-#google_translate_element .skiptranslate.goog-te-gadget {
-  display: anone;
-}
 
 #barra-brasil {
   display: none;
@@ -732,6 +734,17 @@ font-size: var(--fonte-base);
   padding-left: calc(2*var(--espaco-gutter));
 }
 
+#menu-overlay li ul li a {
+  font-weight: 400;
+  border-bottom: none;
+  }
+  #menu-overlay li ul li:last-child a {
+  border-bottom: 1px solid var(--cor-linha);
+  }
+  #menu-overlay li.submenu-aberto a {
+  border-bottom: none;
+  }
+
 .stop-scrolling {
   height: 100%;
   overflow: hidden;
@@ -741,7 +754,7 @@ font-size: var(--fonte-base);
 .busca-teste {
   width: 100vh;
   max-width: 500px;
-  top: 51px;
+  top: 100%;
   background: var(--cor-background);
   border: var(--cor-linha) 1px solid;
   border-top: none;
@@ -796,8 +809,7 @@ input[type="text"] {
   height: fit-content;
   padding: var(--espaco-linha);
   color: var(--cor-texto-medio);
-  font-weight: 400;
-  font-family: "IBM Plex Mono";
+  font-weight: 300;
   font-style: italic;
 }
 
@@ -2189,8 +2201,7 @@ h2.bigode:has(p) {
   margin-bottom: .5rem;
 }
 
-.content-grid .wp-block-file:not(.wp-element-button) {
-  
+.content-grid .wp-block-file:not(.wp-element-button) {  
   font-size: 1rem;
 }
 
@@ -2748,11 +2759,11 @@ body.contraste {
   --cor-tema: #ff0
 }
 
-.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link, .contraste .corpo-wrapper, .contraste .slide-texto-box, .contraste  .menu-wrapper, .contraste #footer-wrapper, .contraste .busca-teste, .contraste input[type="text"], .contraste .content-grid, .contraste #menu-overlay, .contraste .sitemap-wrapper {
+.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link, .contraste .corpo-wrapper, .contraste .slide-texto-box, .contraste  .menu-wrapper, .contraste #footer-wrapper, .contraste .busca-teste, .contraste input[type="text"], .contraste .content-grid, .contraste #menu-overlay, .contraste .sitemap-wrapper, .contraste .menu-traducao ul {
   background-color: black;
 }
 
-.contraste a, .contraste #menu-buttons i, .contraste .menu ul li ul li a, .contraste .noticia-titulo, .contraste .noticia-titulo, .contraste .link-full div, .contraste .link-full:hover .link-text, .contraste .ufpb-nome, .contraste #footer-dados .mais-link, .contraste button[type="nav"] i, .contraste button[type="nav"] div, .contraste .menu-lateral .page_item a, .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a, .contraste .wp-block-file a::before, .contraste .content-grid .wp-block-button__link, .contraste button[type="submit"]{
+.contraste a, .contraste #menu-buttons i, .contraste .menu ul li ul li a, .contraste .noticia-titulo, .contraste .noticia-titulo, .contraste .link-full div, .contraste .link-full:hover .link-text, .contraste .ufpb-nome, .contraste #footer-dados .mais-link, .contraste button[type="nav"] i, .contraste button[type="nav"] div, .contraste .menu-lateral .page_item a, .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a, .contraste .wp-block-file a::before, .contraste .content-grid .wp-block-button__link, .contraste button[type="submit"], .contraste .sitemap > li > a{
   color: #ff0;
 }
 
@@ -2907,7 +2918,7 @@ body.contraste {
     --fonte-base: 1rem;
     --fonte-pequena: 14px;
     --fonte-header: 24px;
-    --fonte-titulo: 28px;
+    --fonte-titulo: 24px;
     --fonte-pagina: 20px
   }
 
@@ -2925,9 +2936,6 @@ body.contraste {
     font-size: var(--fonte-base);
   }
 
-  h1.noticia-pagina-titulo {
-    font-size: 30px;
-  }
 
   h2.bigode p {
     font-size: 24px;
@@ -2945,7 +2953,6 @@ body.contraste {
 
   .busca-teste {
     width: calc(100vw - 2 * var(--espaco-gutter));
-    top: 48px;
   }
 
   /*novidades end*/

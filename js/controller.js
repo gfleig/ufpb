@@ -72,87 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
         menuButonIcon.classList.toggle('fa-bars');
         document.body.classList.toggle('stop-scrolling');
     }
-
-    let scrollTimeout
-    var prevScrollpos = window.scrollY;
-    var sideBar = document.getElementsByClassName("sidebar")[0];
-    
-    /*
-    window.addEventListener('scroll', function () {
-        var currentScrollPos = window.scrollY;
-        //var sideBarPresente;
-        //if (typeof sideBar !== 'undefined'){
-        //    sideBarPresente = true;
-        //} else {
-        //    sideBarPresente = false;
-        //}
-
-        if (prevScrollpos > currentScrollPos) {
-            menuNav.style.top = "0";
-            //if (sideBarPresente) {
-            //    sideBar.style.top = menuHeight + 3 + "px"
-            //}            
-        } else {
-            menuNav.style.top = "-" + menuHeight + "px";
-            //if (sideBarPresente) {
-            //    sideBar.style.top = "62px"
-            //}             
-        }        
-
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(function () {
-            prevScrollpos = currentScrollPos;
-        }, 0);
-    });
-    */
-    
-    function nextSlide() {
-        const slides = document.querySelector("[data-carrossel]").querySelector("[data-slides]");
-        const activeSlide = slides.querySelector("[data-active]");
-        let newIndex = [...slides.children].indexOf(activeSlide) + 1;        
-        if (newIndex >= slides.childElementCount){
-            newIndex = 0;
-        }
-        
-        slides.children[newIndex].dataset.active = true;
-        delete activeSlide.dataset.active;
-    }
-
-    //const timerInterval = 8000;                         // intervalo de tempo para passar slide do carrossel, em ms
-    //var slideTimer = setInterval(nextSlide, timerInterval);      // inicia slide automático do carrossel
-
-    const buttons = document.querySelectorAll("[data-carrossel-button]")
-
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            //clearInterval(slideTimer);                  // interrompe o timer de pasar automaticamente slide
-
-            const offset = button.dataset.carrosselButton === "next" ? 1 : -1;
-            const slides = button
-                .closest('[data-carrossel]')
-                .querySelector('[data-slides]');
-
-            const activeSlide = slides.querySelector("[data-active]");
-            let newIndex = [...slides.children].indexOf(activeSlide) + offset;
-            if (newIndex < 0) {
-                newIndex = slides.childElementCount - 1;
-            }
-            if (newIndex >= slides.childElementCount){
-                newIndex = 0;
-            }
-            
-            slides.children[newIndex].dataset.active = true;
-            delete activeSlide.dataset.active;
-
-            //slideTimer = setInterval(nextSlide, timerInterval);  // reinicia timer de pasar slide
-        })
-    })
-
     
 });
 
 function altoContraste() {
-    console.log("contraste")
     var body = document.getElementsByTagName("body")[0];
     if (body.classList.contains('contraste')) {
      body.classList.remove('contraste'); 
@@ -164,7 +87,6 @@ function altoContraste() {
 }
 
 function autismo() {
-    console.log("contraste")
     var body = document.getElementsByTagName("body")[0];
     if (body.classList.contains('autismo')) {
      body.classList.remove('autismo'); 
@@ -215,23 +137,8 @@ function traduzir_frances() {
     window.open("https://translate.google.com/translate?sl=auto&tl=de&u=" + homeurl , "_self");
 }
 
-/*
-var menuItems = document.querySelectorAll('li.menu-item-has-children');
-Array.prototype.forEach.call(menuItems, function(el, i){
-	el.querySelector('a').addEventListener("focus",  (event) => {
-		event.target.parentNode.classList.toggle("menu-open");
-	});
-    el.querySelector('a').addEventListener("focusout",  (event) => {
-		event.target.parentNode.classList.remove("menu-open");
-	});
-});
-*/
-
-//*
-
 var timer1, timer2;
 var menuItems = document.querySelectorAll('#desktop-menu li.menu-item-has-children');
-//console.log(menuItems);
 Array.prototype.forEach.call(menuItems, function(el, i){
     ///*
     el.addEventListener("mouseover", function(event){
@@ -265,7 +172,6 @@ Array.prototype.forEach.call(menuItems, function(el, i){
 		return false;
 	});
     var links = el.querySelectorAll('.sub-menu a');
-    console.log(links);
     Array.prototype.forEach.call(links, function(el, i){
         el.addEventListener("focus", function() {
             if (timer2) {
@@ -274,7 +180,6 @@ Array.prototype.forEach.call(menuItems, function(el, i){
             }
         });
         el.addEventListener("blur", function(event) {
-            console.log("saiu");
             timer2 = setTimeout(function () {
                 var opennav = document.querySelectorAll(".menu-item-has-children.menu-open")
                 if(opennav) {

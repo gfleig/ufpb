@@ -1,7 +1,7 @@
 <?php //summon_banner_bottom(); ?>
 <div class="sitemap-wrapper">
   <div class="width-wrapper">
-    <div class="sitemap">
+    <ul class="sitemap">
     <?php 
       wp_nav_menu(   
           array ( 
@@ -12,7 +12,7 @@
           ) 
       ); 
     ?>
-    </div>  
+    </ul>  
   </div>
 </div>
 
@@ -117,7 +117,7 @@
         <div id="footer-creditos">
           <!--<a href="https://github.com/interfaceslivres"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo-interfaces2.png" alt="Logo do Projeto Interfaces Livres"></a>-->
           <a class="logo-acesso-footer" target="_blank" rel="noopener noreferrer" href="https://www.gov.br/acessoainformacao/pt-br" title="Acesse o portal sobre o acesso à informação">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="100%" width="auto" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="100%" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
               <defs>
                 <style type="text/css">.a {font: normal bold 11px IBM Plex Sans, sans-serif;}</style>
               </defs>
