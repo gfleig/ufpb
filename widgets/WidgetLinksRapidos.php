@@ -28,7 +28,7 @@ class WidgetLinksRapidos extends WP_Widget {
             for ($i = 1; $i < 7; $i++) {
                 if(!empty($instance['link'][$i])) {
                     echo '
-                    <a class="link-full linha-abaixo" href="' . esc_url($instance['link'][$i]) . '">
+                    <a class="link-full linha-abaixo linha-acima" href="' . esc_url($instance['link'][$i]) . '">
                         <div class="link-image-wrapper">' . $instance['imagem'][$i] . '</div>          
                         <div class="link-text texto-escuro">' . esc_html($instance['texto'][$i]) . '</div>
                     </a>';

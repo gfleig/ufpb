@@ -303,12 +303,13 @@ add_action('customize_register', 'adicionar_controle_imagem_banner');
 
 function summon_banner_top(){
     // Obtém a URL da imagem do Customizer
-    $imagem_banner_url = get_theme_mod('imagem_banner');
+    $imagem_banner_url_original = get_theme_mod('imagem_banner');
+    $imagem_banner_url = str_replace('http://', 'https://', $imagem_banner_url_original);  //solução imbecil, ajeitar o SSL e forçar https de verdade é melhor
 
     echo '<div class="imagem banner-topo">';
 
     if (!empty($imagem_banner_url)) {
-        echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
+        echo '<img src="' . esc_attr(esc_url($imagem_banner_url)) . '" alt="Imagem decorativa do site">';
     } else {
         echo '<img src="' , get_bloginfo("template_directory") , '/decoration.jpg" alt="Imagem decorativa do site">';
     }        

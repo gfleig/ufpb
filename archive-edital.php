@@ -8,7 +8,7 @@
             ?>
             <div class="side-menu-archive">
                 <h2 class="menu-lateral-h2">Editais por Ano</h2>
-                <ul class="menu-lateral linha-abaixo linha-header-longa">
+                <ul class="menu-lateral">
                     <?php
                     wp_get_archives(
                         array(

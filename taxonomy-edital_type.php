@@ -5,11 +5,24 @@
         <div class="sidebar">
             <?php
             summon_categorias_edital_menu();       
-            ?>                                
+            ?>
+            <div class="side-menu-archive">
+                <h2 class="menu-lateral-h2">Editais por Ano</h2>
+                <ul class="menu-lateral">
+                    <?php
+                    wp_get_archives(
+                        array(
+                        'type'            => 'yearly',
+                        'post_type'       => 'edital',
+                        )
+                    );
+                    ?>
+                </ul>
+            </div>                                
         </div>
         
         <div class="content-grid"> <?php
-            echo '<h1>Editais sobre ' , single_cat_title() , '</h1>
+            echo '<h1 class="cat-archive-title"><a href="' , home_url() , '/editais">Editais</a> / ' , single_cat_title() , '</h1>
             <div class="cards-lista">';
 
             if(have_posts()){

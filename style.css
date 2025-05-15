@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.0.2
+Version: 2.0.3
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -46,6 +46,14 @@ body {
 }
 
 /*novidades*/
+
+.cat-archive-title a {
+  color: var(--cor-tema);  
+}
+
+.cat-archive-title a:hover {
+  text-decoration: underline;
+}
 
 /** SITEMAP **/
 
@@ -166,7 +174,7 @@ body {
   margin-bottom: var(--espaco-grande);
 }
 
-.linha-header, .page-nav .current, .page-nav a:hover{
+.linha-header, .page-nav .current, .page-nav a:hover {
   display: inline-block;
   padding-top: var(--espaco-linha);
   margin-top: -2px;
@@ -271,6 +279,18 @@ p a:visited, .wp-block-list a:visited {
 
 p a:hover, .wp-block-list a:hover {  
   text-decoration: underline;
+}
+
+.wp-block-buttons > .wp-block-button:has(a) {
+  border: 1px solid var(--cor-linha);
+  margin-bottom: 1rem;
+}
+
+.wp-block-buttons > .wp-block-button:hover {
+  border: 3px solid var(--cor-tema);
+}
+.wp-block-buttons > .wp-block-button:hover a {
+  padding: calc(var(--espaco-pequeno) - 2px);
 }
 
 .wp-block-buttons.is-layout-flex {
@@ -1373,8 +1393,8 @@ a.linha-abaixo.mais-link:hover {
 }
 
 .noticia-relacionada-titulo {
-  font-weight: 500;
-  font-size: var(--fonte-base);
+  font-weight: 400;
+  font-size: var(--fonte-pequena);
   line-height: 1.2;
 }
 
@@ -1413,17 +1433,21 @@ a.linha-abaixo.mais-link:hover {
 /* novidades side menu */
 
 .side-menu li ul li, 
-.side-menu-categorias ul li {
+.side-menu-categorias ul li, 
+.side-menu-archive ul li {
   border-top: 1px solid var(--cor-linha);
+  display: flex;
 }
 
 .side-menu li ul li:last-child,
-.side-menu-categorias ul li:last-child {
+.side-menu-categorias ul li:last-child,
+.side-menu-archive ul li:last-child {
   border-bottom: 1px solid var(--cor-linha);
 }
 
 .side-menu li ul li a,
-.side-menu-categorias ul li a{
+.side-menu-categorias ul li a,
+.side-menu-archive ul li a {
   padding-top: var(--espaco-linha);
   padding-bottom: var(--espaco-linha);
   font-size: var(--fonte-pequena);
@@ -1431,7 +1455,7 @@ a.linha-abaixo.mais-link:hover {
 }
 
 .side-menu-categorias ul li {
-  display: flex;
+  
 }
 
 .side-menu .sub-menu {
@@ -2303,11 +2327,10 @@ h2.bigode:has(p) {
   background-color: transparent;
   /*font-style: italic;*/
   /* font-family: "IBM Plex Mono"; */
-  padding: 0;
   font-size: var(--fonte-base);
   font-weight: 500;
-  margin-bottom: .5rem;
   line-height: 1.45;
+  padding: var(--espaco-pequeno);
 }
 
 .content-grid .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content {
@@ -2325,7 +2348,7 @@ h2.bigode:has(p) {
   display: none;
 }
 
-.mais-link:hover, .wp-block-button__link:hover, .mais-link-header:hover {
+.mais-link:hover, /*.wp-block-button__link:hover,*/ .mais-link-header:hover {
   text-decoration: underline;
 }
 
