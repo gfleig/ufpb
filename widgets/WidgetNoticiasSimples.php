@@ -52,7 +52,7 @@ class WidgetNoticiasSimples extends WP_Widget {
                     echo '<div class="noticia-card linha-abaixo">';
                         echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-imagem  small-spacer">';
                         //echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
-                        the_post_thumbnail('thumbnail');
+                        the_post_thumbnail('large');
                         echo '</a>'; //noticia-imagem
 
                         $categories = get_the_category(); //categorias

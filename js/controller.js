@@ -129,7 +129,7 @@ function traduzir_frances() {
     window.open("https://translate.google.com/translate?sl=auto&tl=fr&u=" + homeurl , "_self");
 }
 
-function traduzir_frances() {
+function traduzir_alemao() {
     // get JSON url
     var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
     // then take out the '/wp-json/' part
@@ -138,12 +138,15 @@ function traduzir_frances() {
 }
 
 var timer1, timer2;
-var menuItems = document.querySelectorAll('#desktop-menu li.menu-item-has-children');
+var menuItems = document.querySelectorAll('#desktop-menu > li.menu-item-has-children');
+var menuSubItems = document.querySelectorAll('#desktop-menu > li.menu-item-has-children > ul > li.menu-item-has-children');
+console.log(menuItems);
+console.log(menuSubItems);
 Array.prototype.forEach.call(menuItems, function(el, i){
     ///*
     el.addEventListener("mouseover", function(event){
         clearTimeout(timer1);
-        var opennav = document.querySelectorAll(".menu-item-has-children.menu-open");
+        var opennav = document.querySelectorAll("#desktop-menu > .menu-item-has-children.menu-open");
         opennav.forEach(element => {
             element.classList.remove("menu-open");
         });
@@ -154,7 +157,7 @@ Array.prototype.forEach.call(menuItems, function(el, i){
 	});
 	el.addEventListener("mouseout", function(event){
 		timer1 = setTimeout(function(event){
-            var opennav = document.querySelector(".menu-item-has-children.menu-open");
+            var opennav = document.querySelector("#desktop-menu > .menu-item-has-children.menu-open");
 			opennav.classList.remove("menu-open");
             opennav.querySelector('a').setAttribute('aria-expanded', "false");
 		}, 150);
@@ -171,7 +174,8 @@ Array.prototype.forEach.call(menuItems, function(el, i){
 		event.preventDefault();
 		return false;
 	});
-    var links = el.querySelectorAll('.sub-menu a');
+    
+    var links = el.querySelectorAll('#desktop-menu > .menu-item-has-children > .sub-menu > li > a');
     Array.prototype.forEach.call(links, function(el, i){
         el.addEventListener("focus", function() {
             if (timer2) {
@@ -181,7 +185,69 @@ Array.prototype.forEach.call(menuItems, function(el, i){
         });
         el.addEventListener("blur", function(event) {
             timer2 = setTimeout(function () {
-                var opennav = document.querySelectorAll(".menu-item-has-children.menu-open")
+                var opennav = document.querySelectorAll("#desktop-menu > .menu-item-has-children.menu-open")
+                if(opennav) {
+                    opennav.forEach(element => {
+                        element.classList.remove("menu-open");
+                        element.querySelector('a').setAttribute('aria-expanded', "false");
+                    });
+                }
+                /*
+                if (opennav) {
+                    opennav.classList.remove("menu-open");
+                    opennav.querySelector('a').setAttribute('aria-expanded', "false");
+                }
+                    */
+            }, 10);
+        });
+    });
+});
+
+Array.prototype.forEach.call(menuSubItems, function(el, i){
+    ///*
+    el.addEventListener("mouseover", function(event){
+        clearTimeout(timer1);
+        var opennav = document.querySelectorAll("#desktop-menu > li.menu-item-has-children.menu-open > ul > li.menu-item-has-children.menu-open");
+        opennav.forEach(element => {
+            element.classList.remove("menu-open");
+        });
+		//opennav.classList.remove("menu-open");
+		this.classList.add("menu-open");
+		
+        this.setAttribute('aria-expanded', "true");
+	});
+	el.addEventListener("mouseout", function(event){
+		timer1 = setTimeout(function(event){
+            var opennav = document.querySelector("#desktop-menu > li.menu-item-has-children.menu-open > ul > li.menu-item-has-children.menu-open");
+			opennav.classList.remove("menu-open");
+            opennav.querySelector('a').setAttribute('aria-expanded', "false");
+		}, 150);
+	}); 
+    //*/
+	el.querySelector('a').addEventListener("click",  function(event){
+		if (this.parentNode.classList.contains("menu-open")) {
+			this.parentNode.classList.toggle("menu-open");
+			this.setAttribute('aria-expanded', "false");
+		} else {
+			this.parentNode.classList.toggle("menu-open");
+			this.setAttribute('aria-expanded', "true");
+		}
+		event.preventDefault();
+		return false;
+	});
+
+    var links = el.querySelectorAll('#desktop-menu > li.menu-item-has-children > ul > li.menu-item-has-children > ul > li > a');
+    console.log(links);
+    Array.prototype.forEach.call(links, function(el, i){
+        el.addEventListener("focus", function() {
+            if (timer2) {
+                clearTimeout(timer2);
+                timer2 = null;
+            }
+        });
+        el.addEventListener("blur", function(event) {
+            timer2 = setTimeout(function () {
+                var opennav = document.querySelectorAll("#desktop-menu > li.menu-item-has-children > ul > li.menu-item-has-children.menu-open")
                 if(opennav) {
                     opennav.forEach(element => {
                         element.classList.remove("menu-open");

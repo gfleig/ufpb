@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.0.3
+Version: 2.0.4
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -27,7 +27,7 @@ body {
 
   /*--cor-tema: #102d69;*/
   --cor-background: white;
-  --cor-linha: #D7D7D7;
+  --cor-linha: #DADADA;
 
   --cor-texto-escuro: #383838;
   --cor-texto-medio: #595959;  
@@ -89,16 +89,13 @@ body {
 }
 
 .sitemap > li > ul {
+  margin-top: var(--espaco-pequeno);
   font-size: var(--fonte-pequena);
   line-height: 1.45;
 }
 
 .sitemap li ul li{
-  margin-bottom: var(--espaco-minimo);
-}
-
-.sitemap > li > ul {
-  margin-top: var(--espaco-minimo);
+  margin-bottom: var(--espaco-pequeno);
 }
 
 .sitemap li a::after {
@@ -757,13 +754,16 @@ font-size: var(--fonte-base);
 #menu-overlay li ul li a {
   font-weight: 400;
   border-bottom: none;
-  }
-  #menu-overlay li ul li:last-child a {
+}
+
+#menu-overlay li ul li:last-child a {
   border-bottom: 1px solid var(--cor-linha);
-  }
-  #menu-overlay li.submenu-aberto a {
+  padding-bottom: calc(1.5*var(--espaco-gutter));
+}
+
+#menu-overlay li.submenu-aberto a {
   border-bottom: none;
-  }
+}
 
 .stop-scrolling {
   height: 100%;
@@ -1113,6 +1113,11 @@ input[type="search"]:focus {
   min-width: calc(100% + 3 * var(--espaco-linha));
 }
 
+.menu ul li ul li {
+  width: 100%;
+  min-width: max-content;
+}
+
 .menu-traducao ul {  
   display: none;
   position: absolute;
@@ -1150,13 +1155,21 @@ input[type="search"]:focus {
   display: flex;
   height: fit-content;
   position: relative;
-  width: fit-content;
+  /*width: fit-content;*/
+  /*width: 100%;*/
   max-width: 250px;
   line-height: 1.45;
-  margin: 0 var(--espaco-linha) 0;
-  padding: calc(var(--espaco-linha)/2);
+  /*margin: 0 var(--espaco-linha) 0;*/
+  padding: calc(var(--espaco-linha)/2) calc(3 * var(--espaco-linha)/2);
   font-weight: 400;
   font-size: var(--fonte-pequena);
+}
+
+.menu ul li ul li ul {
+  display: none;
+  left: 100%;
+  top: 0;
+  border: 1px solid var(--cor-linha);
 }
 
 .menu ul li ul .current_page_item {
@@ -1186,7 +1199,9 @@ input[type="search"]:focus {
   left: unset;
 }
 
-.menu ul li.menu-open ul, .menu-traducao:hover ul {
+.menu ul li.menu-open > ul, 
+.menu ul li.menu-open > ul > li.menu-open > ul,
+.menu-traducao:hover ul {
   display: flex;
 }
 
@@ -2452,6 +2467,11 @@ h2.bigode:has(p) {
   grid-auto-columns: minmax(0, 1fr);
 }
 
+.links .link-full {
+  padding: var(--espaco-linha);
+  border: 1px solid var(--cor-linha);
+}
+
 .link-full {
   display: flex;
   flex-direction: column;
@@ -2460,10 +2480,12 @@ h2.bigode:has(p) {
   width: 100%;
   max-width: 370px;
   padding-top: var(--espaco-linha);
+  
 }
 
-.link-full:hover {
+.links .link-full:hover {
   background: var(--cor-middleground-hover);
+  border: 3px solid var(--cor-tema);
 }
 
 .link-image-wrapper {
@@ -2677,6 +2699,7 @@ footer a:hover {
 
   padding-top: var(--espaco-linha);
   border-top: 1px solid white;
+  font-size: var(--fonte-pequena);
 }
 
 #footer-linha {
@@ -2707,12 +2730,16 @@ footer a:hover {
   height: auto;
   width: 100%;
   aspect-ratio: 16/9;
-  margin-bottom: var(--espaco-minimo);
+  margin-bottom: var(--espaco-pequeno);
 }
 
 .destaque-img img, .destaque-solo-img img {
   width: 100%;
   object-fit: cover;
+}
+
+.destaque-img img {
+  margin-bottom: -5px;
 }
 
 .divisoria-vertical {
@@ -2927,6 +2954,23 @@ body.contraste {
 }
 
 /*=================================AUTISMO END==================================================*/
+
+@media only screen and (max-width: 1400px) {
+  :root {
+    font-size: 16px;
+  }
+
+  body {
+    --espaco-linha: 16px;
+
+    --fonte-base: 1rem;
+    --fonte-pequena: 14px;
+    --fonte-header: 28px;
+    --fonte-titulo: 28px;
+    --fonte-pagina: 24px
+  }
+
+}
 
 @media only screen and (max-width: 800px) {
   :root {

@@ -63,6 +63,26 @@ function controle_linguas($wp_customize) {
         return ( ( isset( $checked ) && true == $checked ) ? true : false );
     }
 
+    $wp_customize->add_setting( 'check_portugues', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'check_portugues', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Link para site original em português' ),
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('url_portugues', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('url_portugues', array(
+        'label' => 'URL do Site original em português',
+        'section' => 'secao_traducao',
+        'type' => 'url',
+    ));
+
     $wp_customize->add_setting( 'check_ingles', array(
         'capability' => 'edit_theme_options',
         'sanitize_callback' => 'ufpb_sanitize_checkbox',

@@ -42,11 +42,18 @@
                 <?php if ( get_theme_mod( 'traducao_geral' ) == 1 ) : ?>         
                     <div class="menu-traducao"><i title="Seleção de Língua" class="fa-solid fa-language"></i>
                         <ul>
+                            
+                            <?php if ( get_theme_mod( 'check_portugues' ) == 1 ) : ?>
                             <li>
-                                <a onclick="home();">
+                                <?php if ( get_theme_mod( 'url_portugues' ) ) : ?>
+                                    <a href="<?php echo get_theme_mod( 'url_portugues' )?>">
+                                <?php else : ?>
+                                    <a onclick="home();">
+                                <?php endif; ?>
                                     <div>Português</div>
                                 </a>
                             </li>
+                            <?php endif; ?>
                             <?php if ( get_theme_mod( 'check_ingles' ) == 1 ) : ?>
                             <li>
                                 <?php if ( get_theme_mod( 'url_ingles' ) ) : ?>
