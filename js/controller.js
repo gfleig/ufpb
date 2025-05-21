@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
  
-    const arrowButton = document.querySelectorAll("#mobile-menu .menu-item-has-children");
+    const arrowButton = document.querySelectorAll("#mobile-menu .menu-item-has-children > a");
 
     arrowButton.forEach((el) =>
         el.addEventListener("click", (event) => {
-            const subMenu = event.currentTarget;
+            const subMenu = event.currentTarget.parentNode;
             subMenu.classList.toggle("submenu-aberto");
         })
     );
