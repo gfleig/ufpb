@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.0.7
+Version: 2.0.8
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -334,7 +334,7 @@ p a:hover, .wp-block-list a:hover {
 h1 {
   font-size: var(--fonte-titulo);
   font-weight: 600;
-  line-height: 1.10;
+  line-height: 1.20;
   color: var(--cor-texto-escuro);
   margin-bottom: var(--espaco-gutter);
 }
@@ -375,17 +375,21 @@ address {
   margin-left: 2rem;
   margin-bottom: 1rem;
   color: var(--cor-texto-escuro);
-  list-style: square;
 }
 
 .wp-block-list li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   padding-left: 1em;
+  
+}
+
+ul.wp-block-list{
+  list-style: square;
 }
 
 ol.wp-block-list li::marker, ul.wp-block-list li::marker {
   font-size: var(--fonte-pequena);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .wp-block-heading {
@@ -394,7 +398,7 @@ ol.wp-block-list li::marker, ul.wp-block-list li::marker {
 }
 
 strong {
-  font-weight: 650;
+  font-weight: 600;
   color: var(--cor-texto-escuro);
 }
 
@@ -1157,7 +1161,7 @@ input[type="search"]:focus {
   color: var(--cor-tema);
 }
 
-.menu>ul>li:not(.menu-item-has-children)>a:focus,
+/*menu>ul>li:not(.menu-item-has-children)>a:focus,*/
 .menu ul li ul li a:focus, 
 .menu-traducao ul li a:focus,
 .side-menu .sub-menu li a:focus, 
@@ -1167,6 +1171,10 @@ input[type="search"]:focus {
 #menu-overlay li.submenu-aberto > a {
   background: var(--cor-tema-claro-focus);
   /*color: var(--cor-tema);*/
+}
+
+menu>ul>li:not(.menu-item-has-children)>a:focus {
+  text-decoration: underline;
 }
 
 .menu ul li ul li a {
@@ -1347,9 +1355,11 @@ a.linha-abaixo.mais-link:hover {
 
 .corpo-wrapper {
   width: 100%;
-  max-width: 1528px;
+  /*max-width: 1528px;*/
+  max-width: 1420px;
   background: var(--cor-background);
-  padding-top: 42px;
+  /*padding-top: 42px;*/
+  padding: 42px 30px;
 }
 
 .corpo-wrapper p {
@@ -2171,7 +2181,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 .data-atualizado {
   font-size: var(--fonte-pequena);
-  margin-top: var(--espaco-gutter);
+  margin-top: var(--espaco-grande);
 }
 
 .noticia-h2 .data-atualizado {
@@ -2852,7 +2862,7 @@ body.contraste {
   color: #ff0;
 }
 
-.contraste p, .contraste strong, .contraste .wp-block-list, .contraste h2, .contraste h3, .contraste .rotulo-escuro, .contraste .rotulo-evento, .contraste h1, .contraste .wp-block-image :where(figcaption), .contraste .noticia-compartilhe, .contraste .noticia-h2, .contraste .parent-link > a:nth-child(1), .contraste .data, .contraste .evento-data, .contraste .slide-texto-box .texto, .contraste input[type="text"] {
+.contraste p, .contraste strong, .contraste .wp-block-list, .contraste h2, .contraste h3, .contraste .rotulo-escuro, .contraste .rotulo-evento, .contraste h1, .contraste .wp-block-image :where(figcaption), .contraste .noticia-compartilhe, .contraste .noticia-h2, .contraste .parent-link > a:nth-child(1), .contraste .data, .contraste .evento-data, .contraste .slide-texto-box .texto, .contraste input[type="text"], .contraste .titulo {
   color: white;
 }
 
@@ -2892,6 +2902,10 @@ body.contraste {
 
 .contraste .menu-navegacao .menu-lateral .current_page_item a {
   color: #333;
+}
+
+.contraste .imagem.banner-topo::before {
+  background: linear-gradient(rgba(255,255,255,0) 50%, black);
 }
 
 
@@ -3047,6 +3061,8 @@ body.contraste {
   .corpo-wrapper {
     padding-top: var(--espaco-gutter);
     margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .busca-teste {

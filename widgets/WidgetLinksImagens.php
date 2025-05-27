@@ -40,7 +40,7 @@ class WidgetLinksImagens extends WP_Widget {
     }
 
     public function form($instance) {
-        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Acesso Rápido Compacto';               
+        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : null;               
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>
@@ -50,7 +50,7 @@ class WidgetLinksImagens extends WP_Widget {
         for ($i = 1; $i < 5; $i++){
             echo '<p>';
                 echo '<label for="', $this->get_field_id('texto' . $i) , '">Título do link número ' , $i , ':</label>';
-                echo '<input class="widefat" id="' , $this->get_field_id('texto' . $i) , '" name="' , $this->get_field_name('texto') . '[' . $i . ']" type="text" value="' , esc_attr($instance['text'][$i]) , '">';
+                echo '<input class="widefat" id="' , $this->get_field_id('texto' . $i) , '" name="' , $this->get_field_name('texto') . '[' . $i . ']" type="text" value="' , esc_attr($instance['texto'][$i]) , '">';
             echo '</p>';
             echo '<p>';
                 echo '<label for="', $this->get_field_id('imagem' . $i) , '">Imagem do link número ' , $i , ':</label>';

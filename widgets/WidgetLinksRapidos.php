@@ -43,7 +43,7 @@ class WidgetLinksRapidos extends WP_Widget {
     }
 
     public function form($instance) {
-        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Acesso Rápido com Marcas';               
+        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : null;               
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>

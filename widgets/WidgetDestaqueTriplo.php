@@ -47,7 +47,8 @@ class WidgetDestaqueTriplo extends WP_Widget {
                             echo '<div class="flex-grow-parent">';
                             for($j = 1; $j < 6; $j++) {
                                 if (!empty($instance['link'][$i][$j])) {
-                                    if (wp_is_internal_link($instance['link'][$i][$j])) {
+                                    //if (wp_is_internal_link(parse_url($instance['link'][$i][$j], PHP_URL_HOST))) {
+                                    if (in_array( wp_parse_url( $instance['link'][$i][$j], PHP_URL_HOST ), wp_internal_hosts(), true )) {
                                         echo '<a class="mais-link linha-acima" href=' . esc_url($instance['link'][$i][$j]) . '>' . $instance['texto'][$i][$j] . '</a> ';
                                     } else {
                                         echo '<a class="mais-link externo linha-acima" href=' . esc_url($instance['link'][$i][$j]) . ' target="_blank" rel="noopener noreferrer">' . $instance['texto'][$i][$j] . '</a> ';
