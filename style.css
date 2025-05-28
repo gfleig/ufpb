@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.0.8
+Version: 2.0.9
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -437,8 +437,7 @@ strong {
   grid-template-areas: "imagem-card" "." "." ".";
 }
 
-.noticia-card.linha-abaixo,
-.edital-card.linha-abaixo {
+.noticia-card.linha-abaixo{
   padding-bottom: var(--espaco-pequeno);
 }
 
@@ -483,6 +482,7 @@ strong {
 
 .edital-card .titulo {
   font-size: var(--fonte-pequena);
+  margin-bottom: var(--espaco-linha);
 }
 
 .noticias-relacionadas .categorias.small-spacer {
@@ -499,6 +499,7 @@ font-size: var(--fonte-base);
 
 .edital-card .categorias {
   font-size: var(--fonte-pagina);
+  margin-bottom: var(--espaco-linha);
 }
 
 .noticias-widget .noticia-card:first-child .titulo {
@@ -687,6 +688,7 @@ font-size: var(--fonte-base);
   color: var(--cor-texto-escuro);
   /*transition: 0.15s;*/
   white-space: pre-line;
+  max-width: 600px;
 }
 
 .departamento-titulo:hover, .centro-titulo:hover{
@@ -3120,8 +3122,7 @@ body.contraste {
     margin-top: 0;
   }
 
-  .noticia-card.linha-abaixo,
-  .edital-card.linha-abaixo {
+  .noticia-card.linha-abaixo{
     padding-bottom: var(--espaco-linha);
   }
 
@@ -3271,8 +3272,13 @@ body.contraste {
   }
 
   .imagem {
-    display: none;
-    height: 10vh;
+    /*display: none;*/
+    margin-bottom: 0;
+    height: 12vh;
+  }
+
+  .imagem.banner-topo {
+    margin-bottom: 0;
   }
 
   .corpo {
