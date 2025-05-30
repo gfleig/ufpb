@@ -1072,27 +1072,12 @@ function ufpb_search_filter($query) {
 
 add_filter('pre_get_posts', 'ufpb_search_filter');
 
-/** 
-Breadcrumb de menu https://wordpress.stackexchange.com/questions/83190/making-breadcrumb-with-wp-nav-menu/109488#109488 
-**/
-function my_breadcrumb($theme_location = 'main-menu', $separator = ' &gt; ') {
-    
-    $theme_locations = get_nav_menu_locations();
-    
-    if( ! isset( $theme_locations[ $theme_location ] ) ) {
-        return '';
-    }
-    
-    $items = wp_get_nav_menu_items( $theme_locations[ $theme_location ] );
-    _wp_menu_item_classes_by_context( $items ); // Set up the class variables, including current-classes
-    $crumbs = array();
-
-    foreach($items as $item) {
-        if ($item->current_item_ancestor) {
-            $crumbs[] = "{$item->title}";
-        }
-    }
-    echo '<div class="linha-header-longa"><div class="linha-header">' , implode($separator, $crumbs) , '</div></div>';
-}
+/**
+ * Filter the excerpt length to 20 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+add_filter( 'excerpt_length', function( $length ) { return 15; }, 999 );
 
 ?>

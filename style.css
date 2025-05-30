@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.0.10
+Version: 2.0.11
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -643,7 +643,7 @@ font-size: var(--fonte-base);
 
   flex-direction: row-reverse;
   justify-content: start;
-  gap: var(--espaco-linha);
+  gap: var(--espaco-gutter);
 }
 
 .portal .cabecalho {
@@ -656,7 +656,7 @@ font-size: var(--fonte-base);
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--espaco-linha);
+  gap: var(--espaco-gutter);
 }
 
 .logo img, .custom-logo {
@@ -674,7 +674,7 @@ font-size: var(--fonte-base);
 }
 
 .centro-titulo {
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fonte-base);
   line-height: 1.2;
   color: var(--cor-texto-medio);
@@ -1048,7 +1048,7 @@ input[type="search"]:focus {
 .menu ul {
   z-index: 100;
   display: flex;  
-  gap: var(--espaco-linha);
+  gap: var(--espaco-gutter);
   color: var(--cor-texto-escuro);
   font-weight: 450;
   list-style-type: none;
