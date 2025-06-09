@@ -5,9 +5,20 @@
             </a>
             <div>
                 <div id="menu-buttons">
-                    <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
-                    <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a> 
+                    <button id="busca">
+                        <div>Busca</div>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <a href="javascript:void(0);" onclick="altoContraste();">
+                        <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
+                        <div>Alto Contraste</div>
+                    </a>
+                    <a href="javascript:void(0);" onclick="autismo();">
+                        <!--i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i-->
+                        <div>Cores Acessíveis</div>
+                    </a> 
+
                     <div class="busca-teste hidden" id="busca-barra">                    
                         <div>
                             <?php get_search_form(); ?>                    
@@ -19,7 +30,7 @@
                     <div class="menu">
                         <button type="nav" id="hamburger">
                             <i id="hamburger-botao" class="fa-solid fa-bars"></i>
-                            <div>Menu</div>
+                            <!--div>Menu</div-->
                         </button>                         
                         <ul id="desktop-menu">
                             <?php 
