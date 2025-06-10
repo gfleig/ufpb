@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         offsetValue = cabecalho.offsetHeight;     
         if (window.scrollY < offsetValue) {
-            overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
+            overlay.style.top = offsetValue + menuHeight - window.scrollY - 1 + 'px';
             var altura = windowHeight - offsetValue - menuHeight + window.scrollY + 'px';
             overlay.style.height = altura;
         } else {
-            overlay.style.top = menuHeight + 'px';
+            overlay.style.top = menuHeight - 1 + 'px';
             var altura = windowHeight - menuHeight + 'px';
             overlay.style.height = altura;
         }
