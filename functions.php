@@ -745,7 +745,7 @@ abstract class DatePicker_Meta_Box {
 
 	public static function save( int $post_id ) {
 		if ( array_key_exists( 'data_inicio', $_POST ) ) {
-            $data_inicio_formatted = strtotime($_POST['data_inicio']);
+            $data_inicio_formatted = strtotime($_POST['data_inicio'] . ' 00:00-03:00');
 			update_post_meta(
 				$post_id,
 				'__data_inicio',
@@ -763,8 +763,8 @@ abstract class DatePicker_Meta_Box {
 			);            
         }		
         if ( array_key_exists( 'data_fim', $_POST) && !empty($_POST['data_fim'])) {
-            $data_fim_formatted = strtotime($_POST['data_fim']);
-            $data_inicio_formatted = strtotime($_POST['data_inicio']);
+            $data_fim_formatted = strtotime($_POST['data_fim'] . ' 00:00-03:00');
+            $data_inicio_formatted = strtotime($_POST['data_inicio'] . ' 00:00-03:00');
             if ($data_fim_formatted >= $data_inicio_formatted) {
                 update_post_meta(
                     $post_id,
