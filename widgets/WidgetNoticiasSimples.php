@@ -23,16 +23,57 @@ class WidgetNoticiasSimples extends WP_Widget {
 
         $posts_per_page = 4;
         
-        $querry_args = array(
+        $sticky_query_args = array(
+            'fields' => 'ids',
             'posts_per_page' => $posts_per_page,
             'no_found_rows' => true,
+            'post__in' => get_option( 'sticky_posts' ),
+            'ignore_sticky_posts' => true
+        );
+
+        $regular_query_args = array(
+            'fields' => 'ids',
+            'posts_per_page' => $posts_per_page,
+            'no_found_rows' => true,
+            'post__not_in' => get_option( 'sticky_posts' ),
+            'ignore_sticky_posts' => true
         );
 
         if (!empty($instance['tag'])) {
-            $querry_args['category_name'] = $instance['tag'];
+            //$querry_args['category_name'] = $instance['tag'];
+            $sticky_query_args['category__in'] = array(get_cat_ID($instance['tag']));
+            $regular_query_args['category__in'] = array(get_cat_ID($instance['tag']));
         }
-        
-        $the_query = new WP_Query($querry_args);
+
+        if (!empty($instance['exclude'])) {
+            $sticky_query_args['category__not_in'] = array(get_cat_ID($instance['exclude']));
+            $regular_query_args['category__not_in'] = array(get_cat_ID($instance['exclude']));
+        }
+
+        $sticky_query = new WP_Query($sticky_query_args);
+        $regular_query = new WP_Query($regular_query_args);
+
+        //create new empty query and populate it with the other two
+        //$the_query = new WP_Query();
+        //$the_query->posts = array_merge( $sticky_query->posts, $regular_query->posts );
+
+        //populate post_count count for the loop to work correctly
+        //$the_query->post_count = $sticky_query->post_count + $regular_query->post_count;
+        //if($the_query->post_count > 4) {
+        //    $the_query->post_count = 4;
+        //}
+
+        $merged_ids = array_merge($sticky_query->posts, $regular_query->posts);
+        $the_query = new WP_Query(array('post__in' => $merged_ids,'orderby' => 'post__in', 'ignore_sticky_posts' => true));
+
+        //var_dump( $the_query );
+
+        //$the_query->post_count = 4;
+
+        //$the_query = $sticky_query;
+        //$the_query = $regular_query;
+
+        //$the_query = new WP_Query($querry_args);
 
         if ( $the_query->have_posts() ) {
             echo '<div class="width-wrapper large-spacer">';
@@ -90,11 +131,16 @@ class WidgetNoticiasSimples extends WP_Widget {
     }
 
     public function form($instance) {
-        $tag = esc_html($instance['tag']);               
+        $tag = esc_html($instance['tag']); 
+        $exclude = esc_html($instance['exclude']);              
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('tag'); ?>">Categoria a ser exibida (deixar vazio para mostrar todas as categorias):</label>
             <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('tag'); ?>" name="<?php echo $this->get_field_name('tag'); ?>" type="text" value="<?php echo $tag; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('exclude'); ?>">Categoria a ser excluída (deixar vazio para não excluir nenhuma):</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('exclude'); ?>" name="<?php echo $this->get_field_name('exclude'); ?>" type="text" value="<?php echo $exclude; ?>">
         </p>
         <?php        
     }
@@ -103,6 +149,7 @@ class WidgetNoticiasSimples extends WP_Widget {
         $instance = $old_instance;
 
         $instance['tag'] = !empty($new_instance['tag']) ? esc_html($new_instance['tag']) : "";
+        $instance['exclude'] = !empty($new_instance['exclude']) ? esc_html($new_instance['exclude']) : "";
             
         return $instance;
     }
