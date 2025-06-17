@@ -24,56 +24,39 @@ class WidgetNoticiasSimples extends WP_Widget {
         $posts_per_page = 4;
         
         $sticky_query_args = array(
-            'fields' => 'ids',
-            'posts_per_page' => $posts_per_page,
-            'no_found_rows' => true,
-            'post__in' => get_option( 'sticky_posts' ),
-            'ignore_sticky_posts' => true
+            'fields' => 'ids',                      //pega só ids dos posts 
+            'posts_per_page' => $posts_per_page,    //no máximo $posts_per_page posts
+            'no_found_rows' => true,                //otimização
+            'post__in' => get_option( 'sticky_posts' ), //postagens sticky
+            'ignore_sticky_posts' => true           //otimização
         );
 
         $regular_query_args = array(
-            'fields' => 'ids',
-            'posts_per_page' => $posts_per_page,
-            'no_found_rows' => true,
-            'post__not_in' => get_option( 'sticky_posts' ),
-            'ignore_sticky_posts' => true
+            'fields' => 'ids',                      //pega só ids dos posts
+            'posts_per_page' => $posts_per_page,    //no máximo $posts_per_page posts  
+            'no_found_rows' => true,                // otimização
+            'post__not_in' => get_option( 'sticky_posts' ), //postagens não-sticky
+            'ignore_sticky_posts' => true           //otimização
         );
 
-        if (!empty($instance['tag'])) {
-            //$querry_args['category_name'] = $instance['tag'];
+        if (!empty($instance['tag'])) {             //se usuário selecionar uma categoria específica, só ela vai entrar na query
             $sticky_query_args['category__in'] = array(get_cat_ID($instance['tag']));
             $regular_query_args['category__in'] = array(get_cat_ID($instance['tag']));
         }
 
-        if (!empty($instance['exclude'])) {
+        if (!empty($instance['exclude'])) {         //se usuário selecionar uma categoria específica, ela será excluída da query
             $sticky_query_args['category__not_in'] = array(get_cat_ID($instance['exclude']));
             $regular_query_args['category__not_in'] = array(get_cat_ID($instance['exclude']));
         }
 
-        $sticky_query = new WP_Query($sticky_query_args);
-        $regular_query = new WP_Query($regular_query_args);
+        $sticky_query = new WP_Query($sticky_query_args);   //gera query dos posts fixados
+        $regular_query = new WP_Query($regular_query_args); //gera query dos posts não-fixados
 
-        //create new empty query and populate it with the other two
-        //$the_query = new WP_Query();
-        //$the_query->posts = array_merge( $sticky_query->posts, $regular_query->posts );
-
-        //populate post_count count for the loop to work correctly
-        //$the_query->post_count = $sticky_query->post_count + $regular_query->post_count;
-        //if($the_query->post_count > 4) {
-        //    $the_query->post_count = 4;
-        //}
-
-        $merged_ids = array_merge($sticky_query->posts, $regular_query->posts);
-        $the_query = new WP_Query(array('post__in' => $merged_ids,'orderby' => 'post__in', 'ignore_sticky_posts' => true));
-
-        //var_dump( $the_query );
-
-        //$the_query->post_count = 4;
-
-        //$the_query = $sticky_query;
-        //$the_query = $regular_query;
-
-        //$the_query = new WP_Query($querry_args);
+        $merged_ids = array_merge($sticky_query->posts, $regular_query->posts); //junta os ids dos posts da queries na ordem sticky (por data de postagem) e depois não-sticky (por data de postagem)
+        $the_query = new WP_Query(array(
+            'post__in' => $merged_ids,          //gera query apenas com os posts dos ids dos posts das duas queries anteriores
+            'orderby' => 'post__in',            //ordem do array dos ids
+            'ignore_sticky_posts' => true));    //otimização
 
         if ( $the_query->have_posts() ) {
             echo '<div class="width-wrapper large-spacer">';
