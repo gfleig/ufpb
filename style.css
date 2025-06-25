@@ -760,8 +760,8 @@ font-size: var(--fonte-base);
 #menu-overlay li a {
   display: block;  
   width: 100%;
-  font-weight: 450;
-  font-size: var(--fonte-base);
+  font-weight: 500;
+  font-size: var(--fonte-pagina);
   line-height: 1;
   color: var(--cor-texto-escuro);
   padding: var(--espaco-gutter) 0;
@@ -770,6 +770,8 @@ font-size: var(--fonte-base);
 #menu-overlay li .sub-menu li a {
   padding-left: var(--espaco-gutter);
   font-size: var(--fonte-pequena);
+  color: var(--cor-texto-escuro);
+  font-weight: 400;
 }
 
 #menu-overlay li ul li a {
@@ -778,6 +780,7 @@ font-size: var(--fonte-base);
 
 #menu-overlay li.submenu-aberto a {
   border-bottom: none;
+  color: var(--cor-tema-escuro);
 }
 
 .stop-scrolling {
