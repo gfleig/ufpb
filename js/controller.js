@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var searchForm = document.getElementById('s');
 
 
-    searchButton.addEventListener('click', buscaClick);
-    closeSearchButton.addEventListener('click', buscaClick);
+    //searchButton.addEventListener('click', buscaClick);
+    //closeSearchButton.addEventListener('click', buscaClick);
     menuButton.addEventListener('click', toggleMenuOverlay);
 
     function buscaClick() {
@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
         offsetValue = cabecalho.offsetHeight;     
         if (window.scrollY < offsetValue) {
             overlay.style.top = offsetValue + menuHeight - window.scrollY - 1 + 'px';
-            var altura = windowHeight - offsetValue - menuHeight + window.scrollY + 'px';
+            var altura = windowHeight - offsetValue - menuHeight + window.scrollY + 1 + 'px';
             overlay.style.height = altura;
         } else {
             overlay.style.top = menuHeight - 1 + 'px';
-            var altura = windowHeight - menuHeight + 'px';
+            var altura = windowHeight - menuHeight + 1 + 'px';
             overlay.style.height = altura;
         }
         overlay.classList.toggle('menu-hidden');

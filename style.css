@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.1 beta 5
+Version: 2.1
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -740,14 +740,52 @@ font-size: var(--fonte-base);
   background-color: var(--cor-background);
   height: 500px;
   overflow-y: scroll;
-  left: 0px;
+  right: 0px;
   transition: .25s;
-  transition-property: left;
+  transition-property: right;
   transition-timing-function: ease;
 }
 
+#menu-overlay #searchform {
+  margin: var(--espaco-linha) var(--espaco-gutter) var(--espaco-minimo);
+}
+
+#menu-overlay form {
+  justify-content: space-between;
+}
+
+#menu-overlay input[type="text"] {
+  font-size: var(--fonte-pagina);
+  width: unset;
+  padding: var(--espaco-gutter) 0 var(--espaco-gutter) var(--espaco-gutter);
+  flex: 1;
+  font-weight: 350;
+}
+
+#menu-overlay button[type="submit"] {
+  font-size: var(--fonte-pagina);
+  min-width: 48px;
+}
+
+#menu-overlay #menu-buttons {
+  flex-direction: column;
+  padding: 0 var(--espaco-gutter);
+  margin-top: var(--espaco-linha);
+  align-items: start;
+  font-stretch: condensed;
+  color: var(--cor-texto-medio);
+  font-size: var(--fonte-base);
+  gap: var(--espaco-gutter);
+  font-weight: 400;
+}
+
+#menu-overlay .menu-traducao {
+  display: flex;
+  gap: var(--espaco-linha);
+}
+
 #menu-overlay.menu-hidden {
-  left: -100%;
+  right: -100%;
 }
 
 #menu-overlay ul {
@@ -826,6 +864,13 @@ font-size: var(--fonte-base);
   font-size: var(--fonte-pequena);
   margin-bottom: var(--espaco-pequeno);
   position: unset;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.portal #menu-buttons a:hover {
+  cursor: pointer;
+  color: var(--cor-tema);
 }
 
 #searchform.busca-resultados {
@@ -851,20 +896,22 @@ font-size: var(--fonte-base);
 }
 
 form {
+  /*display: flex;
+  width: 100%;*/
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  border: 1px solid var(--cor-linha);
 }
 
 input[type="text"] {
-  width: 100%;
-  border: none;
-  font-size: var(--fonte-base);
-  line-height: 1;
   height: fit-content;
-  padding: var(--espaco-linha);
   color: var(--cor-texto-medio);
-  font-weight: 300;
-  font-style: italic;
+  font-size: var(--fonte-pequena);
+  padding: var(--espaco-pequeno);
+  border: none;
+  font-stretch: condensed;
+  font-family: inherit;
+  width: 150px;
 }
 
 input[type="text"]::placeholder {
@@ -883,9 +930,8 @@ button {
 button[type="submit"] {
   color: var(--cor-texto-medio);
   cursor: pointer;
-  width: 48px;
+  width: 42px;
   font-size: var(--fonte-base);
-  min-height: 48px;
 }
 
 button[type="submit"] i {
@@ -929,6 +975,7 @@ button[type="nav"] {
   display: none;
   flex-direction: row;
   align-items: center;
+  align-self: center;
 }
 
 button[type="nav"] div {
@@ -1012,6 +1059,10 @@ input[type="search"]:focus {
   justify-content: space-between;  
 }
 
+.portal .menu {
+  justify-content: end;
+}
+
 .menu.width-wrapper {
   position: relative;
 }
@@ -1047,6 +1098,8 @@ input[type="search"]:focus {
   gap: 0;
   padding: 0 var(--espaco-gutter);
 }
+
+
 
 #mobile-menu li {
   border-bottom: 1px solid var(--cor-linha);
@@ -1173,6 +1226,13 @@ input[type="search"]:focus {
 .menu ul li ul li:last-child a {
   padding-bottom: calc(3 * var(--espaco-linha)/4);
 }
+
+.portal .menu-traducao {
+  display: flex;
+  flex-direction: row;
+  gap: var(--espaco-linha);
+}
+
 
 .menu-traducao ul {  
   display: none;
@@ -3088,7 +3148,7 @@ body.contraste {
   }
 
   .portal .brasao {
-    height: 70px;
+    height: 80px;
   }
 
   .centro-titulo {
@@ -3497,9 +3557,7 @@ body.contraste {
   .portal.topo .cabecalho {
     gap: var(--espaco-gutter);
     gap: var(--espaco-linha);
-    flex-direction: column;
     width: 100%;
-    margin-bottom: 0;
   }
 
   .portal .cabecalho {
@@ -3520,14 +3578,17 @@ body.contraste {
     margin-bottom: 0;
   }
 
+  .portal .menu-direita {
+    display: none;
+  }
+
   button[type="nav"] {    
     display: flex;    
     padding: var(--espaco-pequeno);
     border: 1px solid var(--cor-linha);
-  }
-
-  button[type="nav"] i {
-    font-size: 16px;
+    width: 48px;
+    font-size: var(--fonte-pagina);
+    color: var(--cor-tema);
   }
 
   #desktop-menu {

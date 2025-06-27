@@ -18,7 +18,7 @@
 
                 $the_query = new WP_Query( array(
                     'posts_per_page' => $posts_per_page,
-                    'category_name' => $categoria->name,
+                    'cat' => get_cat_ID($categoria->name),
                     'no_found_rows' => true
                 ));
 

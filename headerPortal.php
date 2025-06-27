@@ -3,73 +3,64 @@
             <a rel="noopener noreferrer" href="<?php echo get_home_url(); ?>" class="brasao">
                 <img src="<?php echo get_bloginfo("template_directory"); ?>/img/marca.png">
             </a>
-            <div>
-                <div id="menu-buttons">
-                    <button id="busca">
-                        <div>Busca</div>
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+            <button type="nav" id="hamburger">
+                <i id="hamburger-botao" class="fa-solid fa-bars"></i>
+                <!--div>Menu</div-->
+            </button>
+            <div class="menu-direita">
+                <div id="menu-buttons">        
+                    
+                    <a href="">
+                        Acesso à Informação
+                    </a>
 
                     <?php if ( get_theme_mod( 'traducao_geral' ) == 1 ) : ?>         
-                        <div class="menu-traducao"><i title="Seleção de Língua" class="fa-solid fa-language"></i>
-                            <ul>
-                                
+                        <div class="menu-traducao">
                                 <?php if ( get_theme_mod( 'check_portugues' ) == 1 ) : ?>
-                                <li>
                                     <?php if ( get_theme_mod( 'url_portugues' ) ) : ?>
                                         <a href="<?php echo get_theme_mod( 'url_portugues' )?>">
                                     <?php else : ?>
-                                        <a onclick="home();">
+                                        <a href="#" onclick="home();">
                                     <?php endif; ?>
-                                        <div>Português</div>
+                                        <div>PT</div>
                                     </a>
-                                </li>
                                 <?php endif; ?>
-                                <?php if ( get_theme_mod( 'check_ingles' ) == 1 ) : ?>
-                                <li>
+                                <?php if ( get_theme_mod( 'check_ingles' ) == 1 ) : ?>                                
                                     <?php if ( get_theme_mod( 'url_ingles' ) ) : ?>
                                         <a href="<?php echo get_theme_mod( 'url_ingles' )?>">
                                     <?php else : ?>
-                                        <a onclick="traduzir_ingles();">
+                                        <a href="#" onclick="traduzir_ingles();">
                                     <?php endif; ?>
-                                        <div>English</div>
-                                    </a>
-                                </li>
+                                        <div>EN</div>
+                                    </a>                                
                                 <?php endif; ?>
-                                <?php if ( get_theme_mod( 'check_espanhol' ) == 1 ) : ?>
-                                <li>
+                                <?php if ( get_theme_mod( 'check_espanhol' ) == 1 ) : ?>                                
                                     <?php if ( get_theme_mod( 'url_espanhol' ) ) : ?>
                                         <a href="<?php echo get_theme_mod( 'url_espanhol' )?>">
                                     <?php else : ?>
-                                        <a onclick="traduzir_espanhol();">
+                                        <a href="#" onclick="traduzir_espanhol();">
                                     <?php endif; ?>
-                                        <div>Español</div>
-                                    </a>
-                                </li>
+                                        <div>ES</div>
+                                    </a>                                
                                 <?php endif; ?>
-                                <?php if ( get_theme_mod( 'check_frances' ) == 1 ) : ?>
-                                <li>
+                                <?php if ( get_theme_mod( 'check_frances' ) == 1 ) : ?>                                
                                     <?php if ( get_theme_mod( 'url_frances' ) ) : ?>
                                         <a href="<?php echo get_theme_mod( 'url_frances' )?>">
                                     <?php else : ?>
-                                        <a onclick="traduzir_frances();">
+                                        <a href="#" onclick="traduzir_frances();">
                                     <?php endif; ?>
-                                        <div>Français</div>
-                                    </a>
-                                </li>
+                                        <div>FR</div>
+                                    </a>                                
                                 <?php endif; ?>
-                                <?php if ( get_theme_mod( 'check_alemao' ) == 1 ) : ?>
-                                <li>
+                                <?php if ( get_theme_mod( 'check_alemao' ) == 1 ) : ?>                                
                                     <?php if ( get_theme_mod( 'url_alemao' ) ) : ?>
                                         <a href="<?php echo get_theme_mod( 'url_alemao' )?>">
                                     <?php else : ?>
-                                        <a onclick="traduzir_alemao();">
+                                        <a href="#" onclick="traduzir_alemao();">
                                     <?php endif; ?>
-                                        <div>Deutsch</div>
-                                    </a>
-                                </li>
-                                <?php endif; ?>
-                            </ul>                    
+                                        <div>DE</div>
+                                    </a>                                
+                                <?php endif; ?>                                                
                         </div>
                     <?php endif; ?>
 
@@ -77,24 +68,18 @@
                         <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
                         <div>Alto Contraste</div>
                     </a>
+
                     <a href="javascript:void(0);" onclick="autismo();">
                         <!--i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i-->
                         <div>Cores Acessíveis</div>
                     </a> 
 
-                    <div class="busca-teste hidden" id="busca-barra">                    
-                        <div>
-                            <?php get_search_form(); ?>                    
-                            <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    </div>
+                    <?php get_search_form(); ?>
+
+                    
                 </div>
                 <div class="menu-wrapper" id="menu-nav-portal">
-                    <div class="menu">
-                        <button type="nav" id="hamburger">
-                            <i id="hamburger-botao" class="fa-solid fa-bars"></i>
-                            <!--div>Menu</div-->
-                        </button>                         
+                    <div class="menu">                                                 
                         <ul id="desktop-menu">
                             <?php 
                                 wp_nav_menu(   
@@ -148,6 +133,9 @@
 <?php endif ?>
 
 <div id="menu-overlay" class="top-fixed-overlay menu-hidden">
+
+    <?php get_search_form(); ?> 
+
     <ul id="mobile-menu">            
         <?php 
             wp_nav_menu(   
@@ -159,4 +147,71 @@
             ); 
         ?>				
     </ul>
+    <div id="menu-buttons">        
+                    
+        <a href="">
+            Acesso à Informação
+        </a>
+
+        <?php if ( get_theme_mod( 'traducao_geral' ) == 1 ) : ?>         
+            <div class="menu-traducao">
+                    <?php if ( get_theme_mod( 'check_portugues' ) == 1 ) : ?>
+                        <?php if ( get_theme_mod( 'url_portugues' ) ) : ?>
+                            <a href="<?php echo get_theme_mod( 'url_portugues' )?>">
+                        <?php else : ?>
+                            <a href="#" onclick="home();">
+                        <?php endif; ?>
+                            <div>PT</div>
+                        </a>
+                    <?php endif; ?>
+                    <?php if ( get_theme_mod( 'check_ingles' ) == 1 ) : ?>                                
+                        <?php if ( get_theme_mod( 'url_ingles' ) ) : ?>
+                            <a href="<?php echo get_theme_mod( 'url_ingles' )?>">
+                        <?php else : ?>
+                            <a href="#" onclick="traduzir_ingles();">
+                        <?php endif; ?>
+                            <div>EN</div>
+                        </a>                                
+                    <?php endif; ?>
+                    <?php if ( get_theme_mod( 'check_espanhol' ) == 1 ) : ?>                                
+                        <?php if ( get_theme_mod( 'url_espanhol' ) ) : ?>
+                            <a href="<?php echo get_theme_mod( 'url_espanhol' )?>">
+                        <?php else : ?>
+                            <a href="#" onclick="traduzir_espanhol();">
+                        <?php endif; ?>
+                            <div>ES</div>
+                        </a>                                
+                    <?php endif; ?>
+                    <?php if ( get_theme_mod( 'check_frances' ) == 1 ) : ?>                                
+                        <?php if ( get_theme_mod( 'url_frances' ) ) : ?>
+                            <a href="<?php echo get_theme_mod( 'url_frances' )?>">
+                        <?php else : ?>
+                            <a href="#" onclick="traduzir_frances();">
+                        <?php endif; ?>
+                            <div>FR</div>
+                        </a>                                
+                    <?php endif; ?>
+                    <?php if ( get_theme_mod( 'check_alemao' ) == 1 ) : ?>                                
+                        <?php if ( get_theme_mod( 'url_alemao' ) ) : ?>
+                            <a href="<?php echo get_theme_mod( 'url_alemao' )?>">
+                        <?php else : ?>
+                            <a href="#" onclick="traduzir_alemao();">
+                        <?php endif; ?>
+                            <div>DE</div>
+                        </a>                                
+                    <?php endif; ?>                                                
+            </div>
+        <?php endif; ?>
+
+        <a href="javascript:void(0);" onclick="altoContraste();">
+            <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
+            <div>Alto Contraste</div>
+        </a>
+
+        <a href="javascript:void(0);" onclick="autismo();">
+            <!--i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i-->
+            <div>Cores Acessíveis</div>
+        </a> 
+        
+    </div>
 </div>
