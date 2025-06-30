@@ -151,8 +151,18 @@
                     
         <a href="">
             Acesso à Informação
+        </a>        
+
+        <a href="javascript:void(0);" onclick="altoContraste();">
+            <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
+            <div>Alto Contraste</div>
         </a>
 
+        <a href="javascript:void(0);" onclick="autismo();">
+            <!--i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i-->
+            <div>Cores Acessíveis</div>
+        </a> 
+        
         <?php if ( get_theme_mod( 'traducao_geral' ) == 1 ) : ?>         
             <div class="menu-traducao">
                     <?php if ( get_theme_mod( 'check_portugues' ) == 1 ) : ?>
@@ -201,17 +211,7 @@
                         </a>                                
                     <?php endif; ?>                                                
             </div>
-        <?php endif; ?>
+        <?php endif; ?>    
 
-        <a href="javascript:void(0);" onclick="altoContraste();">
-            <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
-            <div>Alto Contraste</div>
-        </a>
-
-        <a href="javascript:void(0);" onclick="autismo();">
-            <!--i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i-->
-            <div>Cores Acessíveis</div>
-        </a> 
-        
     </div>
 </div>
