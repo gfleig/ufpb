@@ -43,7 +43,7 @@ class WidgetEventos extends WP_Widget {
             echo '
             <div class="width-wrapper large-spacer">
                 <h2 class="linha-header-longa">                
-                    <a class="mais-link-header linha-header" href="', get_home_url(), '/eventos/">Eventos</a>
+                    <a class="linha-header" href="', get_home_url(), '/eventos/">Eventos</a>
                 </h2>';
                 echo '<div class="eventos-grid">';
                     while ( $the_query->have_posts() ) {
@@ -80,8 +80,13 @@ class WidgetEventos extends WP_Widget {
                     }
 
                 echo '</div>'; //eventos-grid                         
-            echo
-            '</div>'; //width-wrapper
+            
+
+            echo '<div class="large-spacer mais-noticias">';                
+                echo '<div class=""><a href="', get_home_url(), '/eventos/" class="mais-link">Mais Eventos</a></div>';                
+            echo '</div>';
+
+            echo '</div>'; //width-wrapper
         
         }
         echo $args['after_widget']; 

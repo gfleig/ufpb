@@ -37,6 +37,7 @@
                         echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
                         echo '</a>'; //noticia-imagem
 
+                        /*
                         $categories = get_the_category(); //categorias
                         if ($categories) {
                             echo '<div class="categorias small-spacer">';
@@ -53,6 +54,7 @@
                             }
                             echo '</div>';
                         }
+                            */
                         
                         echo '<div><a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer">' , esc_html(the_title()) , '</a>'; //título
 

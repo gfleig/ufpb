@@ -66,7 +66,7 @@ class WidgetNoticias extends WP_Widget {
         if ( $the_query->have_posts() ) {
             echo '<div class="width-wrapper large-spacer">';
                 echo '<div class="linha-header-longa">';
-                    echo '<h2 class="linha-header"><a href="', get_home_url(), '/noticias/" class="mais-link-header">Notícias</a></h2>';
+                    echo '<h2 class="linha-header"><a href="', get_home_url(), '/noticias/" class="">Notícias</a></h2>';
                 echo '</div>';
                 echo '<div class="noticias-widget">';                
                 $postCount = 0;
@@ -107,6 +107,17 @@ class WidgetNoticias extends WP_Widget {
                 }           
 
                 echo '</div>'; //noticias-widget
+
+                echo '<div class="large-spacer mais-noticias">';
+
+                    if (!empty($instance['tag'])) {
+                        echo '<div class=""><a href="', esc_url(get_category_link(get_cat_ID($instance['tag'])))  ,  '" class="mais-link">Mais ' , esc_html($instance['tag']) , '</a></div>';
+                    } else {
+                        echo '<div class=""><a href="', get_home_url(), '/noticias/" class="mais-link">Mais Notícias</a></div>';
+                    }
+                    
+                echo '</div>';
+
             echo '</div>'; //width-wrapper
         }
 
