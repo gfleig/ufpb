@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.1.2
+Version: 2.1.3
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -651,7 +651,7 @@ font-size: var(--fonte-base);
 }
 
 .portal .cabecalho {
-  align-items: end;
+  align-items: center;
   justify-content: space-between;  
   margin-bottom: var(--espaco-gutter);
   flex-direction: row;
@@ -1161,7 +1161,7 @@ input[type="search"]:focus {
 }
 
 .portal .menu > ul > li > a {
-  padding: var(--espaco-gutter) 0;
+  padding: var(--espaco-pequeno) 0;
   padding-top: var(--espaco-pequeno);
 }
 
@@ -1206,30 +1206,43 @@ input[type="search"]:focus {
   color: var(--cor-tema);
 }
 
+.menu > ul > .menu-item-has-children:hover > a {
+  color: var(--cor-tema);
+}
+
 .menu>ul>.current-menu-ancestor:hover>a {
   border-bottom: 3px solid var(--cor-background);
 }
 
 .menu ul li ul li:hover a {
-  background: var(--cor-tema-claro);
+  background: #fbfbfb;
+  color: var(--cor-tema);
 }
 
 .menu ul li ul {  
-  display: none;
+  /*display: none;*/
+  display: flex;
   position: absolute;
   background-color: var(--cor-background);  
   border: 1px solid var(--cor-linha);
-  border-top: 0;
+  border-bottom: 0;
   flex-direction: column;
   gap: 0;
-  z-index: 1;
-  left: calc(-1 * var(--espaco-gutter));
+  z-index: 100;
+  left: calc(-1 * var(--espaco-pequeno));
   min-width: calc(100% + 3 * var(--espaco-linha));
+  background: var(--cor-background);
+  box-shadow: 0 6px 18px 0 rgba(0,0,0,.15);
+  margin-top: -6px;
+  transition: margin-top .25s, opacity .15s;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .menu ul li ul li {
   width: 100%;
   min-width: max-content;
+  background: var(--cor-background);
 }
 
 .menu ul li ul li:last-child a {
@@ -1295,9 +1308,10 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   /*max-width: 250px;*/
   line-height: 1.45;
   /*margin: 0 var(--espaco-linha) 0;*/
-  padding: calc(var(--espaco-linha)/2) calc(3 * var(--espaco-linha)/2);
-  font-weight: 450;
+  padding: 12px 24px;
+  font-weight: 425;
   font-size: var(--fonte-pequena);
+  border-bottom: 1px solid var(--cor-linha);
 }
 
 .menu ul li ul li ul {
@@ -1316,6 +1330,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
 .menu ul li ul .current-page-ancestor a {
   color: var(--cor-tema);
   font-weight: 500;
+  background: #fbfbfb;
 }
 
 .menu ul li ul .current_page_item a:hover,
@@ -1338,7 +1353,10 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
 .menu ul li.menu-open > ul, 
 .menu ul li.menu-open > ul > li.menu-open > ul,
 .menu-traducao:hover ul {
-  display: flex;
+  margin-top: 6px;
+  visibility: visible;
+  opacity: 1;
+  transition: margin-top .25s, opacity .15s, visibility .15s;
 }
 
 .imagem {
@@ -1354,7 +1372,8 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
 
 .imagem.banner-topo::before {
   position: absolute;
-  background: linear-gradient(rgba(255,255,255,0) 90%, var(--cor-background));
+  /*background: linear-gradient(rgba(255,255,255,0) 90%, var(--cor-background));*/
+  background: linear-gradient(rgba(255,255,255,0) 60%, rgba(0,0,0,0.5));
   content: '';
   width: 100%;
   height: 100%;
@@ -1391,6 +1410,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   padding: 36px 54px 48px;
   background-color: var(--cor-background);
   max-width: 550px;  
+  box-shadow: 0 6px 18px 0 rgba(0,0,0,.15);
 }
 
 .slide-texto-box::before {
@@ -1402,6 +1422,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   z-index: -1;  
   bottom: -12px;
   right: -12px;
+  /*box-shadow: 0 6px 18px 0 rgba(0,0,0,.15);*/
 }
 
 .slide-texto-box h2 {
@@ -1586,9 +1607,9 @@ a.linha-abaixo.mais-link:hover {
 .side-menu .sub-menu a:hover,
 .menu-navegacao ul a:hover,
 .menu-lateral li a:hover {
-  /*color: var(--cor-tema);
-  text-decoration: underline;*/
-  background: var(--cor-tema-claro)
+  color: var(--cor-tema);
+  /*text-decoration: underline;*/
+  background: #fbfbfb
 }
 
 .sidebar .current_page_item a:hover {
@@ -1657,6 +1678,7 @@ a.linha-abaixo.mais-link:hover {
   cursor: default;
   color: var(--cor-tema);
   font-weight: 500;
+  background: #fbfbfb;
 }
 
 .side-menu .menu-item-has-children>a::after {

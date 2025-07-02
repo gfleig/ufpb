@@ -73,11 +73,11 @@ class WidgetNoticiasSimples extends WP_Widget {
                     $postCount++;
                     $the_query->the_post();
 
-                    echo '<div class="noticia-card linha-abaixo">';
-                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-imagem  small-spacer">';
+                    echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card linha-abaixo">';
+                        echo '<div class="noticia-card-imagem  small-spacer">';
                         //echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
                         the_post_thumbnail('large');
-                        echo '</a>'; //noticia-imagem
+                        echo '</div>'; //noticia-imagem
 
                         $categories = get_the_category(); //categorias
                         if ($categories && empty($instance['tag'])) {
@@ -85,7 +85,7 @@ class WidgetNoticiasSimples extends WP_Widget {
                             $categories = array_slice($categories, 0, 2);
                             foreach ($categories as $category) {                                                    
                                 // Exibe o nome da categoria como um link
-                                echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+                                echo '<div>' . esc_html($category->name) . '</div>';
 
                                 // Adiciona uma vírgula após a categoria, exceto pela última
                                 if (next($categories)) {
@@ -96,14 +96,14 @@ class WidgetNoticiasSimples extends WP_Widget {
                             echo '</div>';
                         }
                         
-                        echo '<div><a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer">' , esc_html(the_title()) , '</a>'; //título
+                        echo '<div><div class="titulo small-spacer">' , esc_html(the_title()) , '</div>'; //título
 
                         //echo '<div class="bigode small-spacer">' , esc_html(the_excerpt()) , '</div>'; //excerpt
                         echo '</div>';
 
                         echo '<div class="data">' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>'; //data
                         
-                    echo '</div>'; //noticia-card
+                    echo '</a>'; //noticia-card
                 }           
 
                 echo '</div>';
