@@ -14,8 +14,8 @@
                 ?>
             </ul>             
             <?php          
-
-                if (false && has_children() OR $post->post_parent > 0) { ?>                
+                //não sei pq estava false
+                if (true && has_children() OR $post->post_parent > 0) { ?>                
 
                     <div class="side-menu-categorias">
                         

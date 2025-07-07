@@ -912,6 +912,27 @@ form {
   border: 1px solid var(--cor-linha);
 }
 
+form:focus-within {
+  border: 3px solid var(--cor-tema);
+}
+
+#searchform:focus-within input {
+  padding: calc(var(--espaco-pequeno) - 2px);
+}
+
+#menu-overlay #searchform:focus-within input {
+  padding: calc(var(--espaco-gutter) - 2px);
+  padding-right: 0;
+}
+
+#searchform:focus-within button {
+  width: 38px;
+}
+
+#menu-overlay #searchform:focus-within button {
+  min-width: 44px;
+}
+
 input[type="text"] {
   height: fit-content;
   color: var(--cor-texto-medio);

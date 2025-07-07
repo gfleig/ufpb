@@ -10,7 +10,7 @@
             <div class="menu-direita">
                 <div id="menu-buttons">        
                     
-                    <a href="">
+                    <a href="<?php echo get_home_url(); ?>/acesso-a-informacao">
                         Acesso à Informação
                     </a>
 
@@ -149,7 +149,7 @@
     </ul>
     <div id="menu-buttons">        
                     
-        <a href="">
+        <a href="<?php echo get_home_url(); ?>/acesso-a-informacao">
             Acesso à Informação
         </a>        
 
