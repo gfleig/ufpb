@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.1.3
+Version: 2.1.4
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -42,7 +42,7 @@ body {
   --fonte-titulo: 30px;
 
   --espaco-gutter: 24px;
-  --espaco-grande: 78px;
+  --espaco-grande: 82px;
   --espaco-linha: 18px;
   --espaco-pequeno: 12px;
   --espaco-minimo: 6px;
@@ -942,6 +942,8 @@ input[type="text"] {
   font-stretch: condensed;
   font-family: inherit;
   width: 150px;
+  width: 60px;
+  padding-right: 0;
 }
 
 input[type="text"]::placeholder {
@@ -1412,7 +1414,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
 
 .carrossel {
   width: 100%;
-  height: 550px;
+  height: 621px;
   position: relative;
   list-style: none;
 }
@@ -1423,15 +1425,16 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   opacity: 0;
   transition: .15s opacity ease-in-out;
   transition-delay: .15s;
+  margin-bottom: var(--espaco-grande);
 }
 
 .slide-texto-box {
   position: absolute;
-  bottom: 42px;
+  bottom: -60px;
   padding: 36px 54px 48px;
   background-color: var(--cor-background);
   max-width: 550px;  
-  box-shadow: 0 6px 18px 0 rgba(0,0,0,.15);
+  /*box-shadow: 0 6px 18px 0 rgba(0,0,0,.15);*/
 }
 
 .slide-texto-box::before {
@@ -1450,7 +1453,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   font-size: 48px;
   margin-bottom: 24px;
   color: var(--cor-tema);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .slide-texto-box .texto {
@@ -1468,7 +1471,7 @@ a.linha-abaixo.mais-link:hover {
 
 .slide > img {
   width: 100%;
-  height: 100%;
+  height: 550px;
   object-fit: cover;
   object-position: center;
   z-index: -3;
@@ -1997,7 +2000,7 @@ a.linha-abaixo.mais-link:hover {
 
 .evento-card {
   display: grid;
-  grid-template-columns: 3fr 4fr;
+  grid-template-columns: 4fr 4fr;
   grid-template-rows: auto;
   column-gap: var(--espaco-linha);
 }
@@ -2059,7 +2062,7 @@ a.linha-abaixo.mais-link:hover {
 }
 
 .evento-titulo {
-  font-size: var(--fonte-header);
+  font-size: var(--fonte-pagina);
   font-weight: 500;
   line-height: 1.2;
 }
@@ -3355,8 +3358,9 @@ body.contraste {
 
 
   .slide-texto-box h2 {
-    font-size: 30px;
+    font-size: 32px;
     margin-bottom: 12px;
+    font-weight: 600;
   }
 
   .slide-texto-box .texto {
@@ -3372,17 +3376,21 @@ body.contraste {
 
   .slide-texto-box::before {
     width: calc(100% - 8px);
-    height: 84px;
+    height: 180px;
     bottom: -8px;
     right: -8px;
   }
 
+  .slide {
+    margin-bottom: 0;
+  }
+
   .slide > img {
-    height: 75%;
+    height: 320px;
   }
 
   .carrossel {
-    height: 400px;
+    height: 500px;
   }
 
   /* ===================== WIDGET EDITAIS ===============*/
@@ -3482,7 +3490,7 @@ body.contraste {
   }
 
   .evento-card, .evento-card.solo {
-    grid-template-columns: 1fr;
+    grid-template-columns: 3fr 4fr;
     row-gap: var(--espaco-linha);
   }
 
@@ -3491,7 +3499,17 @@ body.contraste {
   }
 
   .evento-card .bigode {
-    display: none;
+    /*display: none;*/
+    font-size: var(--fonte-pequena);
+  }
+
+  .evento-data.small-spacer {
+    font-size: var(--fonte-pequena);
+    margin-bottom: var(--espaco-pequeno);
+  }
+
+  .evento-titulo {
+    font-size: var(--fonte-base);
   }
 
   .eventos {
