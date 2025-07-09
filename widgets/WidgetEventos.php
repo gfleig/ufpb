@@ -41,7 +41,8 @@ class WidgetEventos extends WP_Widget {
         
         if ($the_query->have_posts()){  
             echo '
-            <div class="width-wrapper large-spacer">
+            <div class="full-width-wrapper">
+            <div class="width-wrapper">
                 <h2 class="linha-header-longa">                
                     <a class="linha-header" href="', get_home_url(), '/eventos/">Eventos</a>
                 </h2>';
@@ -87,6 +88,7 @@ class WidgetEventos extends WP_Widget {
             echo '</div>';
 
             echo '</div>'; //width-wrapper
+            echo '</div>'; //full-width-wrapper
         
         }
         echo $args['after_widget']; 

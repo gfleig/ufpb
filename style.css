@@ -170,6 +170,20 @@ body {
   padding-right: var(--espaco-gutter);
 }
 
+.full-width-wrapper {
+  width: 100%;
+  background: var(--cor-tema-claro);
+  padding-top: 42px;
+  padding-bottom: 60px;
+  margin-bottom: var(--espaco-grande);
+}
+
+.corpo-wrapper .width-wrapper,
+.sitemap-wrapper .width-wrapper,
+#footer-wrapper .width-wrapper {
+  max-width: 1360px;
+}
+
 .large-spacer {
   margin-bottom: var(--espaco-grande);
 }
@@ -1510,11 +1524,23 @@ a.linha-abaixo.mais-link:hover {
 
 .corpo-wrapper {
   width: 100%;
-  /*max-width: 1528px;*/
-  max-width: 1420px;
-  background: var(--cor-background);
+  /*max-width: 1420px;*/
+  /*background: var(--cor-background);*/
   /*padding-top: 42px;*/
-  padding: 42px 30px;
+  /*padding-top: 42px;*/
+}
+
+/* para formatar o primeiro item da home comum*/
+.corpo-wrapper > div:first-child {
+  padding-top: 42px;
+  padding-left: 54px;
+  padding-right: 54px;
+  background: white;
+  max-width: 1420px;
+}
+
+.portal ~ .corpo .corpo-wrapper {
+  max-width: unset;
 }
 
 .corpo-wrapper p {
@@ -3193,8 +3219,14 @@ body.contraste {
   .width-wrapper {
   }
 
+  .corpo-wrapper > div:first-child {
+    padding-left: var(--espaco-gutter);
+    padding-right: var(--espaco-gutter);
+  }
+
   .corpo-wrapper {
     padding: 42px 0;
+    max-width: 1360px;
   }
 }
 
@@ -3241,6 +3273,14 @@ body.contraste {
   .width-wrapper {
     padding-left: var(--espaco-gutter);
     padding-right: var(--espaco-gutter);
+  }
+
+  .corpo-wrapper > div:first-child {
+    padding-top: 0;
+    padding-left: var(--espaco-gutter);
+    padding-right: var(--espaco-gutter);
+    background: white;
+    max-width: 1420px;
   }
 
   .corpo-wrapper {
