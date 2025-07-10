@@ -7,19 +7,27 @@
 
             $posts_per_page = 4;
 
-            $categories = get_categories( array(
-                'orderby' => 'name',
-                'order'   => 'ASC'
-            ) );
+            $categories = get_terms(array(
+                "taxonomy" => "patente_type",    
+                "orderby"   => "name",
+                "order"     => "ASC"
+            )); 
 
-            echo '<h1>Postagens</h1>';
+            echo '<h1>Vitrine de Patentes</h1>';
                 
             foreach ($categories as $categoria) { 
 
                 $the_query = new WP_Query( array(
+                    'post_type' => 'patente',
                     'posts_per_page' => $posts_per_page,
-                    'cat' => get_cat_ID($categoria->name),
-                    'no_found_rows' => true
+                    'no_found_rows' => true,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'patente_type',
+                            'field' => 'id',
+                            'terms' => $categoria->term_id
+                        ),
+                    ),
                 ));
 
                 echo '<div class="linha-header-longa">';

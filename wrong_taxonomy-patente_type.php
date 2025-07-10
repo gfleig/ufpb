@@ -7,12 +7,13 @@
 
             $posts_per_page = 4;
 
-            $categories = get_categories( array(
-                'orderby' => 'name',
-                'order'   => 'ASC'
-            ) );
+            $categories = get_terms(array(
+                "taxonomy" => "edital_type",    
+                "orderby"   => "name",
+                "order"     => "ASC"
+            )); 
 
-            echo '<h1>Postagens</h1>';
+            echo '<h1>Vitrine de Patentes</h1>';
                 
             foreach ($categories as $categoria) { 
 

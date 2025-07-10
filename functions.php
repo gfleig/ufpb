@@ -1038,6 +1038,24 @@ function summon_categorias_edital_menu() {
     }
 }
 
+function summon_categorias_patente_menu() {
+    $categorias = get_terms(array(
+        "taxonomy" => "patente_type",    
+        "orderby"   => "name",
+        "order"     => "ASC"
+    )); 
+    if (!empty($categorias)) {
+        echo '<div class="side-menu-categorias">';
+            echo '<h2 class="menu-lateral-h2">Categorias</h2>';
+            echo '<ul class="menu-lateral">';
+            foreach ($categorias as $categoria){
+                echo '<li><a class="side-menu-button" href="' , esc_url(get_category_link($categoria->term_id)) , '">', esc_html($categoria->name) ,'</a></li>';
+            }
+            echo '</ul>';
+        echo '</div>';
+    }
+}
+
 
 /**
 Busca Custom https://inspirationalpixels.com/search-results-filter-wordpress/
@@ -1079,5 +1097,57 @@ add_filter('pre_get_posts', 'ufpb_search_filter');
  * @return int (Maybe) modified excerpt length.
  */
 add_filter( 'excerpt_length', function( $length ) { return 15; }, 999 );
+
+add_action( 'init', 'create_patentes');
+
+function create_patentes() {
+	register_post_type('patente',
+		array(
+			'labels'      => array(
+				'name'              => __('Patentes', 'textdomain'),
+				'singular_name'     => __('Patente', 'textdomain'),
+                'add_new'           => _x('Adicionar nova', 'Patente'),
+                'add_new_item'      => __('Adicionar nova patente'),
+                'edit_item'         => __('Editar patente'),
+                'new_item'          => __('Nova patente'),
+                'view_item'         => __('Ver patente'),
+                'search_items'      => __('Buscar patentes'),
+                'not_found'         => __('Nenhuma patente encontrado'),
+                'not_found_in_trash'=> __('Nenhuma patente encontrado na lixeira'),
+                'parent_item_colon' => ''
+			),
+			'public'      => true,
+			'has_archive' => 'patentes',
+            'rewrite'     => array( 'slug' => 'patente' ), // my custom slug
+            'menu_icon'   => 'dashicons-awards',
+            'supports'    => array(
+                'title',
+                'editor',
+                'custom-fields',
+                'revisions',
+                'excerpt',
+                'thumbnail'
+            ),
+            'show_in_rest' => true, //permite editor gutenberg
+            //'taxonomies' => array('edital_type', 'edital') //resquício do código de editais
+            
+		)
+	);
+    
+    register_taxonomy(  
+        'patente_type',  
+        'patente',  // this is the custom post type(s) I want to use this taxonomy for
+            array(  
+                'hierarchical' => true,  
+                'label' => 'Categoria da Patente',  
+                'query_var' => true,  
+                'rewrite' => true,
+                'meta_box_cb' => true,
+                'show_in_rest' =>true, 
+            )  
+        );  
+    
+}
+
 
 ?>

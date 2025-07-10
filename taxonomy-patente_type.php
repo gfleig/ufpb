@@ -4,34 +4,41 @@
     <div class="corpo-grid">
         <div class="sidebar">
             <?php
-            summon_categorias_menu();       
-            ?>                                
+            summon_categorias_patente_menu();       
+            ?>
+            <div class="side-menu-archive">
+                <h2 class="menu-lateral-h2">Patentes por Ano</h2>
+                <ul class="menu-lateral">
+                    <?php
+                    wp_get_archives(
+                        array(
+                        'type'            => 'yearly',
+                        'post_type'       => 'patente',
+                        )
+                    );
+                    ?>
+                </ul>
+            </div>                                
         </div>
         
         <div class="content-grid"> <?php
-            //echo '<h1>Postagens sobre ' , single_cat_title() , '</h1>';
-            echo '<h1 class="cat-archive-title"><a href="' , home_url() , '/noticias">Postagens</a> / ' , single_cat_title() , '</h1>
+            echo '<h1 class="cat-archive-title"><a href="' , home_url() , '/patentes">Patentes</a> / ' , single_cat_title() , '</h1>
             <div class="cards-lista">';
 
             if(have_posts()){
                 echo '<div class="sidebar-noticias">
                     <div class="noticias-relacionadas">';
-                    while(have_posts()){
-                        the_post();
+                    while (have_posts()){
+                        the_post();                      
+                        echo '<div class="edital-card linha-abaixo">';
+                            $categories = get_the_terms( get_the_ID(), 'edital_type' );
                             
-                            echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-categoria linha-abaixo">';                                          
-                            
-                            echo '<div class="noticia-categoria-imagem">
-                                <img src="', esc_url(the_post_thumbnail_url()), '">
-                            </div>';        
-                            /*           
-                            $categories = get_the_category(); //categorias
                             if ($categories) {
                                 echo '<div class="categorias small-spacer">';
                                 $categories = array_slice($categories, 0, 2);
                                 foreach ($categories as $category) {                                                    
                                     // Exibe o nome da categoria como um link
-                                    echo '<div href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</div>';
+                                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
 
                                     // Adiciona uma vírgula após a categoria, exceto pela última
                                     if (next($categories)) {
@@ -39,15 +46,12 @@
                                         echo ' ';
                                     }
                                 }
-                                echo '</div>';                                
-                            }*/
-
-                            echo '<div class="titulo small-spacer">' , esc_html(the_title()) ,  '</div>'; //título
-
-                            echo '<div class="bigode small-spacer">' , esc_html(the_excerpt()) , '</div>';
-
-                            echo '<div class="data">' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>'; //data
-                        echo '</a>'; //noticia-card
+                                echo '</div>';
+                            }
+                                                            
+                            echo '<div class="data small-spacer">Publicado em ' , get_the_date('j/m/Y') , '</div>';
+                            echo '<a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer" href="#">' , esc_html(the_title()) , '</a>';                
+                        echo '</div>';    
                     }
                     echo '
                     <div class="paginas-nav">
