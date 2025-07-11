@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como, sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.1.6
+Version: 2.1.7
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -611,17 +611,27 @@ font-size: var(--fonte-base);
   grid-auto-columns: minmax(0, 1fr);
 }
 
-.acesso-imagens-widget .link-full {
+.acesso-imagens-widget .link-full,
+.patentes-widget .link-full {
   padding-top: 0;
 }
 
-.acesso-imagens-widget img {
+.acesso-imagens-widget img,
+.patentes-widget img {
   aspect-ratio: 1;
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
+/*=========== LINKS PATENTES ===================================*/
+
+.patentes-widget {
+  display: grid;
+  gap: var(--espaco-gutter);
+  grid-auto-flow: row;
+  grid-template-columns: repeat(5, 1fr);
+}
 
 #barra-brasil {
   display: none;
@@ -3473,6 +3483,14 @@ body.contraste {
   /* ===================== WIDGET RAPIDOS IMAGENS ===============*/  
 
   .acesso-imagens-widget {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-auto-flow: unset;
+  }
+
+  /* ===================== WIDGET LINKS PATENTES ===============*/  
+
+  .patentes-widget {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     grid-auto-flow: unset;

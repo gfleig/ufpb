@@ -1,85 +1,85 @@
 <?php get_header(); ?>
 
-<div class="corpo" id="conteudo_pagina">
-    <div class="corpo-wrapper">       
-        <div class="width-wrapper large-spacer">
+<div class="corpo width-wrapper large-spacer" id="conteudo_pagina">
+    <div class="corpo-grid">
+        <div class="sidebar">  
             <?php
-
-            $posts_per_page = 4;
-
-            $categories = get_terms(array(
-                "taxonomy" => "patente_type",    
-                "orderby"   => "name",
-                "order"     => "ASC"
-            )); 
-
-            echo '<h1>Vitrine de Patentes</h1>';
-                
-            foreach ($categories as $categoria) { 
-
-                $the_query = new WP_Query( array(
-                    'post_type' => 'patente',
-                    'posts_per_page' => $posts_per_page,
-                    'no_found_rows' => true,
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => 'patente_type',
-                            'field' => 'id',
-                            'terms' => $categoria->term_id
-                        ),
-                    ),
-                ));
-
-                echo '<div class="linha-header-longa">';
-                    echo '<h2 class="linha-header mais-link-header"><a href="', get_category_link($categoria->term_id) , '" >', $categoria->name ,'</a></h2>';
-                echo '</div>';
-
-                echo '<div class="noticias-widget-linha large-spacer">';                
-                $postCount = 0;
-                while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                    $postCount++;
-                    $the_query->the_post();
-
-                    echo '<div class="noticia-card linha-abaixo">';
-                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-imagem  small-spacer">';
-                        echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
-                        echo '</a>'; //noticia-imagem
-
-                        /*
-                        $categories = get_the_category(); //categorias
-                        if ($categories) {
-                            echo '<div class="categorias small-spacer">';
-                            $categories = array_slice($categories, 0, 2);
-                            foreach ($categories as $category) {                                                    
-                                // Exibe o nome da categoria como um link
-                                echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-
-                                // Adiciona uma vírgula após a categoria, exceto pela última
-                                if (next($categories)) {
-                                    //echo ',&nbsp';
-                                    echo ' ';
-                                }
-                            }
-                            echo '</div>';
-                        }
-                            */
-                        
-                        echo '<div><a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer">' , esc_html(the_title()) , '</a>'; //título
-
-                        echo '<div class="bigode small-spacer">' , esc_html(the_excerpt()) , '</div>'; //excerpt
-                        echo '</div>';
-
-                        echo '<div class="data">' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>'; //data
-                        
-                    echo '</div>'; //noticia-card
-                }           
-
-                echo '</div>';
-            }
+            summon_categorias_patente_menu();
             ?>
+            <div class="side-menu-archive">
+                <h2 class="menu-lateral-h2">Patentes por Ano</h2>
+                <ul class="menu-lateral">
+                    <?php
+                    wp_get_archives(
+                        array(
+                        'type'            => 'yearly',
+                        'post_type'       => 'patente',
+                        )
+                    );
+                    ?>
+                </ul>
+            </div>          
         </div>
+        
+        <div class="content-grid">            
+            <h1>Patentes</h1>
+            
+            <div class="noticias-relacionadas">
+                <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
+                /*
+                $args = array(
+                    'post_type' => 'edital',
+                    'paged' => $paged,
+                    'orderby' => 'date',
+                );
 
+                $post_query = new WP_Query($args);
+                */
+                if (have_posts() ) {
+                    while (have_posts()){
+                        the_post();                      
+                        echo '<div class="edital-card linha-abaixo">';
+                            $categories = get_the_terms( get_the_ID(), 'patente_type' );
+                            //$categories = get_the_category(); //categorias
+                            if ($categories) {
+                                echo '<div class="categorias small-spacer">';
+                                $categories = array_slice($categories, 0, 2);
+                                foreach ($categories as $category) {                                                    
+                                    // Exibe o nome da categoria como um link
+                                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+
+                                    // Adiciona uma vírgula após a categoria, exceto pela última
+                                    if (next($categories)) {
+                                        //echo ',&nbsp';
+                                        echo ' ';
+                                    }
+                                }
+                                echo '</div>';
+                            }
+                            
+                            echo '<a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer" href="#">' , esc_html(the_title()) , '</a>';  
+                            echo '<div class="data">Publicado em ' , get_the_date('j/m/Y') , '</div>';              
+                        echo '</div>';    
+                    }
+                    echo '
+                    <div class="paginas-nav">
+                        <div class="pagination">';
+                            // Adiciona a paginação
+                            echo paginate_links(array(
+                                'current' => max(1, $paged),
+                                'prev_text' => __('Anterior'),
+                                'next_text' => __('Próximo'),
+                            ));
+                        echo '</div>
+                    </div>';
+                } else {
+                    echo '<p>Desculpe, nenhum post corresponde aos seus critérios.</p>';
+                }
+                echo '
+            </div>     
+        </div>
     </div>
-</div>
+    </div>
+</div>';
 
-<?php get_footer(); ?>
+get_footer();

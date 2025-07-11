@@ -14,6 +14,7 @@ include get_theme_file_path('/widgets/WidgetEditais.php');
 include get_theme_file_path('/widgets/WidgetMapaEFoto.php');
 include get_theme_file_path('/widgets/WidgetNoticiasSimples.php');
 include get_theme_file_path('/widgets/WidgetLinksRapidos.php');
+include get_theme_file_path('/widgets/WidgetPatentes.php');
 
 add_filter('render_block', function ($blockContent, $block) {
 
