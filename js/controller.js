@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var searchForm = document.getElementById('s');
 
 
-    //searchButton.addEventListener('click', buscaClick);
-    //closeSearchButton.addEventListener('click', buscaClick);
+    searchButton.addEventListener('click', buscaClick);
+    closeSearchButton.addEventListener('click', buscaClick);
     menuButton.addEventListener('click', toggleMenuOverlay);
 
     function buscaClick() {

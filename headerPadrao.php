@@ -23,7 +23,6 @@
         <nav class="menu width-wrapper">
             <button type="nav" id="hamburger">
                 <i id="hamburger-botao" class="fa-solid fa-bars"></i>
-                <div>Menu</div>
             </button>                         
             <ul id="desktop-menu">
                 <?php 
