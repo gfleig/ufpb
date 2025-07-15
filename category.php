@@ -44,7 +44,11 @@
 
                             echo '<div class="titulo small-spacer">' , esc_html(the_title()) ,  '</div>'; //título
 
-                            echo '<div class="bigode small-spacer">' , esc_html(the_excerpt()) , '</div>';
+                            if(has_excerpt()) {
+                                echo '<div class="bigode small-spacer">' , esc_html(the_excerpt()) , '</div>'; //bigode, se tiver
+                            } else {
+                                echo '<div class="bigode small-spacer"></div>'; //bigode, se tiver
+                            }                             
 
                             echo '<div class="data">' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>'; //data
                         echo '</a>'; //noticia-card

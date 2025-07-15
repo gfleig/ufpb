@@ -58,7 +58,7 @@
                         
                         echo '<div><a href="' , esc_url(the_permalink()) , '" class="titulo small-spacer">' , esc_html(the_title()) , '</a>'; //título
 
-                        echo '<div class="bigode small-spacer">' , esc_html(the_excerpt()) , '</div>'; //excerpt
+                        if (has_excerpt()) { echo '<div class="bigode small-spacer">' , esc_html(the_excerpt()) , '</div>'; } //excerpt
                         echo '</div>';
 
                         echo '<div class="data">' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>'; //data
