@@ -25,10 +25,12 @@ class WidgetLinksMarcas extends WP_Widget {
             echo '<div class="acesso-marcas-widget">';
 
             for ($i = 1; $i < 7; $i++) {
-                echo '
-                <a class="linha-abaixo linha-acima link-full" href="' . esc_url($instance['link'][$i]) . '">
-                    <img src="' , esc_url($instance['imagem'][$i]) , '" alt="' , image_alt_by_url($instance['imagem'][$i]) , '">
-                </a>';
+                if(!empty($instance['link'][$i])) {
+                    echo '
+                    <a class="linha-abaixo linha-acima link-full" href="' . esc_url($instance['link'][$i]) . '">
+                        <img src="' , esc_url($instance['imagem'][$i]) , '" alt="' , image_alt_by_url($instance['imagem'][$i]) , '">
+                    </a>';
+                }
             }        
         
         echo '                
@@ -68,7 +70,7 @@ class WidgetLinksMarcas extends WP_Widget {
         $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : null;
         for ($i = 1; $i < 7; $i++){
             $instance['imagem'][$i] = !empty($new_instance['imagem'][$i]) ? esc_url($new_instance['imagem'][$i]) : 'INSIRA UMA IMAGEM';
-            $instance['link'][$i] = !empty($new_instance['link'][$i]) ? esc_url($new_instance['link'][$i]) : 'ufpb.br';
+            $instance['link'][$i] = esc_url($new_instance['link'][$i]);
         }        
 
         return $instance;
