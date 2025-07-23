@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <div class="corpo" id="conteudo_pagina">
-    <div class="corpo-grid width-wrapper">
+    <div class="corpo-grid width-wrapper large-spacer">
         <div class="sidebar">  
             <?php
             summon_side_menu();  
