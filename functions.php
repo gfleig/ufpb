@@ -16,6 +16,10 @@ include get_theme_file_path('/widgets/WidgetNoticiasSimples.php');
 include get_theme_file_path('/widgets/WidgetLinksRapidos.php');
 include get_theme_file_path('/widgets/WidgetPatentes.php');
 
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );
+
 add_filter('render_block', function ($blockContent, $block) {
 
     if ($block['blockName'] !== 'core/heading') {
