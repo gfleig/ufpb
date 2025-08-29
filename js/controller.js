@@ -14,17 +14,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var overlay = document.getElementById('menu-overlay');
 
     var searchButton = document.getElementById('busca');
+    if (searchButton != null) {
+        searchButton.addEventListener('click', buscaClick);
+    }
+    
+    var closeSearchButton = document.getElementById('busca-fecha');
+    if (closeSearchButton != null) {
+        closeSearchButton.addEventListener('click', buscaClick);
+    }
+
     var menuButton = document.getElementById('hamburger');
     var menuButonIcon = document.getElementById('hamburger-botao');
-    var closeSearchButton = document.getElementById('busca-fecha');
+    
     var searchBar = document.getElementById('busca-barra');
     var menuBar = document.getElementById('desktop-menu');
     var menuButtons = document.getElementById('menu-buttons');
-    var searchForm = document.getElementById('s');
-
-
-    searchButton.addEventListener('click', buscaClick);
-    closeSearchButton.addEventListener('click', buscaClick);
+    var searchForm = document.getElementById('s');    
+    
     menuButton.addEventListener('click', toggleMenuOverlay);
 
     function buscaClick() {

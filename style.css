@@ -50,6 +50,13 @@ body {
 
 /*novidades*/
 
+.spacer {
+  width: 1px;
+  height: 24px;
+  background: var(--cor-linha);
+  content: "";
+}
+
 .cat-archive-title a {
   color: var(--cor-tema);  
 }
@@ -295,6 +302,18 @@ p a:hover, .wp-block-list a:hover {
   text-decoration: underline;
 }
 
+.wp-block-quote {
+  padding-left: 2rem;  
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.wp-block-quote p {
+  margin-bottom: unset;
+  padding-left: 1rem;
+  border-left: 1px solid var(--cor-linha);
+}
+
 .wp-block-buttons > .wp-block-button:has(a) {
   border: 1px solid var(--cor-linha);
   margin-bottom: 1rem;
@@ -354,7 +373,7 @@ h1 {
 }
 
 h1.noticia-pagina-titulo {
-  /*font-size: 48px;*/
+  font-size: 42px;
   margin-bottom: var(--espaco-pequeno);
 }
 
@@ -400,14 +419,14 @@ address {
 /*=========== ESTILOS CONTEÚDO DE PÁGINAS ==========================*/
 
 .wp-block-list {
-  margin-left: 2rem;
-  margin-bottom: 1rem;
+  margin-left: 0;
   color: var(--cor-texto-escuro);
 }
 
 .wp-block-list li {
   margin-bottom: 1rem;
-  padding-left: 1em;
+  margin-left: 1rem;
+  padding-left: .5rem;
   
 }
 
@@ -432,6 +451,10 @@ strong {
 
 .the-content-container {
   overflow: auto;
+  margin-bottom: 1rem;
+}
+
+.wp-block-image {
   margin-bottom: 1rem;
 }
 
@@ -1585,6 +1608,17 @@ a.linha-abaixo.mais-link:hover {
   grid-template-areas: "sb ct news";
 }
 
+.single-corpo-grid {
+  display: grid;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: 1fr 360px;
+  grid-template-areas: "ct news";
+  column-gap: 82px;
+  margin-top: 24px;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -1601,7 +1635,6 @@ a.linha-abaixo.mais-link:hover {
 .sidebar-noticias {
   height: fit-content;
   grid-area: news;
-  margin-top: 192px;
   color: var(--cor-texto-escuro);
 }
 
@@ -1649,7 +1682,7 @@ a.linha-abaixo.mais-link:hover {
 
 .noticia-relacionada-titulo {
   font-weight: 450;
-  font-size: var(--fonte-pequena);
+  font-size: var(--fonte-base);
   line-height: 1.2;
 }
 
@@ -1665,6 +1698,32 @@ a.linha-abaixo.mais-link:hover {
   width: 100%;
   padding-left: 54px;
   padding-right: 54px;
+}
+
+.single-content-grid {
+  grid-area: ct;
+  background: var(--cor-background);
+  width: 100%; 
+}
+
+.single-content-grid .the-content-container {
+  display: flex;
+  flex-direction: column;  
+}
+
+.single-content-grid .the-content-container > p,
+.single-content-grid .the-content-container > .wp-block-list {
+  font-family: "IBM Plex Serif", "Georgia";
+}
+
+.single-content-grid .the-content-container > *:not(.wp-block-image) {
+  max-width: 700px;
+  align-self: center;
+  width: 100%;
+}
+
+.single-content-grid .the-content-container > .wp-block-image {
+  align-self: center;
 }
 
 .side-menu .current-menu-parent, .side-menu .sub-menu {
@@ -1795,15 +1854,17 @@ a.linha-abaixo.mais-link:hover {
 .cards-lista {
   display: flex;
   flex-direction: column;
-  /*gap: 30px;*/
+  gap: var(--espaco-linha);
 }
 
-.wp-block-image :where(figcaption) {
-  margin-bottom: 1em;
+.wp-block-image figcaption.wp-element-caption {
+  margin-bottom: 0em;
   margin-top: .5em;
   font-stretch: condensed;
   font-size: var(--fonte-pequena);
   color: var(--cor-texto-medio);
+  border-bottom: 1px solid var(--cor-linha);
+  padding-bottom: var(--espaco-pequeno);
 }
 
 .noticias {
@@ -2046,7 +2107,7 @@ a.linha-abaixo.mais-link:hover {
 
 .evento-card {
   display: grid;
-  grid-template-columns: 4fr 4fr;
+  grid-template-columns: 4fr 6fr;
   grid-template-rows: auto;
   column-gap: var(--espaco-linha);
 }
@@ -2392,7 +2453,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .bigode p{
-  font-style: italic;
+  /*font-style: italic;*/
   color: var(--cor-texto-medio);
   font-weight: 300;
   margin-bottom: 0;
@@ -2400,8 +2461,9 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 h2.bigode p {
   font-size: var(--fonte-titulo);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.2;
+  font-style: normal;
 }
 
 h2.bigode:has(p) {
@@ -2416,10 +2478,9 @@ h2.bigode:has(p) {
 .noticia-categorias a {
   color: var(--cor-tema);  
   font-weight: 500;
-  /* font-family: "IBM Plex Mono"; */
-  /*font-style: italic;*/
-  margin-bottom: var(--espaco-pequeno);
-  
+  font-size: var(--fonte-pagina);
+  line-height: 1.2;
+  margin-bottom: var(--espaco-pequeno);  
 }
 
 .noticia-categorias.linha-header-longa a {
@@ -2581,7 +2642,7 @@ h2.bigode:has(p) {
   position: relative;
 }
 
-.content-grid .wp-block-button__link {
+.content-grid .wp-block-button__link, .single-content-grid .wp-block-button__link {
   color: var(--cor-tema);
   background-color: transparent;
   /*font-style: italic;*/
@@ -2592,14 +2653,16 @@ h2.bigode:has(p) {
   padding: var(--espaco-pequeno);
 }
 
-.content-grid .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content {
+.content-grid .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content,
+.single-content-grid .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content {
   flex-direction: column;
   align-items: start;
   gap: .5rem;
   margin-bottom: 1rem;
 }
 
-.content-grid .wp-block-navigation__responsive-container {
+.content-grid .wp-block-navigation__responsive-container,
+.single-content-grid .wp-block-navigation__responsive-container {
   display: contents;
 }
 
@@ -3269,6 +3332,10 @@ body.contraste {
 
   /*novidades*/
 
+  .wp-block-quote {
+    padding-left: 0;
+  }
+
   .brasao {
     height: 80px;
   }
@@ -3285,9 +3352,12 @@ body.contraste {
     font-size: var(--fonte-base);
   }
 
+  h1.noticia-pagina-titulo {
+    font-size: 24px;
+  }
 
   h2.bigode p {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   h2.wp-block-heading {
@@ -3515,12 +3585,8 @@ body.contraste {
     grid-auto-flow: unset;
   }
 
-  .wp-block-list li{
-    padding-left: .5em;
-  }
-
   .wp-block-list {
-    margin-left: 1rem;
+    margin-left: 0rem;
   }
 
   .cabecalho{
@@ -3555,7 +3621,7 @@ body.contraste {
     gap: var(--espaco-gutter);
   }
 
-  .corpo-grid {
+  .corpo-grid, .single-corpo-grid {
     display: flex;
     flex-direction: column-reverse;
     gap: var(--espaco-gutter);
@@ -3567,7 +3633,7 @@ body.contraste {
   }
 
   .evento-card, .evento-card.solo {
-    grid-template-columns: 3fr 4fr;
+    grid-template-columns: 4fr 6fr;
     row-gap: var(--espaco-linha);
   }
 

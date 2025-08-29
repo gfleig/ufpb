@@ -14,6 +14,8 @@
                         Acesso à Informação
                     </a>
 
+                    <div class="spacer"></div>
+
                     <?php if ( get_theme_mod( 'traducao_geral' ) == 1 ) : ?>         
                         <div class="menu-traducao">
                                 <?php if ( get_theme_mod( 'check_portugues' ) == 1 ) : ?>
@@ -63,6 +65,8 @@
                                 <?php endif; ?>                                                
                         </div>
                     <?php endif; ?>
+
+                    <div class="spacer"></div>
 
                     <a href="javascript:void(0);" onclick="altoContraste();">
                         <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
