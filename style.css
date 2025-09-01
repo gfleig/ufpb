@@ -719,11 +719,12 @@ font-size: var(--fonte-base);
   flex-direction: row;
   align-items: center;
   gap: var(--espaco-gutter);
+  margin-top: 10px;
 }
 
 .logo img, .custom-logo {
   background-color: white;
-  height: 66px; /*80*/
+  height: 64px; /*80*/
   display: flex;
   width: 100%;
   object-fit: contain;
@@ -732,25 +733,24 @@ font-size: var(--fonte-base);
 .site-titulos {
   display: flex;
   flex-direction: column;
-  gap: var(--espaco-minimo);
+  font-size: 20px;
+  line-height: 1.15;
 }
 
 .centro-titulo {
-  font-weight: 300;
-  font-size: var(--fonte-base);
-  line-height: 1.2;
-  color: var(--cor-texto-medio);
-  /*transition: 0.15s;*/
+  font-weight: 600;
+  color: var(--cor-tema);
+  text-transform: uppercase;
+  font-stretch: condensed;
 }
 
 .departamento-titulo {
-  font-weight: 500;
-  font-size: var(--fonte-pagina);
-  line-height: 1.2;
+  font-weight: 450;
+  font-stretch: condensed;
+  max-width: 330px;
   color: var(--cor-texto-escuro);
   /*transition: 0.15s;*/
   white-space: pre-line;
-  max-width: 600px;
 }
 
 .departamento-titulo:hover, .centro-titulo:hover{
@@ -768,7 +768,7 @@ font-size: var(--fonte-base);
 }
 
 .brasao {
-  height: 100px;
+  height: 120px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -864,6 +864,7 @@ font-size: var(--fonte-base);
   line-height: 1;
   color: var(--cor-texto-escuro);
   padding: var(--espaco-gutter) 0;
+  position: relative;
 }
 
 #menu-overlay li .sub-menu li a {
@@ -927,6 +928,7 @@ font-size: var(--fonte-base);
   position: unset;
   flex-direction: row;
   justify-content: end;
+  gap: 16px;
 }
 
 .portal #menu-buttons a {
@@ -1192,14 +1194,12 @@ input[type="search"]:focus {
 
 #mobile-menu li {
   border-bottom: 1px solid var(--cor-linha);
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 #mobile-menu li ul li {
   border-bottom: none;
-}
-
-#mobile-menu li {
-  border-bottom: 1px solid var(--cor-linha);
 }
 
 #mobile-menu li ul li:not(:last-child) {
@@ -1245,7 +1245,7 @@ input[type="search"]:focus {
   padding-top: var(--espaco-pequeno);
 }
 
-.menu-item-has-children > a::after {
+#mobile-menu .menu-item-has-children > a::after {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f107";
@@ -1265,9 +1265,9 @@ input[type="search"]:focus {
   transition-delay: 0s;
   line-height: 1;
 
-  font-size: 14px;
-
-  display: none;
+  font-size: 20px;
+  position: absolute;
+  right: 0;
 }
 
 
