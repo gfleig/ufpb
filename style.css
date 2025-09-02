@@ -314,6 +314,10 @@ p a:hover, .wp-block-list a:hover {
   border-left: 1px solid var(--cor-linha);
 }
 
+.wp-block-quote p:has(+ p) {
+  padding-bottom: 1em;
+}
+
 .wp-block-buttons > .wp-block-button:has(a) {
   border: 1px solid var(--cor-linha);
   margin-bottom: 1rem;
@@ -719,15 +723,15 @@ font-size: var(--fonte-base);
   flex-direction: row;
   align-items: center;
   gap: var(--espaco-gutter);
-  margin-top: 10px;
 }
 
 .logo img, .custom-logo {
   background-color: white;
-  height: 64px; /*80*/
+  height: 68px; /*80*/
   display: flex;
   width: 100%;
   object-fit: contain;
+  margin-top: 10px;
 }
 
 .site-titulos {
@@ -1003,6 +1007,15 @@ input[type="text"] {
   width: 150px;
   width: 60px;
   padding-right: 0;
+  transition: width .15s;
+}
+
+input[type="text"]:focus {
+  width: 120px;
+}
+
+input[type="text"]:focus::placeholder {
+  color: #949494
 }
 
 input[type="text"]::placeholder {
@@ -3131,10 +3144,12 @@ footer a:hover {
 /*=================================CONTRASTE START==============================================*/
 
 body.contraste {
-  --cor-tema: #ff0
+  --cor-tema: #ff0;
+  --cor-tema-claro: #000;
+  --cor-tema-claro-focus: #000;
 }
 
-.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link, .contraste .corpo-wrapper, .contraste .slide-texto-box, .contraste  .menu-wrapper, .contraste #footer-wrapper, .contraste .busca-teste, .contraste input[type="text"], .contraste .content-grid, .contraste #menu-overlay, .contraste .sitemap-wrapper, .contraste .menu-traducao ul {
+.contraste, .contraste .cabecalho-wrapper, .contraste .content-grid .wp-block-button__link, .contraste .corpo-wrapper, .contraste .slide-texto-box, .contraste  .menu-wrapper, .contraste #footer-wrapper, .contraste .busca-teste, .contraste input[type="text"], .contraste .content-grid, .contraste #menu-overlay, .contraste .sitemap-wrapper, .contraste .menu-traducao ul, .contraste .corpo-wrapper > div:first-child {
   background-color: black;
 }
 
@@ -3336,12 +3351,19 @@ body.contraste {
     padding-left: 0;
   }
 
+  
+
   .brasao {
-    height: 80px;
+    height: 86px;
   }
 
   .portal .brasao {
-    height: 80px;
+    height: 86px;
+  }
+
+  .logo img, .custom-logo {
+    margin-top: 6px;
+    height: 48px;
   }
 
   .centro-titulo {
@@ -3600,8 +3622,10 @@ body.contraste {
   }
 
   .custom-logo-link {
-    display: none;
+    /*display: none;*/
   }
+
+  
 
   .ufpb-nome {
     display: none;
