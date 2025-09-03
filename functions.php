@@ -376,6 +376,11 @@ function register_menus() {
             'main-menu' => 'Menu Principal',          
         )
     ); 
+    register_nav_menus(
+        array(
+            'footer-menu' => 'Mapa do Site',          
+        )
+    ); 
 }
 add_action( 'init', 'register_menus' );
 
@@ -990,6 +995,7 @@ function create_editais() {
                 'rewrite' => true,
                 'meta_box_cb' => true,
                 'show_in_rest' =>true, 
+                'rewrite' => array( 'slug' => 'editais' ), // my custom slug
             )  
         );  
     
@@ -1152,7 +1158,9 @@ function create_patentes() {
                 'rewrite' => true,
                 'meta_box_cb' => true,
                 'show_in_rest' =>true, 
-            )  
+                'rewrite' => array( 'slug' => 'patentes' ), // my custom slug
+            ),
+        
         );  
     
 }

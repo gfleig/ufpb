@@ -10,9 +10,17 @@
             <div class="menu-direita">
                 <div id="menu-buttons">        
                     
-                    <a href="<?php echo get_home_url(); ?>/acesso-a-informacao">
-                        Acesso à Informação
-                    </a>
+                    <?php if ( get_page_by_path( 'acesso-a-informacao' ) ) : ?> 
+                        <a href="<?php echo get_home_url(); ?>/acesso-a-informacao">
+                            Acesso à Informação
+                        </a>
+                    <?php endif; ?> 
+                    
+                    <?php if ( get_page_by_path( 'contato' ) ) : ?> 
+                        <a href="<?php echo get_home_url(); ?>/contato">
+                            Contato
+                        </a>
+                    <?php endif; ?>  
 
                     <div class="spacer"></div>
 
