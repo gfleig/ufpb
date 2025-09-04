@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.3.1
+Version: 2.3.2
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -33,7 +33,8 @@ body {
   --cor-tema-escuro: color-mix(in Oklch, var(--cor-tema) 90%, black);
 
   --cor-texto-escuro: #202020;
-  --cor-texto-medio: #595959;  
+  --cor-texto-secundario: #595959;
+  --cor-texto-medio: #949494;  
 
   --fonte-base: 1rem;
   --fonte-pequena: 16px;
@@ -76,6 +77,7 @@ body {
   padding-top: 48px;
   padding-bottom: 48px;
   background: var(--cor-tema-claro);
+  border-top: 1px solid var(--cor-linha);
 }
 
 .sitemap {
@@ -187,6 +189,7 @@ body {
   padding-top: 42px;
   padding-bottom: 60px;
   margin-bottom: var(--espaco-grande);
+  --cor-linha: #E0E0E0;
 }
 
 .corpo-wrapper .width-wrapper,
@@ -498,6 +501,7 @@ strong {
 
 .noticia-card.linha-abaixo{
   padding-bottom: var(--espaco-pequeno);
+  box-sizing: content-box;
 }
 
 .noticia-card a:hover, .noticia-card-categoria:hover .titulo,
@@ -929,7 +933,7 @@ font-size: var(--fonte-base);
 
 .portal #menu-buttons {
   font-stretch: condensed;
-  color: var(--cor-texto-medio);
+  color: var(--cor-texto-secundario);
   font-size: var(--fonte-pequena);
   margin-bottom: var(--espaco-pequeno);
   position: unset;
@@ -1697,7 +1701,7 @@ a.linha-abaixo.mais-link:hover {
 }
 
 .noticia-relacionada-titulo {
-  font-weight: 450;
+  font-weight: 500;
   font-size: var(--fonte-base);
   line-height: 1.2;
 }
@@ -2180,7 +2184,7 @@ a.linha-abaixo.mais-link:hover {
 }
 
 .evento-data {
-  color: var(--cor-texto-medio);
+  color: var(--cor-texto-secundario);
   line-height: 1.2;
 }
 
@@ -2476,7 +2480,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 .bigode p{
   /*font-style: italic;*/
-  color: var(--cor-texto-medio);
+  color: var(--cor-texto-secundario);
   font-weight: 300;
   margin-bottom: 0;
 }

@@ -25,7 +25,8 @@ class WidgetEditais extends WP_Widget {
         echo $args['before_widget'];
 
         if ($the_query->have_posts()) {
-            echo '<div class="width-wrapper large-spacer">';
+            echo '<div class="full-width-wrapper">';
+            echo '<div class="width-wrapper">';
                 echo '<div class="linha-header-longa">';
                     echo '<h2 class="linha-header"><a href="', get_home_url(), '/editais/" class="">' , esc_html($titulo) , '</a></h2>';
                 echo '</div>';
@@ -66,6 +67,7 @@ class WidgetEditais extends WP_Widget {
                 echo '<div class=""><a href="', get_home_url(), '/editais/" class="mais-link">Mais ' , esc_html($titulo) , '</a></div>';                
             echo '</div>';
 
+        echo '</div>';
         echo '</div>';
         }
         echo $args['after_widget'];            

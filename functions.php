@@ -16,9 +16,11 @@ include get_theme_file_path('/widgets/WidgetNoticiasSimples.php');
 include get_theme_file_path('/widgets/WidgetLinksRapidos.php');
 include get_theme_file_path('/widgets/WidgetPatentes.php');
 
-@ini_set( 'upload_max_size' , '64M' );
-@ini_set( 'post_max_size', '64M');
-@ini_set( 'max_execution_time', '300' );
+function example_theme_support() {
+    remove_theme_support( 'widgets-block-editor' );
+}
+add_action( 'after_setup_theme', 'example_theme_support' );
+
 
 add_filter('render_block', function ($blockContent, $block) {
 
@@ -418,7 +420,7 @@ function cats_related_post() {
     if($related_cats_post->have_posts()){
         $first_post = true; // usado para adicionar linha acima no primeiro post apenas
         echo '<div class="sidebar-noticias">
-            <h2 class="menu-lateral-h2">Notícias Relacionadas</h2>
+            <h2 class="menu-lateral-h2">Postagens Relacionadas</h2>
             <div class="noticias-relacionadas">';
             while($related_cats_post->have_posts()){
                 $related_cats_post->the_post();

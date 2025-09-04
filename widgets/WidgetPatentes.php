@@ -15,7 +15,8 @@ class WidgetPatentes extends WP_Widget {
 
         echo $args['before_widget'];
         echo '
-        <div class="width-wrapper large-spacer">';
+        <div class="full-width-wrapper">
+        <div class="width-wrapper">';
             if(!empty($instance['titulo'])) {
                 echo '<div class="linha-header-longa">
                     <h2 class="linha-header"> ' , esc_html($instance['titulo']) , ' </h2>
@@ -39,6 +40,7 @@ class WidgetPatentes extends WP_Widget {
             echo '<div class="large-spacer mais-noticias">';
                 echo '<div class=""><a href="', get_home_url(), '/vitrine/" class="mais-link">Todas as Patentes</a></div>';
             echo '</div>
+        </div>
         </div>';        
 
         echo $args['after_widget'];            
