@@ -50,8 +50,8 @@
 
                                     // Adiciona uma vírgula após a categoria, exceto pela última
                                     if (next($categories)) {
-                                        //echo ',&nbsp';
-                                        echo ' ';
+                                        echo ',&nbsp';
+                                        //echo ' ';
                                     }
                                 }
                                 echo '</div>';

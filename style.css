@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.3.2
+Version: 2.3.3
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -50,6 +50,73 @@ body {
 }
 
 /*novidades*/
+
+summary::after {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f107";
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+}
+
+.wp-block-details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.wp-block-details {
+  border: 1px solid var(--cor-linha);
+  border: 1px solid var(--cor-linha);
+  margin-bottom: 1rem;
+  line-height: 1.45;
+}
+
+.wp-block-details summary {
+  color: var(--cor-tema);
+  background-color: transparent;
+  font-size: var(--fonte-base);
+  font-weight: 500;
+  padding: var(--espaco-pequeno);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+summary + p {
+  margin-top: 1em;
+}
+
+.wp-block-details:has(summary:hover) {
+  border: 3px solid var(--cor-tema);
+}
+
+wp-block-details summary:hover {
+  padding: calc(var(--espaco-pequeno) - 2px);
+}
+
+.wp-block-details summary:hover {
+  padding: calc(var(--espaco-pequeno) - 2px);
+}
+
+.wp-block-details:has(summary:hover) p {
+  margin-left: calc(var(--espaco-pequeno) - 2px);
+  margin-right: calc(var(--espaco-pequeno) - 2px);
+  margin-top: calc(var(--espaco-linha) - var(--espaco-pequeno));
+}
+
+summary + p {
+  margin-top: calc(var(--espaco-linha) - var(--espaco-pequeno) - 2px);
+}
+
+.wp-block-details p {
+  margin-left: var(--espaco-pequeno);
+  margin-right: var(--espaco-pequeno);
+}
+.wp-block-details:has(summary:hover) p:last-child {
+  margin-bottom: calc(1em - 2px);
+}
 
 .spacer {
   width: 1px;
@@ -2526,6 +2593,7 @@ h2.bigode:has(p) {
   font-variation-settings: 'wdth' 85;
   border-bottom: 1px solid var(--cor-linha);
   margin-bottom: var(--espaco-linha);
+  gap: var(--espaco-linha)
 }
 
 
@@ -3367,9 +3435,7 @@ body.contraste {
 
   .wp-block-quote {
     padding-left: 0;
-  }
-
-  
+  }  
 
   .brasao {
     height: 86px;

@@ -25,11 +25,6 @@
                         foreach ($categories as $category) {
                             // Exibe o nome da categoria como um link
                             echo '<a class="linha-header" href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-
-                            // Adiciona uma vírgula após a categoria, exceto pela última
-                            if (next($categories)) {
-                                echo ',&nbsp';
-                            }
                         }
                     }
                 ?>
