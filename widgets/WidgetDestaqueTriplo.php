@@ -40,7 +40,7 @@ class WidgetDestaqueTriplo extends WP_Widget {
                     if (!empty($instance['imagem'][$i])) {
                         echo '<div class="destaque-img"><img src="' . esc_attr(esc_url($instance['imagem'][$i])) . '" alt="Imagem da página"></div>';
                     }
-                        echo '<h2 class="small-spacer">' . esc_html($instance['titulo'][$i]) . '</h2>
+                        echo '<h2 class="">' . esc_html($instance['titulo'][$i]) . '</h2>
                         
                             <p>' . esc_html($instance['resumo'][$i]) . '</p>';
 

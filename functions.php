@@ -329,7 +329,7 @@ function adicionar_controle_imagem_banner($wp_customize) {
 add_action('customize_register', 'adicionar_controle_imagem_banner');
 
 function summon_banner_top(){
-    if(!is_single()){
+    if(!is_single() || is_singular(array('evento', 'edital', 'patente'))){
         // Obtém a URL da imagem do Customizer
         $imagem_banner_url_original = get_theme_mod('imagem_banner');
         $imagem_banner_url = str_replace('http://', 'https://', $imagem_banner_url_original);  //solução imbecil, ajeitar o SSL e forçar https de verdade é melhor
@@ -728,7 +728,7 @@ function get_top_ancestor_id() {
     global $post;
 
     if ($post->post_parent) {
-        $ancestors = array_reverse(get_post_ancestors($post->ID));
+        $ancestors = get_post_ancestors($post->ID);
         return $ancestors[0];
     }
     return $post->ID;

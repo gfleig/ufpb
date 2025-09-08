@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.3.3
+Version: 2.3.4
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -50,6 +50,28 @@ body {
 }
 
 /*novidades*/
+
+#single-edital .noticia-pagina-titulo,
+#single-evento .noticia-pagina-titulo,
+#single-patente .noticia-pagina-titulo {
+  font-size: 30px;
+}
+
+#single-edital .noticia-categorias a,
+#single-patente .noticia-categorias a {
+padding-bottom: 0;
+margin-bottom: 0;
+border-bottom: none
+}
+#single-edital .noticia-categorias,
+#single-patente .noticia-categorias {
+ border-bottom: none;
+}
+
+.destaque-trio p, .destaque-solo p, .destaque-solo-invertido p {
+  color: var(--cor-texto-secundario);
+  margin-bottom: var(--espaco-gutter);
+} 
 
 summary::after {
   font-family: "Font Awesome 6 Free";
@@ -460,7 +482,7 @@ h2, h3 {
   font-weight: 500;
   line-height: 1.2;
   color: var(--cor-texto-escuro);
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 h2.wp-block-heading {
@@ -572,7 +594,7 @@ strong {
 }
 
 .noticia-card a:hover, .noticia-card-categoria:hover .titulo,
-.noticia-card .noticia-card-imagem:hover~div .titulo, .evento-card:hover .evento-titulo, .edital-card a:hover {
+.noticia-card:hover .titulo, .evento-card:hover .evento-titulo, .edital-card a:hover {
   text-decoration: none;
   color: var(--cor-tema);
 }
@@ -593,6 +615,9 @@ strong {
   /*font-style: italic;*/
   font-weight: 500;
   line-height: 1;
+  display: flex;
+  flex-direction: row;
+  gap: var(--espaco-pequeno);
 }
 
 .categorias a:hover {
@@ -823,6 +848,10 @@ font-size: var(--fonte-base);
   color: var(--cor-tema);
   text-transform: uppercase;
   font-stretch: condensed;
+}
+
+.centro-titulo.mobile {
+  display: none;
 }
 
 .departamento-titulo {
@@ -1230,6 +1259,10 @@ input[type="search"]:focus {
   font-weight: 300;
   font-size: var(--fonte-pagina);
   margin-bottom: var(--espaco-linha);
+}
+
+.menu-lateral .page_item_has_children ul {
+  display: none;
 }
 
 .menu {
@@ -1675,15 +1708,6 @@ a.linha-abaixo.mais-link:hover {
 
 .corpo-wrapper p {
   hyphens: none;
-}
-
-#conteudo_pagina.corpo .imagem {
-  height: 300px;
-}
-
-#conteudo_pagina.corpo .imagem-grande {
-  height: 300px;
-  width: 100%;
 }
 
 .corpo-grid {
@@ -3154,7 +3178,7 @@ footer a:hover {
   height: auto;
   width: 100%;
   aspect-ratio: 16/9;
-  margin-bottom: var(--espaco-pequeno);
+  margin-bottom: var(--espaco-linha);
 }
 
 .destaque-img img, .destaque-solo-img img {
@@ -3177,31 +3201,35 @@ footer a:hover {
 
 .destaque-solo {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
+  gap: 72px;
   grid-template-rows: auto;
-  gap: var(--espaco-gutter);  
 }
 
 .destaque-solo-invertido {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
+  gap: 72px;
   grid-template-rows: auto;
-  gap: var(--espaco-gutter);  
 }
 
 .destaque-solo-invertido .destaque-solo-img {
   height: auto;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
   margin-bottom: -5px;
-  grid-area: 1/1/2/3;
+  grid-area: 1/1/2/2;
 }
 
+.destaque-texto {
+  height: fit-content;
+  align-self: center;
+}
 
 .destaque-solo-img {
   height: auto;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
   margin-bottom: -5px;
-  grid-area: 1/2/2/4;
+  grid-area: 1/2/2/3;
 }
 
 .destaque-solo-img img {
@@ -3221,7 +3249,7 @@ footer a:hover {
   /*grid-template-columns: 1fr 1fr 1fr;*/
   grid-auto-flow: column;
   grid-template-rows: auto;
-  gap: var(--espaco-gutter);
+  gap: 36px;
   grid-auto-columns: minmax(0, 1fr);
 }
 
@@ -3452,6 +3480,14 @@ body.contraste {
 
   .centro-titulo {
     font-size: var(--fonte-pequena);
+  }
+
+  .centro-titulo.desktop {
+    display: none;
+  }
+
+  .centro-titulo.mobile {
+    display: block;
   }
 
   .departamento-titulo {
@@ -3945,6 +3981,7 @@ body.contraste {
   .destaque-solo, .destaque-solo-invertido {
     display: flex;
     flex-direction: column-reverse;
+    gap: var(--espaco-gutter);
   }
 
   .destaque-solo .linha-header,

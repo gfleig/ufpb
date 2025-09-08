@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="corpo large-spacer width-wrapper" id="conteudo_pagina">
+<div class="corpo large-spacer width-wrapper" id="single-evento">
     <div class="corpo-grid">
         <div class="sidebar">
             <?php

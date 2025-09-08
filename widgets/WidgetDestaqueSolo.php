@@ -30,7 +30,7 @@ class WidgetDestaqueSolo extends WP_Widget {
 
         echo '
         <div class="width-wrapper destaque-solo large-spacer">  
-            <div class="linha-header-longa flex-grow-parent">
+            <div class="linha-header-longa flex-grow-parent destaque-texto">
                 <h2 class="linha-header small-spacer">' . $titulo . '</h2>
                 <div class="flex-grow">
                     <p>' . $resumo . '</p>';

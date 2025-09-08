@@ -5,13 +5,19 @@
                     <img alt="Brasão oficial da UFPB (logo)" src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao.png">
                 </a>
                 
-                <?php the_custom_logo(); ?>
+                <?php if(has_custom_logo()): ?>
+                    <?php the_custom_logo(); ?>
+                <?php else: ?>                
                 <div class="site-titulos">
-                    <!--a target="_blank" rel="noopener noreferrer" href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
+                    <a target="_blank" rel="noopener noreferrer" href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo desktop">
                         <?php $custom_centro = get_theme_mod('custom_centro', 'Universidade Federal da Paraíba'); echo esc_html($custom_centro);?>
                     </a>
-                    <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a-->
+                    <a target="_blank" rel="noopener noreferrer" href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo mobile">
+                        <?php $custom_centro = get_theme_mod('custom_centro', 'UFPB'); echo esc_html($custom_centro);?>
+                    </a>
+                    <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a>
                 </div>
+                <?php endif; ?>
             </div>
             <button type="nav" id="hamburger">
                 <i id="hamburger-botao" class="fa-solid fa-bars"></i>
@@ -143,9 +149,17 @@
     </ul>
     <div id="menu-buttons">        
                     
-        <a href="<?php echo get_home_url(); ?>/acesso-a-informacao">
-            Acesso à Informação
-        </a>        
+        <?php if ( get_page_by_path( 'acesso-a-informacao' ) ) : ?> 
+            <a href="<?php echo get_home_url(); ?>/acesso-a-informacao">
+                Acesso à Informação
+            </a>
+        <?php endif; ?> 
+        
+        <?php if ( get_page_by_path( 'contato' ) ) : ?> 
+            <a href="<?php echo get_home_url(); ?>/contato">
+                Contato
+            </a>
+        <?php endif; ?>         
 
         <a href="javascript:void(0);" onclick="altoContraste();">
             <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
