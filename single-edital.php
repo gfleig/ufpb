@@ -15,7 +15,7 @@
             <div class="noticia-categorias linha-header-longa">
                 <?php 
                     $categories = get_the_terms( get_the_ID(), 'edital_type' );
-                    $categories_num = count($categories);
+                    //$categories_num = count($categories);
                     // Verifica se existem categorias
                     if ($categories) {
                         // Limita a exibição a duas categorias

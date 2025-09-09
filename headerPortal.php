@@ -70,7 +70,8 @@
                                     <?php endif; ?>
                                         <div>DE</div>
                                     </a>                                
-                                <?php endif; ?>                                                
+                                <?php endif; ?>  
+                            <div class="spacer"></div>                                              
                         </div>
                     <?php endif; ?>
 
