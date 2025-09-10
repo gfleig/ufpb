@@ -1402,6 +1402,12 @@ input[type="search"]:focus {
   color: var(--cor-tema);
 }
 
+.menu .menu-item-has-children .menu-item-object-custom:hover > a {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--cor-linha);
+  color: var(--cor-tema);
+}
+
 .menu .menu-item-object-custom.menu-item-has-children:hover > a {
   border-bottom: none;
   margin-bottom: 0;
@@ -1778,7 +1784,7 @@ a.linha-abaixo.mais-link:hover {
     "imagem-card ."
     "imagem-card ."
     "imagem-card .";
-  column-gap: var(--espaco-pequeno);
+  column-gap: var(--espaco-linha);
 }
 
 .noticia-categoria-imagem {

@@ -19,29 +19,12 @@
                     while(have_posts()){
                         the_post();
                             
-                            echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-categoria linha-abaixo">';                                          
+                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card-categoria linha-abaixo">';                                          
                             
                             echo '<div class="noticia-categoria-imagem">
                                 <img src="', esc_url(the_post_thumbnail_url()), '">
                             </div>';        
-                            /*           
-                            $categories = get_the_category(); //categorias
-                            if ($categories) {
-                                echo '<div class="categorias small-spacer">';
-                                $categories = array_slice($categories, 0, 2);
-                                foreach ($categories as $category) {                                                    
-                                    // Exibe o nome da categoria como um link
-                                    echo '<div href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</div>';
-
-                                    // Adiciona uma vírgula após a categoria, exceto pela última
-                                    if (next($categories)) {
-                                        //echo ',&nbsp';
-                                        echo ' ';
-                                    }
-                                }
-                                echo '</div>';                                
-                            }*/
-
+                            
                             echo '<div class="titulo small-spacer">' , esc_html(the_title()) ,  '</div>'; //título
 
                             if(has_excerpt()) {
