@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.3.5.1
+Version: 2.4
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -667,9 +667,10 @@ font-size: var(--fonte-base);
 
 .data {
   font-size: var(--fonte-pequena);
-  color: var(--cor-texto-medio);
   line-height: 1.2;
   align-self: end;
+  color: var(--cor-texto-secundario);
+  font-weight: 300;
 }
 
 .noticias-widget .noticia-card:first-child .data {
@@ -1520,6 +1521,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   font-weight: 425;
   font-size: var(--fonte-pequena);
   border-bottom: 1px solid var(--cor-linha);
+  max-width: 350px;
 }
 
 .menu ul li ul li ul {
@@ -2229,6 +2231,13 @@ a.linha-abaixo.mais-link:hover {
   grid-template-columns: 4fr 6fr;
   grid-template-rows: auto;
   column-gap: var(--espaco-linha);
+  background: var(--cor-tema-claro);
+}
+
+.evento-card > div:nth-child(2) {
+  padding-top: var(--espaco-linha);
+  padding-bottom: var(--espaco-linha);
+  padding-right: var(--espaco-linha);
 }
 
 .evento-card.solo {
@@ -2285,10 +2294,12 @@ a.linha-abaixo.mais-link:hover {
 .evento-data {
   color: var(--cor-texto-secundario);
   line-height: 1.2;
+  font-weight: 300;
+  font-size: var(--fonte-pequena);
 }
 
 .evento-titulo {
-  font-size: var(--fonte-pagina);
+  font-size: 21px;
   font-weight: 500;
   line-height: 1.2;
 }
@@ -3421,7 +3432,7 @@ body.contraste {
 
 /*=================================AUTISMO END==================================================*/
 
-@media only screen and (max-width: 1420px) {
+@media only screen and (max-width: 1420px) and (min-width: 801px) {
   :root {
     font-size: 16px;
   }
@@ -3431,23 +3442,129 @@ body.contraste {
 
     --fonte-base: 1rem;
     --fonte-pequena: 14px;
-    --fonte-header: 28px;
-    --fonte-titulo: 28px;
-    --fonte-pagina: 24px
+    --fonte-header: 20px;
+    --fonte-titulo: 20px;
+    --fonte-pagina: 20px
   }
 
   .width-wrapper {
+    max-width: 1164px;
   }
 
   .corpo-wrapper > div:first-child {
-    padding-left: var(--espaco-gutter);
-    padding-right: var(--espaco-gutter);
+    padding-top: 30px;
+    padding-left: 42px;
+    padding-right: 42px;
+    max-width: 1032px;
+    box-sizing: content-box;
   }
 
   .corpo-wrapper {
     padding: 42px 0;
     max-width: 1360px;
   }
+
+  .corpo-wrapper .width-wrapper, .sitemap-wrapper .width-wrapper, #footer-wrapper .width-wrapper {
+    /* max-width: 1360px; */
+    max-width: 1080px;
+  }  
+
+  .imagem {
+    height: 250px;
+  }
+
+  .portal .brasao {
+    height: 100px;
+  }
+
+  .logo img, .custom-logo {
+    height: 54px;
+    margin-top: 7px;
+  }
+
+  .menu ul {
+    gap: var(--espaco-linha);
+  }
+
+  .edital-card .categorias {
+    font-size: 20px;
+  }
+
+  h2, h3 {
+    font-size: 20px;
+  }
+
+  .portal .cabecalho {
+    margin-bottom: var(--espaco-linha);
+  }
+
+  .cabecalho {
+    margin-top: var(--espaco-linha);
+  }
+
+  .noticia-card {
+    min-height: unset;
+  }
+
+  .portal #menu-buttons {
+    margin-bottom: 4px;
+  }
+
+  .menu ul li a {
+    font-stretch: condensed;
+  }
+
+  .destaque-solo-invertido {
+    gap: 48px;
+  }
+
+  h1.noticia-pagina-titulo {
+    font-size: 24px;
+  }
+
+  .noticia-relacionada-imagem {
+    height: 90px;
+  }
+
+  .single-corpo-grid {
+    margin-top: 24px;
+  }
+
+  .evento-titulo {
+    font-size: 20px;
+  }
+
+  .menu ul li a {
+    padding-bottom: 8px;
+  }
+
+  .imagem.banner-topo:has(~ #conteudo_pagina) {
+    display: none;
+  }
+
+  #conteudo_pagina .corpo-grid {
+    grid-template-columns: 3fr 9fr;
+    grid-template-areas: "sb ct";
+    gap: 48px;
+  }
+
+  #conteudo_pagina  .content-grid {
+    padding: 24px 0 0;
+  }
+
+  #conteudo_pagina  .sidebar {
+    margin-top: 24px;
+  }
+
+  #conteudo_pagina h1 {
+    font-size: 24px;
+  }
+
+  #single-edital .noticia-pagina-titulo, #single-evento .noticia-pagina-titulo, #single-patente .noticia-pagina-titulo {
+    font-size: 24px;
+  }
+
+
 }
 
 @media only screen and (max-width: 800px) {

@@ -41,8 +41,7 @@ class WidgetEventos extends WP_Widget {
         
         if ($the_query->have_posts()){  
             echo '
-            <div class="full-width-wrapper">
-            <div class="width-wrapper">
+            <div class="width-wrapper large-spacer">
                 <h2 class="linha-header-longa">                
                     <a class="linha-header" href="', get_home_url(), '/eventos/">Eventos</a>
                 </h2>';
@@ -52,9 +51,9 @@ class WidgetEventos extends WP_Widget {
                         
 
                         if ($the_query->post_count == 1) {
-                            echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card solo linha-acima linha-abaixo">';
+                            echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card solo">';
                         } else {
-                            echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card linha-acima linha-abaixo">';
+                            echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card">';
                         }
                             echo '
                             <div class="evento-card-imagem"><img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '"></div>
@@ -65,11 +64,11 @@ class WidgetEventos extends WP_Widget {
                                     $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );   
 
                                     if (empty($data_fim) || $data_inicio == $data_fim) {
-                                        echo wp_date('j \d\e F \d\e Y', $data_inicio);
+                                        echo wp_date('j \d\e F', $data_inicio);
                                     } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim);
+                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F', $data_fim);
                                     } else {
-                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F \d\e Y', $data_fim);    
+                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F', $data_fim);    
                                     }         
                                 echo '</div>'; //data
 
@@ -88,7 +87,6 @@ class WidgetEventos extends WP_Widget {
             echo '</div>';
 
             echo '</div>'; //width-wrapper
-            echo '</div>'; //full-width-wrapper
         
         }
         echo $args['after_widget']; 
