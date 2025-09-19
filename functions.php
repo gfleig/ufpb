@@ -951,6 +951,40 @@ function create_eventos() {
 	);
 }
 
+//hook to add a meta box
+add_action( 'add_meta_boxes', 'c3m_video_meta' );
+
+function c3m_video_meta() {
+    //create a custom meta box
+    add_meta_box( 'c3m-meta', 'Destacar Edital', 'c3m_mbe_function', 'edital', 'side', 'high' );
+}
+
+function c3m_mbe_function( $post ) {
+
+    //retrieve the meta data values if they exist
+    $c3m_mbe_featured = get_post_meta( $post->ID, '_c3m_mbe_featured', true );
+
+    ?>
+    <p> 
+    <select name="c3m_mbe_featured">
+        <option value="no" <?php selected( $c3m_mbe_featured, 'no' ); ?>>Não Destacar</option>
+        <option value="yes" <?php selected( $c3m_mbe_featured, 'yes' ); ?>>Destacar</option>
+    </select>
+    </p>
+    <?php
+}
+
+//hook to save the meta box data
+add_action( 'save_post', 'c3m_mbe_save_meta' );
+function c3m_mbe_save_meta( $post_ID ) {
+    global $post;
+    if( $post->post_type == "edital" ) {
+        if ( isset( $_POST ) ) {
+            update_post_meta( $post_ID, '_c3m_mbe_featured', strip_tags( $_POST['c3m_mbe_featured'] ) );
+        }
+    }
+}
+
 add_action( 'init', 'create_editais');
 
 function create_editais() {
@@ -982,7 +1016,8 @@ function create_editais() {
                 'thumbnail'
             ),
             'show_in_rest' => true, //permite editor gutenberg
-            //'taxonomies' => array('edital_type', 'edital')
+            //'taxonomies' => array('edital_type', 'edital'),
+            'register_meta_box_cb' => 'c3m_video_meta', //This is for our custom meta box
             
 		)
 	);
@@ -1002,6 +1037,9 @@ function create_editais() {
         );  
     
 }
+
+
+
 
 
 // invoca wp_nav_menu e css deixa só com o submenu atual, se tiver
@@ -1166,6 +1204,38 @@ function create_patentes() {
         );  
     
 }
+
+function edital_fixados( \WP_Query $query ) {
+    if ( is_admin() ) {
+        return; // we want the frontend! exit if it's WP Admin
+    }
+    if ( !$query->is_main_query() ) {
+        return; // we want the main query!
+    }
+    if ( ! is_post_type_archive( 'edital' ) ) {
+        return; // we only want the movie archives
+    }
+
+    /*$meta_query = array(
+            array(
+                'key' => '_c3m_mbe_featured',
+                'value' => 'yes',
+                'compare' => 'NOT LIKE'
+                ));*/
+    
+    //$query->set( 'meta_query', $meta_query);
+    $query->set( 'meta_key', '_c3m_mbe_featured');
+    //$query->set( 'value', 'yes');
+    //$query->set( 'compare', 'NOT LIKE');   
+    
+    $query->set( 'orderby', [         
+        'meta_value' => 'DESC',
+        'date'  => 'DESC' 
+    ] );
+
+}
+
+add_action( 'pre_get_posts', 'edital_fixados', 1 );
 
 
 ?>

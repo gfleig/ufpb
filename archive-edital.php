@@ -26,15 +26,8 @@
             
             <div class="noticias-relacionadas">
                 <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
-                /*
-                $args = array(
-                    'post_type' => 'edital',
-                    'paged' => $paged,
-                    'orderby' => 'date',
-                );
-
-                $post_query = new WP_Query($args);
-                */
+                
+                                
                 if (have_posts() ) {
                     while (have_posts()){
                         the_post();                      
