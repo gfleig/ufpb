@@ -74,7 +74,7 @@ class WidgetLinksImagens extends WP_Widget {
         $instance = $old_instance;
 
         $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : null;
-        for ($i = 1; $i < 6; $i++){
+        for ($i = 1; $i < 7; $i++){
             $instance['texto'][$i] = !empty($new_instance['texto'][$i]) ? esc_html($new_instance['texto'][$i]) : 'Título do link';
             $instance['imagem'][$i] = !empty($new_instance['imagem'][$i]) ? esc_url($new_instance['imagem'][$i]) : 'INSIRA UMA IMAGEM';
             $instance['link'][$i] = !empty($new_instance['link'][$i]) ? esc_url($new_instance['link'][$i]) : null;
