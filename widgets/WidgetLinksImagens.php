@@ -24,7 +24,7 @@ class WidgetLinksImagens extends WP_Widget {
             
             echo '<div class="acesso-imagens-widget">';
 
-            for ($i = 1; $i < 6; $i++) {
+            for ($i = 1; $i < 7; $i++) {
                 if(!empty($instance['link'][$i])) {                
                     echo '
                     <a class="linha-abaixo link-full" href="' . esc_url($instance['link'][$i]) . '">
@@ -49,7 +49,7 @@ class WidgetLinksImagens extends WP_Widget {
             <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
         </p>
         <?php
-        for ($i = 1; $i < 6; $i++){
+        for ($i = 1; $i < 7; $i++){
             echo '<div style="padding: 10px; background: gainsboro; margin-bottom: 25px; display: flex; justify-content: space-evenly;">';
                 echo '<p>';
                     echo '<label for="', $this->get_field_id('texto' . $i) , '">Título do link número ' , $i , ':</label>';
