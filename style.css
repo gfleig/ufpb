@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.4.3
+Version: 2.4.4
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -31,6 +31,7 @@ body {
   --cor-tema-claro: color-mix(in Oklch, var(--cor-tema) 3%, white);
   --cor-tema-claro-focus: color-mix(in Oklch, var(--cor-tema) 6%, white);
   --cor-tema-escuro: color-mix(in Oklch, var(--cor-tema) 90%, black);
+  --cor-tema-black: color-mix(in Oklch, var(--cor-tema) 50%, black);
 
   --cor-texto-escuro: #202020;
   --cor-texto-secundario: #595959;
@@ -50,6 +51,25 @@ body {
 }
 
 /*novidades*/
+
+#footer-gov {
+  padding-top: var(--espaco-gutter);
+  padding-bottom: var(--espaco-gutter);
+  background: var(--cor-tema-black);
+}
+
+#footer-gov > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--espaco-gutter);
+  justify-content: space-between;
+}
+
+.logo-acesso-footer{
+  height: 54px;
+  display: block;
+}
 
 #single-edital .noticia-pagina-titulo,
 #single-evento .noticia-pagina-titulo,
@@ -283,7 +303,8 @@ summary + p {
 
 .corpo-wrapper .width-wrapper,
 .sitemap-wrapper .width-wrapper,
-#footer-wrapper .width-wrapper {
+#footer-wrapper .width-wrapper,
+#footer-gov .width-wrapper {
   max-width: 1360px;
 }
 
@@ -3156,7 +3177,7 @@ footer a:hover {
 .redes-sociais i {
   display: flex;
   align-items: center;
-  font-size: var(--fonte-header);
+  font-size: 36px;
   line-height: 1.45;
 }
 
@@ -3488,7 +3509,7 @@ body.contraste {
     max-width: 1360px;
   }
 
-  .corpo-wrapper .width-wrapper, .sitemap-wrapper .width-wrapper, #footer-wrapper .width-wrapper {
+  .corpo-wrapper .width-wrapper, .sitemap-wrapper .width-wrapper, #footer-wrapper .width-wrapper, #footer-gov.width-wrapper {
     /* max-width: 1360px; */
     max-width: 1080px;
   }  
@@ -3629,6 +3650,14 @@ body.contraste {
   }
 
   /*novidades*/
+
+  .logo-acesso-footer {
+    height: 36px
+  }
+
+  #marca_gov {
+    width: 120px;
+  }
 
   .wp-block-quote {
     padding-left: 0;
