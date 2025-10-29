@@ -2,10 +2,32 @@
 
 <div class="corpo width-wrapper large-spacer" id="single-edital">
     <div class="corpo-grid">
-        <div class="sidebar">
-            <?php
-            summon_categorias_edital_menu();  
-            ?>                              
+        <div class="sidebar">  
+            <ul class="side-menu-categorias-wp menu-lateral">
+                <?php
+                //summon_categorias_edital_menu();
+                wp_list_categories(
+                    array(
+                        'taxonomy'     => 'edital_type',
+                        'show_option_all' => 'Todos Editais',
+                        'title_li' => '<h2 class="menu-lateral-h2">Categorias de Editais</h2>'
+                    )
+                );
+                ?>
+            </ul>            
+            <div class="side-menu-archive">
+                <h2 class="menu-lateral-h2">Editais por Ano</h2>
+                <ul class="menu-lateral">
+                    <?php
+                    wp_get_archives(
+                        array(
+                        'type'            => 'yearly',
+                        'post_type'       => 'edital',
+                        )
+                    );
+                    ?>
+                </ul>
+            </div>          
         </div>
         <?php
         while ( have_posts() ) :

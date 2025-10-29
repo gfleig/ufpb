@@ -15,6 +15,7 @@ include get_theme_file_path('/widgets/WidgetMapaEFoto.php');
 include get_theme_file_path('/widgets/WidgetNoticiasSimples.php');
 include get_theme_file_path('/widgets/WidgetLinksRapidos.php');
 include get_theme_file_path('/widgets/WidgetPatentes.php');
+include get_theme_file_path('/widgets/WidgetNumeros.php');
 
 function example_theme_support() {
     remove_theme_support( 'widgets-block-editor' );
@@ -166,6 +167,46 @@ function controle_linguas($wp_customize) {
     ));
     $wp_customize->add_control('url_alemao', array(
         'label' => 'URL do Site em Alemão',
+        'section' => 'secao_traducao',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting( 'check_italiano', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'check_italiano', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Tradução para Italiano' ),
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('url_italiano', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('url_italiano', array(
+        'label' => 'URL do Site em Italiano',
+        'section' => 'secao_traducao',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting( 'check_mandarim', array(
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'ufpb_sanitize_checkbox',
+    ));
+    $wp_customize->add_control( 'check_mandarim', array(
+        'type' => 'checkbox',
+        'section' => 'secao_traducao',
+        'label' => __( 'Ativar Tradução para Mandarim' ),
+    ));
+
+    // Campo de URL personalizado
+    $wp_customize->add_setting('url_mandarim', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('url_mandarim', array(
+        'label' => 'URL do Site em Mandarim',
         'section' => 'secao_traducao',
         'type' => 'url',
     ));
@@ -644,6 +685,18 @@ function customizer_contato($wp_customize) {
             'placeholder' => __('Ex.: https://instagram.com/ufpb.oficial'),
         ),
         'label' => 'Link da página do Instagram',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_tiktok', array(   
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_tiktok', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: https://tiktok.com/@ufpboficial'),
+        ),
+        'label' => 'Link da página do TikTok',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));

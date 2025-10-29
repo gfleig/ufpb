@@ -40,6 +40,7 @@
 
           $whatsapp     = get_theme_mod('custom_whatsapp');
           $instagram    = get_theme_mod('custom_instagram');
+          $tiktok       = get_theme_mod('custom_tiktok');
           $x            = get_theme_mod('custom_x');
           $facebook     = get_theme_mod('custom_facebook');
           $youtube      = get_theme_mod('custom_youtube');
@@ -90,6 +91,9 @@
           }
           if (!empty($instagram)) {
             echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_html($instagram) . '"><i class="fa-brands fa-instagram"></i></a>';
+          }
+          if (!empty($tiktok)) {
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_html($tiktok) . '"><i class="fa-brands fa-tiktok"></i></a>';
           }
           if (!empty($x)) {
             echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_html($x) . '"><i class="fa-brands fa-x-twitter"></i></a>';

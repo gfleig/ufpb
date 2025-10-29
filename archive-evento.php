@@ -25,10 +25,13 @@
                     while ($post_query->have_posts()){
                         $post_query->the_post(); 
                         
-                        echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card linha-abaixo">';
+                        echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card">';
                         
                             echo '
-                            <div class="evento-card-imagem"><img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '"></div>
+                            
+                            <div class="evento-card-imagem" style="background-image: url(\'' , esc_url(the_post_thumbnail_url()) , '\')">
+                                <img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '">
+                            </div>
                             <div>
                                 <div class="evento-data small-spacer">';
 
@@ -36,11 +39,11 @@
                                     $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );   
 
                                     if (empty($data_fim) || $data_inicio == $data_fim) {
-                                        echo wp_date('j \d\e F \d\e Y', $data_inicio);
+                                        echo wp_date('j \d\e F', $data_inicio);
                                     } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim);
+                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F', $data_fim);
                                     } else {
-                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F \d\e Y', $data_fim);    
+                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F', $data_fim);    
                                     }         
                                 echo '</div>'; //data
 

@@ -56,7 +56,9 @@ class WidgetEventos extends WP_Widget {
                             echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card">';
                         }
                             echo '
-                            <div class="evento-card-imagem"><img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '"></div>
+                            <div class="evento-card-imagem" style="background-image: url(\'' , esc_url(the_post_thumbnail_url()) , '\')">
+                                <img src="', esc_url(the_post_thumbnail_url()), '" alt="' , image_alt_by_url(the_post_thumbnail_url()) , '">
+                            </div>
                             <div>
                                 <div class="evento-data small-spacer">';
 

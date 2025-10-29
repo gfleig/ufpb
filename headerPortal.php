@@ -71,11 +71,27 @@
                                         <div>DE</div>
                                     </a>                                
                                 <?php endif; ?>  
+                                <?php if ( get_theme_mod( 'check_italiano' ) == 1 ) : ?>                                
+                                    <?php if ( get_theme_mod( 'url_italiano' ) ) : ?>
+                                        <a href="<?php echo get_theme_mod( 'url_italiano' )?>">
+                                    <?php else : ?>
+                                        <a href="#" onclick="traduzir_italiano();">
+                                    <?php endif; ?>
+                                        <div>IT</div>
+                                    </a>                                
+                                <?php endif; ?>  
+                                <?php if ( get_theme_mod( 'check_mandarim' ) == 1 ) : ?>                                
+                                    <?php if ( get_theme_mod( 'url_mandarim' ) ) : ?>
+                                        <a href="<?php echo get_theme_mod( 'url_mandarim' )?>">
+                                    <?php else : ?>
+                                        <a href="#" onclick="traduzir_mandarim();">
+                                    <?php endif; ?>
+                                        <div>中文</div>
+                                    </a>                                
+                                <?php endif; ?>
                             <div class="spacer"></div>                                              
                         </div>
                     <?php endif; ?>
-
-                    <div class="spacer"></div>
 
                     <a href="javascript:void(0);" onclick="altoContraste();">
                         <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->

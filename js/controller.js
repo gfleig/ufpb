@@ -143,6 +143,22 @@ function traduzir_alemao() {
     window.open("https://translate.google.com/translate?sl=auto&tl=de&u=" + homeurl , "_self");
 }
 
+function traduzir_italiano() {
+    // get JSON url
+    var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
+    // then take out the '/wp-json/' part
+    var homeurl = WpJsonUrl.replace('/wp-json/','');
+    window.open("https://translate.google.com/translate?sl=auto&tl=it&u=" + homeurl , "_self");
+}
+
+function traduzir_mandarim() {
+    // get JSON url
+    var WpJsonUrl = document.querySelector('link[rel="https://api.w.org/"]').href
+    // then take out the '/wp-json/' part
+    var homeurl = WpJsonUrl.replace('/wp-json/','');
+    window.open("https://translate.google.com/translate?sl=auto&tl=zh-CN&u=" + homeurl , "_self");
+}
+
 var timer1, timer2;
 var menuItems = document.querySelectorAll('#desktop-menu > li.menu-item-has-children');
 var menuSubItems = document.querySelectorAll('#desktop-menu > li.menu-item-has-children > ul > li.menu-item-has-children');

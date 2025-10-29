@@ -12,8 +12,27 @@
                 'order'   => 'ASC'
             ) );
 
-            echo '<h1>Postagens</h1>';
+            echo '<h1>Postagens</h1>'; ?>
                 
+            <!--form action="<?php bloginfo('siteurl'); ?>" method="get">
+                <label for="cat">Select a Category:</label>
+                <?php
+                wp_dropdown_categories(array(
+                    'show_option_none' => 'MIZERA',
+                    'option_none_value' => '10', // Text for the "All Categories" option
+                    'hide_empty'      => 1,                // Show categories even if they have no posts
+                    'name'            => 'cat',            // Name attribute for the select element
+                    'id'              => 'cat',              // ID attribute for the select element
+                    'orderby'         => 'name',           // Order categories by name
+                    'order'           => 'ASC',            // Ascending order
+                    'taxonomy'        => 'category',       // Specify the taxonomy as 'category'
+                ));
+                ?>
+                <input type="submit" value="Go" />
+            </form-->
+
+            <?php
+
             foreach ($categories as $categoria) { 
 
                 $the_query = new WP_Query( array(
