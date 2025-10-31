@@ -49,17 +49,17 @@ public function form($instance) {
     ?>
     <p>
         <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>
-        <input class="widefat" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
+        <input class="widefat" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo esc_attr($titulo); ?>">
     </p>
 
     <p>
         <label for="<?php echo $this->get_field_id('mapa_iframe'); ?>">Código de embed (iframe) do google maps, obtido através do compartilhar do maps:</label>
-        <textarea class="widefat" id="<?php echo $this->get_field_id('mapa_iframe'); ?>" name="<?php echo $this->get_field_name('mapa_iframe'); ?>" type="html" value="<?php echo $mapa_iframe; ?>"></textarea>
+        <input class="widefat" id="<?php echo $this->get_field_id('mapa_iframe'); ?>" name="<?php echo $this->get_field_name('mapa_iframe'); ?>" type="html" value="<?php echo esc_attr($mapa_iframe); ?>"></textarea>
     </p> 
 
     <p>
         <label for="<?php echo $this->get_field_id('img_url'); ?>">URL da imagem a ser exibida junto com o mapa:</label>
-        <textarea class="widefat" id="<?php echo $this->get_field_id('img_url'); ?>" name="<?php echo $this->get_field_name('img_url'); ?>" type="text" value="<?php echo $img_url; ?>"></textarea>
+        <input class="widefat" id="<?php echo $this->get_field_id('img_url'); ?>" name="<?php echo $this->get_field_name('img_url'); ?>" type="text" value="<?php echo esc_attr($img_url); ?>"></textarea>
     </p> 
     <?php
 }
@@ -75,8 +75,9 @@ public function update($new_instance, $old_instance) {
 }
 
 function registrar_widget_mapa() {
-register_widget('WidgetMapaEFotos');
+    register_widget('WidgetMapaEFotos');
 }
+
 add_action('widgets_init', 'registrar_widget_mapa');
 
 ?>

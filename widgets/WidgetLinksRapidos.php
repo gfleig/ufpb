@@ -27,9 +27,12 @@ class WidgetLinksRapidos extends WP_Widget {
 
             for ($i = 1; $i < 7; $i++) {
                 if(!empty($instance['link'][$i])) {
-                    echo '
-                    <a class="link-full linha-abaixo linha-acima" href="' . esc_url($instance['link'][$i]) . '">
-                        <div class="link-image-wrapper">' . $instance['imagem'][$i] . '</div>          
+                    if (in_array( wp_parse_url( $instance['link'][$i], PHP_URL_HOST ), wp_internal_hosts(), true )) {
+                        echo '<a class="link-full linha-abaixo linha-acima" href="' . esc_url($instance['link'][$i]) . '">';
+                    } else {
+                        echo '<a class="link-full linha-abaixo linha-acima" href="' . esc_url($instance['link'][$i]) . '" target="_blank" rel="noopener noreferrer">';
+                    }                        
+                    echo '<div class="link-image-wrapper">' . $instance['imagem'][$i] . '</div>          
                         <div class="link-text texto-escuro">' . esc_html($instance['texto'][$i]) . '</div>
                     </a>';
                 }                
