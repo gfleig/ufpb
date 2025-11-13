@@ -120,12 +120,15 @@
       </div>
 
       <div class="footer-direita">
-        <div id="footer-creditos">
-          <!--<a href="https://github.com/interfaceslivres"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo-interfaces2.png" alt="Logo do Projeto Interfaces Livres"></a>-->
+        <a class="e-mec-qr" href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/NTc5" target="_blank" rel="noopener noreferrer" alt="Cadastro da UFPB no e-MEC">
+          <img src="<?php echo get_bloginfo("template_directory"); ?>/img/e-mec-qr-branco-full.svg" alt="QR Code para cadastro da UFPB no e-MEC">
+        </a>
+        <!--div id="footer-creditos">
+          <<a href="https://github.com/interfaceslivres"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo-interfaces2.png" alt="Logo do Projeto Interfaces Livres"></a>>
           
           <a target="_blank" rel="noopener noreferrer" href="https://www.sti.ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/sti-logo-branco.png" alt="Marca da STI"></a>
           <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt="Marca da UFPB"></a>
-        </div>
+        </div-->
       </div>
     </div>
 

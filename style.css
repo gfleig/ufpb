@@ -50,7 +50,14 @@ body {
   --espaco-minimo: 6px;
 }
 
-/*=======================================================================================novidades*/
+/*=================================== NOVIDADES ===========================================*/
+
+.e-mec-qr {
+  height: 200px;
+  border: solid 1px white;
+  padding: var(--espaco-minimo);
+  box-sizing: content-box;
+}
 
 .widget-numeros {
   display: grid;
@@ -1754,11 +1761,10 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
 
 .slide-texto-box {
   position: absolute;
-  bottom: -60px;
-  padding: 36px 54px 48px;
+  bottom: -54px;
+  padding: 30px 54px 42px;
   background-color: var(--cor-background);
-  max-width: 550px;  
-  /*box-shadow: 0 6px 18px 0 rgba(0,0,0,.15);*/
+  max-width: 550px;
 }
 
 .slide-texto-box::before {
@@ -1774,15 +1780,15 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
 }
 
 .slide-texto-box h2 {
-  font-size: 48px;
-  margin-bottom: 24px;
+  font-size: 42px;
+  margin-bottom: 1rem;
   color: var(--cor-tema);
   font-weight: 600;
 }
 
 .slide-texto-box .texto {
   color: var(--cor-texto-escuro);
-  margin-bottom: 24px;
+  margin-bottom: 1rem;
 }
 
 .slide-texto-box .mais-link {
@@ -3200,11 +3206,11 @@ footer a:hover {
 }
 
 #footer-dados {  
-  height: min-content;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: var(--espaco-gutter)
+  gap: var(--espaco-gutter);
+  align-items: stretch;
 }
 
 #footer-dados > div {
@@ -3250,8 +3256,8 @@ footer a:hover {
 .footer-direita {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;  
-  align-items: flex-end;  
+  justify-content: flex-end; 
+  width: fit-content;
 }
 
 #footer-contato {
@@ -3272,6 +3278,7 @@ footer a:hover {
   display: flex;
   flex-direction: row; 
   gap: var(--espaco-linha);
+  margin-top: auto;
 }
 
 
@@ -4394,7 +4401,7 @@ body.contraste {
   }
 
   .footer-direita {
-    display: block;
+    /*display: block;*/
   }
 
   #footer-creditos {
