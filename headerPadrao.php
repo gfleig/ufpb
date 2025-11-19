@@ -38,6 +38,10 @@
                         </a>
                     <?php endif; ?>  
 
+                    <a href="https://falabr.cgu.gov.br/web/home" target="_blank">
+                        Fala.BR
+                    </a>
+
                     <div class="spacer"></div>
 
                     <?php if ( get_theme_mod( 'traducao_geral' ) == 1 ) : ?>         
@@ -177,7 +181,11 @@
             <a href="<?php echo get_home_url(); ?>/contato">
                 Contato
             </a>
-        <?php endif; ?>         
+        <?php endif; ?>  
+        
+        <a href="https://falabr.cgu.gov.br/web/home" target="_blank">
+            Fala.BR
+        </a>
 
         <a href="javascript:void(0);" onclick="altoContraste();">
             <!--i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i-->
@@ -235,6 +243,24 @@
                         <?php endif; ?>
                             <div>DE</div>
                         </a>                                
+                    <?php endif; ?>
+                    <?php if ( get_theme_mod( 'check_italiano' ) == 1 ) : ?>                                
+                        <?php if ( get_theme_mod( 'url_italiano' ) ) : ?>
+                            <a href="<?php echo get_theme_mod( 'url_italiano' )?>">
+                        <?php else : ?>
+                            <a href="#" onclick="traduzir_italiano();">
+                        <?php endif; ?>
+                            <div>IT</div>
+                        </a>                                
+                    <?php endif; ?>  
+                    <?php if ( get_theme_mod( 'check_mandarim' ) == 1 ) : ?>                                
+                        <?php if ( get_theme_mod( 'url_mandarim' ) ) : ?>
+                            <a href="<?php echo get_theme_mod( 'url_mandarim' )?>">
+                        <?php else : ?>
+                            <a href="#" onclick="traduzir_mandarim();">
+                        <?php endif; ?>
+                            <div>中文</div>
+                        </a>        
                     <?php endif; ?>                                                
             </div>
         <?php endif; ?>    

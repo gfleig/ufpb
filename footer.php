@@ -141,7 +141,7 @@
           <a href="https://www.ufpb.br/ouvidoria">Ouvidoria</a>
           <a href="https://www.ufpb.br/acessoainformacao/">Acesso à Informação</a>
           <a href="https://www.ufpb.br/cia/">Acessibilidade</a>
-          <a href="https://dados.gov.br/home">Dados Abertos UFPB</a>
+          <a href="https://dados.gov.br/dados/organizacoes/visualizar/universidade-federal-da-paraiba">Dados Abertos UFPB</a>
           <a href="https://www.gov.br/mds/pt-br/pt-br/acesso-a-informacao/privacidade-e-protecao-de-dados">Privacidade e Proteção de Dados</a>
         </div>
 
@@ -157,6 +157,7 @@
 
 <div id="footer-gov">
   <div class="width-wrapper">
+    <a class="logo-acesso-footer" href="https://falabr.cgu.gov.br/web/home"><img src="<?php echo get_bloginfo("template_directory"); ?>/img/falabr-branco.svg" alt=""></a>
     <a class="logo-acesso-footer" target="_blank" rel="noopener noreferrer" href="https://www.gov.br/acessoainformacao/pt-br" title="Acesse o portal sobre o acesso à informação">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="100%" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
         <defs>
