@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.4.8
+Version: 2.5
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -51,6 +51,44 @@ body {
 }
 
 /*=================================== NOVIDADES ===========================================*/
+
+.editora-catalogo {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: var(--espaco-gutter);
+  row-gap: var(--espaco-gutter);
+  margin-bottom: var(--espaco-gutter);
+  /*grid-auto-flow: column;*/
+  grid-template-rows: auto;
+  align-items: baseline;
+}
+
+.publicacao {
+}
+
+.editora-catalogo .publicacao img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 0px 0px 0 rgba(0,0,0,.0);
+  transition: box-shadow .15s;
+
+}
+
+.editora-catalogo .publicacao:hover img {
+  box-shadow: 0 6px 18px 0 rgba(0,0,0,.15);
+}
+
+.editora-catalogo .titulo {
+  font-size: var(--fonte-base);
+  font-weight: 500;
+  color: var(--cor-texto-escuro);
+  margin-top: var(--espaco-pequeno);
+}
+
+.editora-catalogo .publicacao:hover .titulo {
+  color: var(--cor-tema);
+}
 
 #marca_gov {
   margin-left: auto;
@@ -3764,6 +3802,10 @@ body.contraste {
 
   /*novidades*/
 
+  .editora-catalogo {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .widget-numeros {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -4398,7 +4440,7 @@ body.contraste {
   }
 
   #footer-dados {
-    flex-direction: row-reverse;
+    /*flex-direction: row-reverse;*/
     justify-content: space-between;
   }  
 

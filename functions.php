@@ -17,6 +17,12 @@ include get_theme_file_path('/widgets/WidgetLinksRapidos.php');
 include get_theme_file_path('/widgets/WidgetPatentes.php');
 include get_theme_file_path('/widgets/WidgetNumeros.php');
 
+include get_theme_file_path('/widgets/EditoraCatalogo.php');
+include get_theme_file_path('/widgets/WidgetEditoraCatalogo.php');
+
+include get_theme_file_path('/widgets/WidgetPostsCheck.php');
+include get_theme_file_path('/widgets/WidgetNoticiasCheck.php');
+
 function example_theme_support() {
     remove_theme_support( 'widgets-block-editor' );
 }
