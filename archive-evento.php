@@ -3,13 +3,34 @@
 <div class="corpo" id="conteudo_pagina">
     <div class="corpo-grid width-wrapper large-spacer">
         <div class="sidebar">  
-            <?php
-            summon_side_menu();  
-            ?>                  
+            <ul class="side-menu">
+                <li class="menu-item current-menu-ancestor current-menu-parent menu-item-has-children eventos-side"><a href="">Eventos</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a href="https://localhost/wordpress/eventos/">Eventos Atuais e Futuros</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://localhost/wordpress/eventos/passados">Eventos Passados</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="side-menu">
+                <?php 
+                    wp_nav_menu(   
+                        array ( 
+                            'theme_location' => 'main-menu',
+                            'items_wrap' => '%3$s',
+                            'container' => false,
+                        ) 
+                    ); 
+                ?>
+            </ul>                   
         </div>
         
         <div class="content-grid">            
-            <h1>Eventos</h1>
+            <h1>Eventos<?php if (isset( $wp_query->query_vars['is_past'] )) { echo ' Passados'; } ?></h1>
             <div class="cards-lista">
                 <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
                 $args = array(
@@ -20,10 +41,10 @@
                     'order' => 'DESC',
                 );
 
-                $post_query = new WP_Query($args);
-                if ($post_query->have_posts() ) {
-                    while ($post_query->have_posts()){
-                        $post_query->the_post(); 
+                //$post_query = new WP_Query($args);
+                if (have_posts() ) {
+                    while (have_posts()){
+                        the_post(); 
                         
                         echo'<a href="' , esc_url(the_permalink()) , '" class="evento-card">';
                         
@@ -39,11 +60,11 @@
                                     $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );   
 
                                     if (empty($data_fim) || $data_inicio == $data_fim) {
-                                        echo wp_date('j \d\e F', $data_inicio);
+                                        echo wp_date('j \d\e F \d\e Y', $data_inicio);
                                     } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F', $data_fim);
+                                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim);
                                     } else {
-                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F', $data_fim);    
+                                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F \d\e Y', $data_fim);    
                                     }         
                                 echo '</div>'; //data
 

@@ -1297,4 +1297,54 @@ function edital_fixados( \WP_Query $query ) {
 add_action( 'pre_get_posts', 'edital_fixados', 1 );
 
 
+/*
+*Pega apenas eventos passados ou futuros
+*Fonte: https://wordpress.stackexchange.com/questions/121352/help-splitting-a-custom-post-type-archive-into-past-and-upcoming
+*/
+function evento_post_order( $query ){
+    // if this is not an admin screen,
+    // and is the event post type archive
+    // and is the main query
+    if( ! is_admin()
+        && $query->is_post_type_archive( 'evento' )
+        && $query->is_main_query() ){
+
+        // if this is a past events view
+        // set compare to before today,
+        // otherwise set to today or later
+        $compare = isset( $query->query_vars['is_past'] ) ? '<' : '>=';
+
+        // add the meta query and use the $compare var
+        //$today = date( 'Y-m-d' );
+        $meta_query = array(
+            array(
+                'key' => '__data_fim',  // usa a data de fim do evento
+                'value' => current_time('timestamp') - 86400, //- 3 * 3600,
+                'compare' => $compare       // pra comprar com a data atual. 
+            ) 
+        ); 
+        $query->set( 'meta_query', $meta_query );
+        $query->set( 'meta_key', '__data_inicio' );
+        $query->set( 'orderby', 'meta_value' );
+        $query->set( 'order', 'ASC' );
+    }
+}
+add_action( 'pre_get_posts', 'evento_post_order' );
+
+function evento_archive_rewrites(){
+    add_rewrite_tag( '%is_past%','([^&]+)' );
+    add_rewrite_rule(
+        'eventos/passados/([0-9]+)/?$',
+        'index.php?post_type=evento&paged=$matches[1]&is_past=true',
+        'top'
+    );
+    add_rewrite_rule(
+        'eventos/passados/?$',
+        'index.php?post_type=evento&is_past=true',
+        'top'
+    );
+}
+add_action( 'init', 'evento_archive_rewrites' );
+
+
 ?>

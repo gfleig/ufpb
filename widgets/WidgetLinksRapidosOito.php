@@ -25,13 +25,15 @@ class WidgetLinksRapidosOito extends WP_Widget {
             echo '<div class="acesso-links-oito-widget">';
 
             for ($i = 1; $i < 9; $i++) {
-                echo '
-                <a class="linha-abaixo linha-header-longa link-full" href="' . esc_url($instance['link'][$i]) . '">
-                    <div class="link-oito-icon-wrapper">              
-                        <i class="' . esc_attr($instance['imagem'][$i]) . '"></i>              
-                    </div>          
-                    <div class="link-text texto-escuro">' . esc_html($instance['texto'][$i]) . '</div>
-                </a>';
+                if (!empty($instance['link'][$i])) {
+                    echo '
+                    <a class="linha-abaixo linha-header-longa link-full" href="' . esc_url($instance['link'][$i]) . '">
+                        <div class="link-oito-icon-wrapper">              
+                            <i class="' . esc_attr($instance['imagem'][$i]) . '"></i>              
+                        </div>          
+                        <div class="link-text texto-escuro">' . esc_html($instance['texto'][$i]) . '</div>
+                    </a>';
+                }
             }        
         
         echo '                
@@ -50,6 +52,7 @@ class WidgetLinksRapidosOito extends WP_Widget {
         </p>
         <?php
         for ($i = 1; $i < 9; $i++){
+            
             echo '<p>';
                 echo '<label for="', $this->get_field_id('texto' . $i) , '">Título do link número ' , $i , ':</label>';
                 echo '<input class="widefat" id="' , $this->get_field_id('texto' . $i) , '" name="' , $this->get_field_name('texto') . '[' . $i . ']" type="text" value="' , esc_attr($instance['texto'][$i]) , '">';
@@ -60,7 +63,7 @@ class WidgetLinksRapidosOito extends WP_Widget {
             echo '</p>';
             echo '<p>';
                 echo '<label for="', $this->get_field_id('link' . $i) , '">Link número ' , $i , ':</label>';
-                echo '<input class="widefat" id="' , $this->get_field_id('link' . $i) , '" name="' , $this->get_field_name('link') . '[' . $i . ']" type="url" value="' , esc_attr($instance['link'][$i]) , '">';
+                echo '<input class="widefat" id="' , $this->get_field_id('link' . $i) , '" name="' , $this->get_field_name('link') . '[' . $i . ']" type="text" value="' , esc_attr($instance['link'][$i]) , '">';
             echo '</p>';
             echo '<br>';
         }        
@@ -75,7 +78,7 @@ class WidgetLinksRapidosOito extends WP_Widget {
         for ($i = 1; $i < 9; $i++){
             $instance['texto'][$i] = !empty($new_instance['texto'][$i]) ? esc_html($new_instance['texto'][$i]) : 'Título do Link';
             $instance['imagem'][$i] = !empty($new_instance['imagem'][$i]) ? esc_attr($new_instance['imagem'][$i]) : 'fa-solid fa-pen-fancy';
-            $instance['link'][$i] = !empty($new_instance['link'][$i]) ? esc_url($new_instance['link'][$i]) : 'ufpb.br';
+            $instance['link'][$i] = !empty($new_instance['link'][$i]) ? esc_url($new_instance['link'][$i]) : '';
         }        
 
         return $instance;

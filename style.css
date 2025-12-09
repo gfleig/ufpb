@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.5
+Version: 2.5.1
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -51,6 +51,10 @@ body {
 }
 
 /*=================================== NOVIDADES ===========================================*/
+
+:where(.wp-block-columns.is-layout-flex) {
+  gap: var(--espaco-gutter);
+}
 
 .editora-catalogo {
   display: grid;
@@ -1584,7 +1588,7 @@ input[type="search"]:focus {
 }
 
 /*.menu>ul>.menu-item-has-children:hover>a, */
-.menu > ul > .current_page_item > a, .menu > ul > .current_page_ancestor > a, .menu > ul > .menu-item-type-post_type:hover > a, .menu > ul > .current-menu-ancestor > a, .menu > ul > li:has(.current-page-ancestor) > a, .menu .menu-item-object-custom:hover > a {
+.menu > ul > .current-menu-item > a, .menu > ul > .current_page_item > a, .menu > ul > .current_page_ancestor > a, .menu > ul > .menu-item-type-post_type:hover > a, .menu > ul > .current-menu-ancestor > a, .menu > ul > li:has(.current-page-ancestor) > a, .menu .menu-item-object-custom:hover > a {
   margin-bottom: -3px;
   border-bottom: 3px solid var(--cor-tema);
   color: var(--cor-tema);
@@ -1718,20 +1722,23 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   border: 1px solid var(--cor-linha);
 }
 
-.menu ul li ul .current_page_item {
+.menu ul li ul .current_page_item,
+.menu ul li ul .current-menu-item {
   background-color: var(--cor-background);
   text-decoration: none;
 }
 
 .menu ul li ul .current_page_item a,
-.menu ul li ul .current-page-ancestor a {
+.menu ul li ul .current-page-ancestor a,
+.menu ul li ul .current-menu-item a {
   color: var(--cor-tema);
   font-weight: 500;
   background: #fbfbfb;
 }
 
 .menu ul li ul .current_page_item a:hover,
-.menu ul li ul .current-page-ancestor a:hover {
+.menu ul li ul .current-page-ancestor a:hover,
+.menu ul li ul .current-menu-item a:hover {
   cursor: default;
 }
 
@@ -2114,7 +2121,8 @@ a.linha-abaixo.mais-link:hover {
   line-height: 1.2;
 }
 
-.sidebar .current_page_item a {
+.sidebar .current_page_item a,
+.sidebar .current-menu-item a {
   cursor: default;
   color: var(--cor-tema);
   font-weight: 500;
@@ -2125,8 +2133,9 @@ a.linha-abaixo.mais-link:hover {
   display: none;
 }
 
-.side-menu .menu-item:has(.current_page_item), .side-menu .current-menu-parent li {
+.side-menu .menu-item:has(.current_page_item), .side-menu .current-menu-parent li, .side-menu .menu-item:has(.current-menu-item), .side-menu, .side-menu .menu-item.eventos-side  {
   display: flex;
+  flex-direction: column;
 }
 
 .side-menu .menu-item {

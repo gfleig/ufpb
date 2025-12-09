@@ -1,7 +1,7 @@
 <div class="topo portal" id="cabecalho-id">
         <div class="cabecalho width-wrapper">            
             <a rel="noopener noreferrer" href="<?php echo get_home_url(); ?>" class="brasao">
-                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/marca.png">
+                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/marca-70anos.png">
             </a>
             <button type="nav" id="hamburger">
                 <i id="hamburger-botao" class="fa-solid fa-bars"></i>
