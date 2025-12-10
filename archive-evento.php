@@ -7,10 +7,10 @@
                 <li class="menu-item current-menu-ancestor current-menu-parent menu-item-has-children eventos-side"><a href="">Eventos</a>
                     <ul class="sub-menu">
                         <li class="menu-item">
-                            <a href="https://localhost/wordpress/eventos/">Eventos Atuais e Futuros</a>
+                            <a href="<?php echo get_home_url(); ?>/eventos">Eventos Atuais e Futuros</a>
                         </li>
                         <li class="menu-item">
-                            <a href="https://localhost/wordpress/eventos/passados">Eventos Passados</a>
+                            <a href="<?php echo get_home_url(); ?>/eventos/passados">Eventos Passados</a>
                         </li>
                     </ul>
                 </li>
@@ -33,13 +33,13 @@
             <h1>Eventos<?php if (isset( $wp_query->query_vars['is_past'] )) { echo ' Passados'; } ?></h1>
             <div class="cards-lista">
                 <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
-                $args = array(
+                /*$args = array(
                     'post_type' => 'evento',
                     'paged' => $paged,
                     'meta_key' => '__data_inicio',
                     'orderby' => 'meta_value',
                     'order' => 'DESC',
-                );
+                );*/
 
                 //$post_query = new WP_Query($args);
                 if (have_posts() ) {
@@ -79,7 +79,7 @@
                         <div class="pagination">';
                             // Adiciona a paginação
                             echo paginate_links(array(
-                                'total' => $post_query->max_num_pages,
+                                //'total' => $post_query->max_num_pages,
                                 'current' => max(1, $paged),
                                 'prev_text' => __('Anterior'),
                                 'next_text' => __('Próximo'),

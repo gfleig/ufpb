@@ -1313,6 +1313,7 @@ function evento_post_order( $query ){
         // set compare to before today,
         // otherwise set to today or later
         $compare = isset( $query->query_vars['is_past'] ) ? '<' : '>=';
+        $order = isset( $query->query_vars['is_past'] ) ? 'DESC' : 'ASC';
 
         // add the meta query and use the $compare var
         //$today = date( 'Y-m-d' );
@@ -1320,13 +1321,13 @@ function evento_post_order( $query ){
             array(
                 'key' => '__data_fim',  // usa a data de fim do evento
                 'value' => current_time('timestamp') - 86400, //- 3 * 3600,
-                'compare' => $compare       // pra comprar com a data atual. 
+                'compare' => $compare,       // pra comprar com a data atual.                 
             ) 
         ); 
         $query->set( 'meta_query', $meta_query );
         $query->set( 'meta_key', '__data_inicio' );
         $query->set( 'orderby', 'meta_value' );
-        $query->set( 'order', 'ASC' );
+        $query->set( 'order', $order );
     }
 }
 add_action( 'pre_get_posts', 'evento_post_order' );
