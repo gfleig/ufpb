@@ -1,40 +1,5 @@
 <?php
 
-// This is required to be sure Walker_Category_Checklist class is available
-//require_once ABSPATH . 'wp-admin/includes/template.php';
-/*
- * Custom walker to print category checkboxes for widget forms
- *
-class Walker_Category_Checklist_Widget extends Walker_Category_Checklist {
-
-    private $name;
-    private $id;
-
-    function __construct( $name = '', $id = '' ) {
-        $this->name = $name;
-        $this->id = $id;
-    }
-
-    function start_el( &$output, $cat, $depth = 0, $args = array(), $id = 0 ) {
-        extract( $args );
-
-        if ( empty( $taxonomy ) ) $taxonomy = 'category';
-
-        $id = $this->id . '-' . $cat->term_id;
-
-        $checked = checked( in_array( $cat->term_id, $selected_cats ), true, false );
-        
-        $output .= "\n<li id='{$taxonomy}-{$cat->term_id}'>" 
-            . '<label class="selectit"><input value="' 
-            . $cat->term_id . '" type="checkbox" name="' . $this->name 
-            . '[]" id="in-'. $id . '"' . $checked 
-            . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' 
-            . esc_html( apply_filters( 'the_category', $cat->name ) ) 
-            . '</label>';
-      }
-}*/
-
-
 class WidgetNoticiasCheck extends WP_Widget {
 
     function __construct(){
@@ -82,12 +47,18 @@ class WidgetNoticiasCheck extends WP_Widget {
             'ignore_sticky_posts' => true));    //otimização
 
         if ( $the_query->have_posts() ) {
+            $titulo = ($categories_count == 1) ? get_cat_name($instance['widget_categories'][0]) : 'Notícias';
+            $titulo = !empty($instance['titulo']) ? $instance['titulo'] : $titulo;
+
+            $mais_titulo = ($categories_count == 1) ? 'Mais ' . get_cat_name($instance['widget_categories'][0]) : 'Mais Notícias';
+            $mais_titulo = !empty($instance['mais_titulo']) ? $instance['mais_titulo'] : $mais_titulo;
+
             echo '<div class="width-wrapper large-spacer">';
                 echo '<div class="linha-header-longa">';
                     if ($categories_count == 1) {
-                        echo '<h2 class="linha-header"><a href="', esc_url(get_category_link($instance['widget_categories'][0]))  ,  '" class="">' , esc_html(get_cat_name($instance['widget_categories'][0])) , '</a></h2>';
+                        echo '<h2 class="linha-header"><a href="', esc_url(get_category_link($instance['widget_categories'][0]))  ,  '" class="">' , esc_html($titulo) , '</a></h2>';
                     } else {
-                        echo '<h2 class="linha-header"><a href="', get_home_url(), '/noticias/" class="">Notícias</a></h2>';
+                        echo '<h2 class="linha-header"><a href="', get_home_url(), '/noticias/" class="">' , esc_html($titulo) , '</a></h2>';
                     }
                 echo '</div>';
                 echo '<div class="noticias-widget">';                
@@ -98,11 +69,11 @@ class WidgetNoticiasCheck extends WP_Widget {
 
                     echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card linha-abaixo">';
                         echo '<div href="' , esc_url(the_permalink()) , '" class="noticia-card-imagem  small-spacer">';
-                        echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
+                        the_post_thumbnail('large');//echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
                         echo '</div>'; //noticia-imagem
 
                         $categories = get_the_category(); //categorias
-                        if ($categories) {
+                        if ($categories && ($categories_count > 1)) {
                             echo '<div class="categorias small-spacer">';
                             $categories = array_slice($categories, 0, 2);
                             foreach ($categories as $category) {                                                    
@@ -133,9 +104,9 @@ class WidgetNoticiasCheck extends WP_Widget {
                 echo '<div class="large-spacer mais-noticias">';
 
                     if ($categories_count == 1) {
-                        echo '<div class=""><a href="', esc_url(get_category_link($instance['widget_categories'][0]))  ,  '" class="mais-link">Mais ' , esc_html(get_cat_name($instance['widget_categories'][0])) , '</a></div>';
+                        echo '<div class=""><a href="', esc_url(get_category_link($instance['widget_categories'][0]))  ,  '" class="mais-link">' , esc_html($mais_titulo) , '</a></div>';
                     } else {
-                        echo '<div class=""><a href="', get_home_url(), '/noticias/" class="mais-link">Notícias</a></div>';
+                        echo '<div class=""><a href="', get_home_url(), '/noticias/" class="mais-link">' , esc_html($mais_titulo) , '</a></div>';
                     }
                     
                 echo '</div>';
@@ -149,10 +120,24 @@ class WidgetNoticiasCheck extends WP_Widget {
     function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
         $instance['widget_categories'] = $new_instance['widget_categories'];
+        $instance['titulo'] = $new_instance['titulo'];
+        $instance['mais_titulo'] = $new_instance['mais_titulo'];
         return $instance;
     }
 
     function form( $instance ) {
+        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : null;       
+        $mais_titulo = !empty($instance['mais_titulo']) ? esc_html($instance['mais_titulo']) : null;            
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('mais_titulo'); ?>">Título do link para mais postagens:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('mais_titulo'); ?>" name="<?php echo $this->get_field_name('mais_titulo'); ?>" type="text" value="<?php echo $mais_titulo; ?>">
+        </p>
+        <?php
         $defaults = array( 'widget_categories' => array() );
         $instance = wp_parse_args( (array) $instance, $defaults );    
         // Instantiate the walker passing name and id as arguments to constructor

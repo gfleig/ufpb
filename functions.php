@@ -8,7 +8,6 @@ include get_theme_file_path('/widgets/WidgetEventos.php');
 include get_theme_file_path('/widgets/WidgetNoticias.php');
 include get_theme_file_path('/widgets/WidgetDestaqueSolo.php');
 include get_theme_file_path('/widgets/WidgetDestaqueTriplo.php');
-//include get_theme_file_path('/widgets/WidgetDestaqueDuplo.php'); //deprecado a favor de usar o destaque triplo para destaques duplos
 include get_theme_file_path('/widgets/WidgetDestaqueSoloInvertido.php');
 include get_theme_file_path('/widgets/WidgetEditais.php');
 include get_theme_file_path('/widgets/WidgetMapaEFoto.php');
@@ -16,10 +15,7 @@ include get_theme_file_path('/widgets/WidgetNoticiasSimples.php');
 include get_theme_file_path('/widgets/WidgetLinksRapidos.php');
 include get_theme_file_path('/widgets/WidgetPatentes.php');
 include get_theme_file_path('/widgets/WidgetNumeros.php');
-
-include get_theme_file_path('/widgets/EditoraCatalogo.php');
 include get_theme_file_path('/widgets/WidgetEditoraCatalogo.php');
-
 include get_theme_file_path('/widgets/WidgetPostsCheck.php');
 include get_theme_file_path('/widgets/WidgetNoticiasCheck.php');
 

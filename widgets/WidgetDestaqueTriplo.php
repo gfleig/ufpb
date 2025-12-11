@@ -69,7 +69,11 @@ class WidgetDestaqueTriplo extends WP_Widget {
         echo '<div style="padding: 10px; background: gainsboro; margin-bottom: 15px">';
             echo '<p style="display: flex;">';
                 echo '<label for="' , $this->get_field_id('titulo' . $i) , '">Título do Destaque (opcional):</label>';
-                echo '<input style="flex: 1; margin-left: 10px; background: white;" class="widefat" id="' , $this->get_field_id('titulo' . $i) , '" name="' , $this->get_field_name('titulo') . '[' . $i . ']" type="text" value="' , esc_attr($instance['titulo'][$i]) , '">';        
+                echo '<input style="flex: 1; margin-left: 10px; background: white;" class="widefat" 
+                id="' , $this->get_field_id('titulo' . $i) , '" 
+                name="' , $this->get_field_name('titulo') . '[' . $i . ']" 
+                type="text" 
+                value="' , esc_attr($instance['titulo'][$i]) , '">';        
             echo '</p>';
 
             echo '<p style="display: flex;">';

@@ -170,12 +170,6 @@ class WidgetNumeros extends WP_Widget {
             </div>
         </div>
 
-        <!--div class="large-spacer mais-noticias">
-            <div class="">
-                <a href="https://sigov.ufpb.br/" target="_blank" rel="noopener noreferrer" class="mais-link">Mais Dados</a>
-            </div>
-        </div-->
-
         </div>
 
 
@@ -183,27 +177,11 @@ class WidgetNumeros extends WP_Widget {
         echo $args['after_widget']; 
     }
 
-    public function form($instance) {
-        $tag = esc_html($instance['tag']); 
-        $exclude = esc_html($instance['exclude']);              
-        ?>
-        <p>
-            <label for="<?php echo $this->get_field_id('tag'); ?>">Categoria a ser exibida (deixar vazio para mostrar todas as categorias):</label>
-            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('tag'); ?>" name="<?php echo $this->get_field_name('tag'); ?>" type="text" value="<?php echo $tag; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('exclude'); ?>">Categoria a ser excluída (deixar vazio para não excluir nenhuma):</label>
-            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('exclude'); ?>" name="<?php echo $this->get_field_name('exclude'); ?>" type="text" value="<?php echo $exclude; ?>">
-        </p>
-        <?php        
+    public function form($instance) {           
     }
 
     public function update($new_instance, $old_instance) {
-        $instance = $old_instance;
-
-        $instance['tag'] = !empty($new_instance['tag']) ? esc_html($new_instance['tag']) : "";
-        $instance['exclude'] = !empty($new_instance['exclude']) ? esc_html($new_instance['exclude']) : "";
-            
+        $instance = $old_instance;            
         return $instance;
     }
 }
