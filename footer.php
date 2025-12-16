@@ -138,11 +138,12 @@
       <div id="footer-ultima-linha">
         <div>© <?php echo wp_date('Y') ?> Universidade Federal da Paraíba.</div>
         <div id="footer-acesso-info">
-          <a href="https://www.ufpb.br/ouvidoria">Ouvidoria</a>
-          <a href="https://www.ufpb.br/acessoainformacao/">Acesso à Informação</a>
-          <a href="https://www.ufpb.br/cia/">Acessibilidade</a>
-          <a href="https://dados.gov.br/dados/organizacoes/visualizar/universidade-federal-da-paraiba">Dados Abertos UFPB</a>
-          <a href="https://www.gov.br/mds/pt-br/pt-br/acesso-a-informacao/privacidade-e-protecao-de-dados">Privacidade e Proteção de Dados</a>
+          <a target="_blank" href="https://www.ufpb.br/ouvidoria">Ouvidoria</a>
+          <a target="_blank" href="https://www.ufpb.br/acesso-a-informacao/">Acesso à Informação</a>
+          <a target="_blank" href="https://www.ufpb.br/comu/">CoMu</a>
+          <a target="_blank" href="https://www.ufpb.br/cia/">Acessibilidade</a>
+          <a target="_blank" href="https://dados.gov.br/dados/organizacoes/visualizar/universidade-federal-da-paraiba">Dados Abertos UFPB</a>
+          <a target="_blank" href="https://www.gov.br/mds/pt-br/pt-br/acesso-a-informacao/privacidade-e-protecao-de-dados">Privacidade e Proteção de Dados</a>
         </div>
 
       </div>

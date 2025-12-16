@@ -140,10 +140,26 @@ class WidgetNoticiasSimplesCheck extends WP_Widget {
 
                 echo '<div class="large-spacer mais-noticias">';
 
+                    $args = array(
+                        'taxonomy'   => 'category', // Target the standard 'category' taxonomy
+                        'hide_empty' => true,      // Only return categories that have posts
+                        'fields'     => 'ids'      // Only return an array of IDs for efficiency
+                    );
+
+                    $non_empty_categories = get_categories($args);
+                    $categorias_total = count($non_empty_categories);
+
                     if ($categories_count == 1) {
                         echo '<div class=""><a href="', esc_url(get_category_link($instance['widget_categories'][0]))  ,  '" class="mais-link">' , esc_html($mais_titulo) , '</a></div>';
+                    } else if ($categories_count >= $categorias_total) {
+                        echo '<div class=""><a href="', get_home_url() , '/noticias" class="mais-link">' , esc_html($mais_titulo) , '</a></div>';
                     } else {
-                        echo '<div class=""><a href="', get_home_url(), '/noticias/" class="mais-link">' , esc_html($mais_titulo) , '</a></div>';
+                        foreach ($instance['widget_categories'] as $categoria_id) {
+                            $categorias_url .= get_term_by('id', $categoria_id, 'category')->slug . ','; //vai montando o parâmetro com cada slug + vírgula
+                        }
+                        $categorias_url = rtrim($categorias_url, ","); //tira a última vírgula
+
+                        echo '<div class=""><a href="', get_home_url() , '/?category_name=', esc_html($categorias_url) , '" class="mais-link">' , esc_html($mais_titulo) , '</a></div>';
                     }
                     
                 echo '</div>';

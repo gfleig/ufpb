@@ -11,7 +11,7 @@
         <div class="content-grid"> <?php
             //echo '<h1>Postagens sobre ' , single_cat_title() , '</h1>';
             echo '<h1 class="cat-archive-title"><a href="' , home_url() , '/noticias">Postagens</a> / ' , single_cat_title() , '</h1>
-            <div class="cards-lista">';
+            <div class="cards-lista">';            
 
             if(have_posts()){
                 echo '<div class="sidebar-noticias">
@@ -23,8 +23,8 @@
                             
                             echo '<div class="noticia-categoria-imagem">
                                 <img src="', esc_url(the_post_thumbnail_url()), '">
-                            </div>';        
-                            
+                            </div>'; 
+
                             echo '<div class="titulo small-spacer">' , esc_html(the_title()) ,  '</div>'; //título
 
                             if(has_excerpt()) {
