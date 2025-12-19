@@ -13,6 +13,9 @@
             ) );
 
             echo '<h1>Postagens</h1>'; ?>
+
+
+            
                 
             <!--form action="<?php bloginfo('siteurl'); ?>" method="get">
                 <label for="cat">Select a Category:</label>
@@ -33,19 +36,27 @@
 
             <?php
 
+            $categories = get_sorted_categories('date');
+
+            /*?><pre>
+            //<?php print_r( $categories[0]->cat_ID ); ?>
+            </pre><?php*/
+
             foreach ($categories as $categoria) { 
+
+                //print_r( $categoria->cat_ID );
 
                 $the_query = new WP_Query( array(
                     'posts_per_page' => $posts_per_page,
-                    'cat' => get_cat_ID($categoria->name),
+                    'cat' => $categoria->cat_ID,
                     'no_found_rows' => true
                 ));
 
-                echo '<div class="linha-header-longa">';
-                    echo '<h2 class="linha-header mais-link-header"><a href="', get_category_link($categoria->term_id) , '" >', $categoria->name ,'</a></h2>';
+                echo '<div class="large-spacer"><div class="linha-header-longa">';
+                    echo '<h2 class="linha-header mais-link-header"><a href="', get_category_link($categoria->cat_ID) , '" >', $categoria->name ,'</a></h2>';
                 echo '</div>';
 
-                echo '<div class="noticias-widget-linha large-spacer">';                
+                echo '<div class="noticias-widget-linha">';                
                 $postCount = 0;
                 while ( $the_query->have_posts() && $postCount < $posts_per_page ){
                     $postCount++;
@@ -85,7 +96,14 @@
                     echo '</div>'; //noticia-card
                 }           
 
+                          
+
                 echo '</div>';
+
+                echo '<div class="large-spacer mais-noticias">';
+                    echo '<div class=""><a href="', esc_url(get_category_link($categoria->cat_ID))  ,  '" class="mais-link">Mais ' , esc_html($categoria->name) , '</a></div>';
+                echo '</div>'; 
+                echo '</div>'; 
             }
             ?>
         </div>

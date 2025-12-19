@@ -33,6 +33,22 @@
             <h1>Eventos<?php if (isset( $wp_query->query_vars['is_past'] )) { echo ' Passados'; } ?></h1>
             <div class="cards-lista">
                 <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
+
+
+                // Daria para fazer uma query nova caso não exista eventos atuais/futuros,
+                // mas acho que é mais fácil só redirecionar o usuário para a página de eventos passados
+                
+                /*if (!have_posts()) {
+                    $args = array(
+                        'post_type' => 'evento',
+                        'paged' => $paged,
+                        'meta_key' => '__data_inicio',
+                        'orderby' => 'meta_value',
+                        'order' => 'DESC',
+                    );
+
+                    $wp_query = new WP_Query($args);
+                }
                 /*$args = array(
                     'post_type' => 'evento',
                     'paged' => $paged,
@@ -87,7 +103,8 @@
                         echo '</div>
                     </div>';
                 } else {
-                    echo '<p>Desculpe, nenhum post corresponde aos seus critérios.</p>';
+                    wp_safe_redirect( get_home_url() . '/eventos/passados');
+                    //echo '<p>Desculpe, nenhum post corresponde aos seus critérios.</p>';
                 }
                 echo '
             </div>     
