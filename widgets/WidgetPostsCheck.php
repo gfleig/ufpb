@@ -53,7 +53,14 @@ class WidgetNoticiasSimplesCheck extends WP_Widget {
         echo $args['before_widget'];
 
         $posts_per_page = 4;
-        $categories_count = count($instance['widget_categories']);
+        
+        try {
+            $categories_count = count($instance['widget_categories']);
+        } catch (TypeError $ex) {
+            echo '<pre>Nenhuma categoria selecionada: seleciona a(s) categoria(s) a serem exibidas no widget. Erro:</pre>';
+            echo $ex->getMessage();
+            return 0;
+        }        
 
         $sticky_query_args = array(
             'category__in' => $instance['widget_categories'],
