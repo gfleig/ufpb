@@ -10,7 +10,7 @@
                     <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a>
                 </div>
             </div>
-            <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br" class="brasao">
+            <a target="_blank" rel="noopener noreferrer" href="http://www.ufpb.br" class="brasao">
                 <div class="ufpb-nome">UNIVERSIDADE<br>FEDERAL<br>DA PARAÍBA</div>
                 <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg"-->
                 <img alt="Brasão oficial da UFPB (logo)" src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao.png">

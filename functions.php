@@ -18,6 +18,7 @@ include get_theme_file_path('/widgets/WidgetNumeros.php');
 include get_theme_file_path('/widgets/WidgetEditoraCatalogo.php');
 include get_theme_file_path('/widgets/WidgetPostsCheck.php');
 include get_theme_file_path('/widgets/WidgetNoticiasCheck.php');
+include get_theme_file_path('/widgets/WidgetNumerosMulheres.php');
 
 function example_theme_support() {
     remove_theme_support( 'widgets-block-editor' );
@@ -269,7 +270,7 @@ function adicionar_controle_heroimage($wp_customize) {
 
     // Campo de URL personalizado
     $wp_customize->add_setting('heroimage_link_url', array(
-        'default' => 'http://ufpb.br',
+        'default' => 'http://www.ufpb.br',
         'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
     ));
     $wp_customize->add_control('heroimage_link_url', array(
@@ -528,7 +529,7 @@ function customizer_centro($wp_customize) {
     ));
     // Campo de URL personalizado
     $wp_customize->add_setting('custom_urlcentro', array(
-        'default' => 'http://ufpb.br',
+        'default' => 'http://www.ufpb.br',
         'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
     ));
     $wp_customize->add_control('custom_urlcentro', array(
@@ -645,7 +646,7 @@ function customizer_contato($wp_customize) {
     ));
     $wp_customize->add_control('custom_url_contato', array(
         'input_attrs' => array(
-            'placeholder' => __('Ex.: http://ufpb.br/contato'),
+            'placeholder' => __('Ex.: http://www.ufpb.br/contato'),
         ),
         'label' => 'URL de contato',
         'section' => 'customizer_contato',

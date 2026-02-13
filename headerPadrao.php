@@ -1,7 +1,7 @@
 <div class="topo portal" id="cabecalho-id">
         <div class="cabecalho width-wrapper">            
             <div class="cabecalho-esquerda">
-                <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br" class="brasao">  
+                <a target="_blank" rel="noopener noreferrer" href="http://www.ufpb.br" class="brasao">  
                     <img alt="Brasão oficial da UFPB (logo)" src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao.png">
                 </a>
                 

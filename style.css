@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.5.6
+Version: 2.6
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -32,6 +32,7 @@ body {
   --cor-tema-claro-focus: color-mix(in Oklch, var(--cor-tema) 6%, white);
   --cor-tema-escuro: color-mix(in Oklch, var(--cor-tema) 90%, black);
   --cor-tema-black: color-mix(in Oklch, var(--cor-tema) 50%, black);
+  --cor-tema-secundario: color-mix(in Oklch, var(--cor-tema) 20%, white);
 
   --cor-texto-escuro: #202020;
   --cor-texto-secundario: #595959;
@@ -51,6 +52,142 @@ body {
 }
 
 /*=================================== NOVIDADES ===========================================*/
+
+.grafico-grid {
+  display: grid;
+  grid-template-columns: max-content auto max-content max-content;
+  column-gap: var(--espaco-gutter);
+  row-gap: var(--espaco-pequeno);
+  color: var(--cor-texto-secundario);
+  font-stretch: condensed;
+  margin-bottom: 32px;
+}
+
+h3.secao {
+  font-size: 24px;
+}
+
+.grafico-cat {
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+  font-stretch: normal;
+}
+
+.totais {
+  text-align: right;
+  align-content: center;
+}
+
+.grafico-legendas {
+  display: flex;
+  flex-direction: row;
+  gap: var(--espaco-pequeno);
+  justify-content: center;
+  font-stretch: normal;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
+
+.grafico-legendas div:nth-child(1) {
+  text-align: right;
+  width: 50%;
+}
+
+.grafico-legendas div:nth-child(2) {
+  text-align: left;
+  width: 50%;
+}
+
+.total-observacao {
+  font-size: var(--fonte-pequena);
+  font-style: italic;
+  color: var(--cor-texto-secundario);
+}
+
+.linha-rotulo {
+  line-height: 1;
+  align-content: center;
+  min-width: 150px;
+}
+
+.linha-barras {
+  display: grid;
+  flex-direction: row;
+  line-height: 1;
+  cursor: default;
+  justify-content: center;
+  grid-template-columns: 50% min-content 1fr;
+  grid-template-areas: "mulher desconhecido homem";
+  font-size: var(--fonte-pequena);
+}
+
+.linha-barras > div {
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-width: fit-content;
+  gap: var(--espaco-minimo);
+}
+
+.linha-barras .porcento {
+  font-size: 12px;
+  color: var(--cor-texto-medio);
+  align-self: center;
+}
+
+.linha-barras .mulheres {
+  background: var(--cor-tema);
+  color: var(--cor-background);
+  width: calc(var(--qtd-m) / var(--qtd-total) * 100%);
+  justify-self: end;
+  text-align: right;
+  grid-area: mulher;
+  justify-content: end;
+}
+
+.mulheres .porcento {
+  color: var(--cor-tema-claro);
+  opacity: 50%;
+}
+
+.linha-barras .homens {
+  background: var(--cor-tema-secundario);  
+  text-align: left;
+  width: calc(var(--qtd-h) / var(--qtd-total) * 100%);
+  grid-area: homem;
+  flex-direction: row-reverse;
+  justify-content: left;
+}
+
+.linha-barras .desconhecidos {
+  background: yellow;  
+  text-align: center;
+  width: calc(var(--qtd-d) / var(--qtd-total) * 100%);
+  grid-area: desconhecido;
+}
+
+.mais-dados-mulheres {
+  margin-top: var(--espaco-gutter);
+  margin-bottom: calc(-1 * (var(--espaco-gutter)));
+  line-height: 1.45;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mais-dados-mulheres div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.mais-dados-mulheres .mais-link {
+  margin-right: 1.5rem;
+}
+
+.mais-dados-mulheres .mais-link::after {
+  position: absolute;
+}
 
 .wp-block-image:has(.alignleft),
 .wp-block-image:has(.alignright) {
@@ -159,7 +296,16 @@ body {
 
 .widget-numeros .item.mais-dados {
   padding: var(--espaco-linha);
-  border: 1px solid var(--cor-linha);
+  border: 3px solid var(--cor-tema);
+}
+
+.widget-numeros .item.mais-dados:hover {
+  background: var(--cor-tema);
+  color: white;
+}
+
+.item.mais-dados:hover .destaque {
+  color: white;
 }
 
 .total{
@@ -2448,6 +2594,10 @@ a.linha-abaixo.mais-link:hover {
   background: var(--cor-tema-claro);
 }
 
+.evento-card:hover {
+  background: var(--cor-tema-claro-focus);
+}
+
 .evento-card > div:nth-child(2) {
   padding-top: var(--espaco-linha);
   padding-bottom: var(--espaco-linha);
@@ -3826,6 +3976,96 @@ body.contraste {
   }
 
   /*novidades*/
+
+  .grafico-grid {
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    column-gap: var(--espaco-gutter);
+    row-gap: var(--espaco-pequeno);
+    color: var(--cor-texto-secundario);
+    font-stretch: condensed;
+    margin-bottom: var(--espaco-gutter);
+  }
+
+  h3.secao {
+  font-size: 20px;
+  }
+
+  .grafico-cat {
+    font-weight: 600;
+    color: var(--cor-texto-secundario);
+    font-stretch: normal;
+    font-size: var(--fonte-pequena);
+  }
+
+  .totais {
+    display: none;
+  }
+
+  .totais.nd {
+    display: block;
+  }
+
+  .grafico-legendas {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-stretch: normal;
+    font-size: var(--fonte-pequena);
+  }
+
+  .grafico-legendas div:nth-child(1) {
+    text-align: left;
+    flex-grow: 1;
+  }
+
+  .grafico-legendas div:nth-child(2) {
+    text-align: right;
+    flex-grow: 1;
+  }
+
+  .total-observacao {
+    display: none;
+  }
+
+  .linha-rotulo {
+    font-size: 14px;
+    line-height: 1;
+    min-width: 86px;
+  }
+
+  .linha-barras {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .linha-barras > div {
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  .linha-barras .porcento {
+    display: none;
+  }
+
+  .linha-barras .mulheres {
+    background: var(--cor-tema);
+    color: var(--cor-background);
+    justify-content: left;
+  }
+
+  .linha-barras .homens {
+    justify-content: right;
+    background: var(--cor-tema-claro-focus);
+    flex-grow: 1;
+  }
+
+  .mais-dados-mulheres {
+    justify-content: end;
+  }
+  
 
   .the-content-container .wp-block-image .alignleft,
   .the-content-container .wp-block-image .alignright {
