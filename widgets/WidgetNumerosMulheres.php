@@ -57,8 +57,12 @@ class WidgetNumerosMulheres extends WP_Widget {
         ?>
 
         <div class="width-wrapper large-spacer">
-        <div class="linha-header-longa">
-            <h2 class="linha-header"><a href="#">Mulheres UFPB em Números</a></h2>
+        
+            <?php if(!is_page()) : ?>
+                <div class="linha-header-longa">
+                <h2 class="linha-header"><a href="#">Mulheres UFPB em Números</a></h2>
+                </div>
+            <?php endif; ?>
 
             <h3 class="secao">Discentes</h3>
             <div class="grafico-grid">
@@ -67,7 +71,7 @@ class WidgetNumerosMulheres extends WP_Widget {
                     <div class="">Mulheres</div>
                     <div class="">Homens</div>
                 </div>
-                <div class="grafico-cat">N/D</div>
+                <div class="grafico-cat">N/D*</div>
                 <div class="grafico-cat totais">Total</div>
                 <div class="linha-rotulo">Graduação</div>
                 <div class="linha-barras" style="--qtd-total: <?php echo $graduacao_total; ?>;">
@@ -158,7 +162,7 @@ class WidgetNumerosMulheres extends WP_Widget {
                     <div class="">Mulheres</div>
                     <div class="">Homens</div>
                 </div>
-                <div class="grafico-cat">N/D</div>
+                <div class="grafico-cat">N/D*</div>
                 <div class="grafico-cat totais">Total</div>
 
                 <div class="linha-rotulo">Doutorado</div>
@@ -252,7 +256,7 @@ class WidgetNumerosMulheres extends WP_Widget {
                     <div class="">Mulheres</div>
                     <div class="">Homens</div>
                 </div>
-                <div class="grafico-cat">N/D</div>
+                <div class="grafico-cat">N/D*</div>
                 <div class="grafico-cat totais">Total</div>
                 <div class="linha-rotulo">Todas</div>
                 <div class="linha-barras" style="--qtd-total: <?php echo $tecadm_total; ?>;">
@@ -267,8 +271,10 @@ class WidgetNumerosMulheres extends WP_Widget {
                 <div class="totais"><?php echo $tecadm_total; ?></div>
             </div>
             
+            <div class="total-observacao">*Dado desconhecido ou não informado</div>
+
             <!--div class="mais-dados-mulheres">
-                <div class="total-observacao">*Os somatórios totais incluem os números para gênero desconhecido ou não informado</div>
+                
                 <div class=""><a href="', get_home_url(), '/noticias/" class="mais-link">Mais Dados</a></div>
             </div-->
         </div>

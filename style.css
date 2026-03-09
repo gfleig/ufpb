@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.6
+Version: 2.6.1
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -52,6 +52,17 @@ body {
 }
 
 /*=================================== NOVIDADES ===========================================*/
+
+.the-content-container .width-wrapper.large-spacer {
+  padding: 0;
+  margin-bottom: var(--espaco-gutter);
+}
+
+
+
+.absoluto {
+  font-size: 14px;
+}
 
 .grafico-grid {
   display: grid;
@@ -107,7 +118,7 @@ h3.secao {
 .linha-rotulo {
   line-height: 1;
   align-content: center;
-  min-width: 150px;
+  min-width: 120px;
 }
 
 .linha-barras {
@@ -3976,6 +3987,10 @@ body.contraste {
   }
 
   /*novidades*/
+
+  .absoluto {
+    font-size: 12px;
+  }
 
   .grafico-grid {
     display: grid;

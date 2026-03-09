@@ -505,9 +505,21 @@ function registrar_widgets_personalizados() {
         'before_title'  => '',
         'after_title'   => '',
     ));    
+    register_sidebar(array(
+        'name'          => 'Widgets da Página Custom',
+        'id'            => 'widgets-pagina-custom',
+        'description'   => 'Insira os widgets que aparecerão no template de página personalizado.',
+        'before_widget' => '',
+        'after_widget'  => '',
+        'before_title'  => '',
+        'after_title'   => '',
+    ));    
 }
 // Hook para registrar os widgets
 add_action('widgets_init', 'registrar_widgets_personalizados');
+
+
+
 
 // CENTRO DE ENSINO
 // Adiciona seção ao Customizer
