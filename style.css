@@ -724,17 +724,21 @@ p {
   font-weight: 500;
 }
 
-p a, .wp-block-list a, .noticia-link-relacionado, .wp-block-file a {  
+p a, .wp-block-list a, .noticia-link-relacionado, .wp-block-file a, .wp-block-page-list a {  
   color: var(--cor-tema);
   font-weight: 600;
 }
 
-p a:visited, .wp-block-list a:visited {
+p a:visited, .wp-block-list a:visited, .wp-block-page-list a:visited {
   color: #551A8B;
 }
 
-p a:hover, .wp-block-list a:hover {  
+p a:hover, .wp-block-list a:hover, .wp-block-page-list a:hover {  
   text-decoration: underline;
+}
+
+.wp-block-list .wp-block-list, .wp-block-page-list ul {
+  margin-top: 1rem;
 }
 
 .wp-block-quote {
@@ -862,18 +866,19 @@ address {
   color: var(--cor-texto-escuro);
 }
 
-.wp-block-list li {
+.wp-block-list li, .wp-block-page-list li {
   margin-bottom: 1rem;
   margin-left: 2rem;
   padding-left: .5rem;
   
 }
 
-ul.wp-block-list{
-  list-style: square;
+
+ul.wp-block-list, .wp-block-page-list, .wp-block-page-list ul{
+  list-style: square;  
 }
 
-ol.wp-block-list li::marker, ul.wp-block-list li::marker {
+ol.wp-block-list li::marker, ul.wp-block-list li::marker, ul.wp-block-page-list li::marker {
   font-size: var(--fonte-pequena);
   font-weight: 500;
 }
@@ -1947,7 +1952,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
 .imagem.banner-topo::before {
   position: absolute;
   /*background: linear-gradient(rgba(255,255,255,0) 90%, var(--cor-background));*/
-  background: linear-gradient(rgba(255,255,255,0) 60%, rgba(0,0,0,0.5));
+  background: linear-gradient(rgba(255,255,255,0) 60%, var(--cor-tema-black));
   content: '';
   width: 100%;
   height: 100%;
@@ -3676,7 +3681,7 @@ body.contraste {
   color: #ff0;
 }
 
-.contraste p, .contraste strong, .contraste .wp-block-list, .contraste h2, .contraste h3, .contraste .rotulo-escuro, .contraste .rotulo-evento, .contraste h1, .contraste .wp-block-image :where(figcaption), .contraste .noticia-compartilhe, .contraste .noticia-h2, .contraste .parent-link > a:nth-child(1), .contraste .data, .contraste .evento-data, .contraste .slide-texto-box .texto, .contraste input[type="text"], .contraste .titulo {
+.contraste p, .contraste strong, .contraste .wp-block-list, .contraste .wp-block-page-list, .contraste h2, .contraste h3, .contraste .rotulo-escuro, .contraste .rotulo-evento, .contraste h1, .contraste .wp-block-image :where(figcaption), .contraste .noticia-compartilhe, .contraste .noticia-h2, .contraste .parent-link > a:nth-child(1), .contraste .data, .contraste .evento-data, .contraste .slide-texto-box .texto, .contraste input[type="text"], .contraste .titulo {
   color: white;
 }
 
@@ -4403,7 +4408,7 @@ body.contraste {
     grid-auto-flow: unset;
   }
 
-  .wp-block-list {
+  .wp-block-list, .wp-block-page-list {
     margin-left: 0rem;
   }
 
