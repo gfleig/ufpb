@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.6.2_beta
+Version: 2.7
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -52,6 +52,54 @@ body {
 }
 
 /*=================================== NOVIDADES ===========================================*/
+
+
+.agenda-card {
+  background-color: var(--cor-tema-claro);
+  padding: var(--espaco-linha);
+  /*aspect-ratio: 1;*/
+  display: flex;
+  flex-direction: column;
+}
+
+div.agenda-card {
+  border-top: 1px solid var(--cor-linha);
+  border-bottom: 0px solid var(--cor-linha);
+}
+
+.noticias-relacionadas .agenda-card .evento-titulo {
+  font-size: var(--fonte-base);
+}
+
+.noticias-relacionadas .agenda-card .icone {
+  display: none;
+}
+
+a.agenda-card:hover {
+  background-color: var(--cor-tema-claro-focus);
+}
+
+a.agenda-card .evento-titulo:hover {
+  color: var(--cor-tema);
+}
+
+.agenda-card .evento-data {
+  font-size: var(--fonte-pequena);
+  margin-bottom: var(--espaco-pequeno);  
+  color: var(--cor-tema);
+  font-weight: 500;
+}
+
+
+.agenda-card .icone {
+  font-size: var(--fonte-pagina);
+  margin-top: auto;
+  padding-top: var(--espaco-linha);
+}
+
+a.agenda-card:hover .icone {
+  color: var(--cor-tema);
+}
 
 .the-content-container .width-wrapper.large-spacer {
   padding: 0;
@@ -2108,6 +2156,17 @@ a.linha-abaixo.mais-link:hover {
   margin-top: 36px;
 }
 
+.agenda-corpo-grid {
+  display: grid;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: 3fr 9fr;
+  grid-template-areas: "news ct";
+  column-gap: 48px;
+  margin-top: 36px;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -2202,7 +2261,7 @@ a.linha-abaixo.mais-link:hover {
 
 .single-content-grid .the-content-container > p,
 .single-content-grid .the-content-container > .wp-block-list {
-  font-family: "IBM Plex Serif", "Georgia";
+  font-family: "IBM Plex Sans", "Georgia";
 }
 
 .single-content-grid .the-content-container > *:not(.wp-block-image) {
@@ -2215,6 +2274,10 @@ a.linha-abaixo.mais-link:hover {
 
 .single-content-grid .the-content-container > .wp-block-image {
   align-self: center;
+}
+
+.agenda-corpo-grid .single-content-grid .the-content-container > *:not(.wp-block-image) {
+  margin-left: 0;
 }
 
 .side-menu .current-menu-parent, .side-menu .sub-menu {
@@ -3265,6 +3328,7 @@ h2.bigode:has(p) {
   width: 100%;
   gap: var(--espaco-gutter);
   height: auto;
+  grid-auto-rows: minmax(0, 1fr);
 }
 
 .edital-full {
@@ -3913,7 +3977,7 @@ body.contraste {
     height: 90px;
   }
 
-  .single-corpo-grid {
+  .single-corpo-grid, .agenda-corpo-grid {
     margin-top: 24px;
   }
 
@@ -3992,6 +4056,10 @@ body.contraste {
   }
 
   /*novidades*/
+
+  .agenda-card .icone {
+    padding-top: 0;
+  }
 
   .absoluto {
     font-size: 12px;
@@ -4446,7 +4514,7 @@ body.contraste {
     gap: var(--espaco-gutter);
   }
 
-  .corpo-grid, .single-corpo-grid {
+  .corpo-grid, .single-corpo-grid, .agenda-corpo-grid {
     display: flex;
     flex-direction: column-reverse;
     gap: var(--espaco-gutter);

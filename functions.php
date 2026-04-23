@@ -19,6 +19,7 @@ include get_theme_file_path('/widgets/WidgetEditoraCatalogo.php');
 include get_theme_file_path('/widgets/WidgetPostsCheck.php');
 include get_theme_file_path('/widgets/WidgetNoticiasCheck.php');
 include get_theme_file_path('/widgets/WidgetNumerosMulheres.php');
+include get_theme_file_path('/widgets/WidgetAgenda.php');
 
 function example_theme_support() {
     remove_theme_support( 'widgets-block-editor' );
@@ -485,10 +486,91 @@ function cats_related_post() {
             ?> 
             </div> <!-- fecha div noticias-relacionadas -->
         </div> <?php
-    }
-            
+    }          
             
         
+    
+    // Restore original Post Data
+    wp_reset_postdata();
+}
+
+function agenda_related_post() {        
+    $posts_per_page = 4;
+    $related_cats_post = new WP_Query( array(
+        'posts_per_page' => $posts_per_page,
+        'post_type' => 'agenda',
+        'meta_key' => '__data_inicio',  // Pega a metakey de data
+        'orderby' => 'meta_value',      // e organiza a query
+        'order' => 'ASC',               // em ordem do mais velho pro mais novo
+        'meta_query' => array(
+            array(
+                'key' => '__data_fim',  // usa a data de fim do evento
+                'value' => current_time('timestamp') - 86400, //- 3 * 3600,
+                'compare' => '>='       // pra comprar com a data atual. 
+            )                           // (eventos que já acabaram não são exibidos)
+        ),
+        'no_found_rows' => true
+    ));
+
+    
+
+    if($related_cats_post->have_posts()){
+        $postCount = 0;
+        echo '<div class="sidebar-noticias">
+            <h2 class="menu-lateral-h2">Próximas Datas</h2>
+            <div class="noticias-relacionadas">';
+        while ($related_cats_post->have_posts() && $postCount < $posts_per_page) {
+            $postCount++;
+            $related_cats_post->the_post();
+            $item_link = get_post_meta( get_the_ID(), '__link', true ); // link externo do item da agenda. Opcional
+            $icon_class = 'fa-external-link';
+            $vazio = false;                                 // variável que diz se o conteúdo do post é vazio
+            if ( empty($item_link) ) {                      // se não tiver link, vai usar o permalink da postagem
+                $item_link = get_permalink();                    
+                $icon_class = 'fa-arrow-right';
+
+                $content = get_the_content();               // se não tiver nada na postagem, o card não é clicável
+                $trimmed_content = trim( str_replace( '&nbsp;', '', strip_tags( $content ) ) );
+                if ( empty( $trimmed_content ) ) {
+                    $vazio = true;
+                }
+            }                
+            
+            if (!$vazio) {
+                echo '<a href="' , esc_url($item_link) , '" class="agenda-card">';
+            } else {
+                echo '<div class="agenda-card">';
+            }     
+                echo '<div class="evento-data small-spacer">';
+
+                    $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
+                    $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );   
+
+                    if (empty($data_fim) || $data_inicio == $data_fim) {
+                        echo wp_date('j \d\e F', $data_inicio);
+                    } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
+                        echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F', $data_fim);
+                    } else {
+                        echo wp_date('j \d\e F', $data_inicio), ' a ', wp_date('j \d\e F', $data_fim);    
+                    }         
+                    
+                echo '</div>'; //data                             
+                echo '<h2 class="evento-titulo small-spacer" href="#">' , esc_html(the_title()) , '</h2>';
+
+                if (!$vazio) echo '<div class="icone"><i class="fa-solid ' . esc_attr($icon_class) . '"></i></div>';
+            
+            if (!$vazio) {
+                echo '</a>';
+            } else {
+                echo '</div>';
+            }
+        }
+        ?> 
+            </div> <!-- fecha div noticias-relacionadas -->
+        </div> <?php
+    }          
+            
+    
     
     // Restore original Post Data
     wp_reset_postdata();
@@ -1019,6 +1101,138 @@ function create_eventos() {
 	);
 }
 
+// Meta Box da agenda
+
+abstract class DatePicker_Meta_Box_Agenda {
+
+	public static function add() {
+        add_meta_box(
+            'datepicker_agenda',       // Unique ID
+            'Informações do evento',         // Box title
+            [ self::class, 'html' ],   // Content callback, must be of type callable
+            'agenda',                    // Post type
+            'side'                     // local onde fica
+        );        
+	}
+
+	public static function save( int $post_id ) {
+		if ( array_key_exists( 'data_inicio', $_POST ) ) {
+            $data_inicio_formatted = strtotime($_POST['data_inicio'] . ' 00:00-03:00');
+			update_post_meta(
+				$post_id,
+				'__data_inicio',
+				$data_inicio_formatted
+			);
+            update_post_meta(
+				$post_id,
+				'__data_inicio_original',
+				$_POST['data_inicio'],
+			);
+            update_post_meta(
+				$post_id,
+				'__data_fim',
+				$data_inicio_formatted,
+			);            
+        }		
+        if ( array_key_exists( 'data_fim', $_POST) && !empty($_POST['data_fim'])) {
+            $data_fim_formatted = strtotime($_POST['data_fim'] . ' 00:00-03:00');
+            $data_inicio_formatted = strtotime($_POST['data_inicio'] . ' 00:00-03:00');
+            if ($data_fim_formatted >= $data_inicio_formatted) {
+                update_post_meta(
+                    $post_id,
+                    '__data_fim',
+                    $data_fim_formatted
+                );
+                update_post_meta(
+                    $post_id,
+                    '__data_fim_original',
+                    $_POST['data_fim'],
+                );
+            } else {
+                update_post_meta(
+                    $post_id,
+                    '__data_fim',
+                    $data_inicio_formatted
+                );
+                update_post_meta(
+                    $post_id,
+                    '__data_fim_original',
+                    $_POST['data_inicio'],
+                );
+            }
+		}        
+        if ( array_key_exists( 'link', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__link',
+				$_POST['link']
+			);            
+		}              
+	}
+
+	public static function html( $post ) {
+        $data_inicio        = get_post_meta( $post->ID, '__data_inicio_original', true );       
+        $data_fim           = get_post_meta( $post->ID, '__data_fim_original', true ); 
+        $link               = get_post_meta( $post->ID, '__link', true );           
+
+        ?>
+        <div style="display: flex; flex-direction: column; gap: .5rem">
+            <label for="data_inicio">Data de início do evento:</label>
+            <input name="data_inicio" type="date" value="<?php echo esc_attr($data_inicio); ?>">
+
+            <p>Se o item acontecer <strong>em apenas um dia</strong>, deixar a data de fim vazia ou com o mesma data do início do evento.</p>
+            
+            <label for="data_fim">Data de término do item:</label>
+            <input name="data_fim" type="date" value="<?php echo esc_attr($data_fim); ?>">
+
+            <p>Caso haja link, o usuário acessará ele ao invés do conteúdo da postagem da Agenda.</p>
+
+            <label for="link">Link:</label>
+            <input name="link" type="text" value="<?php echo esc_attr($link); ?>">            
+		<?php  
+	}
+}
+add_action( 'add_meta_boxes', [ 'DatePicker_Meta_Box_Agenda', 'add' ] );
+add_action( 'save_post', [ 'DatePicker_Meta_Box_Agenda', 'save' ] );
+
+add_action( 'init', 'create_agenda');
+
+function create_agenda() {
+	register_post_type('agenda',
+		array(
+			'labels'      => array(
+				'name'              => __('Agenda', 'textdomain'),
+				'singular_name'     => __('Agenda', 'textdomain'),
+                'add_new'           => _x('Adicionar novo', 'Item'),
+                'add_new_item'      => __('Adicionar novo item'),
+                'edit_item'         => __('Editar item'),
+                'new_item'          => __('Novo item'),
+                'view_item'         => __('Ver item'),
+                'search_items'      => __('Buscar itens'),
+                'not_found'         => __('Nenhum item encontrado'),
+                'not_found_in_trash'=> __('Nenhum item encontrado na lixeira'),
+                'parent_item_colon' => ''
+			),
+			'public'      => true,
+			'has_archive' => 'agenda',
+            'rewrite'     => array( 'slug' => 'agenda' ), // my custom slug
+            'menu_icon'   => 'dashicons-calendar',
+            'supports'    => array(
+                'title',
+                'editor',
+                'custom-fields',
+                'revisions',
+                'excerpt',
+                //'thumbnail'
+            ),
+            'show_in_rest' => true, //permite editor gutenberg
+            'hierarchical' => false,
+            
+		)
+	);
+}
+
+
 //hook to add a meta box
 add_action( 'add_meta_boxes', 'c3m_video_meta' );
 
@@ -1355,6 +1569,52 @@ function evento_archive_rewrites(){
     );
 }
 add_action( 'init', 'evento_archive_rewrites' );
+
+function agenda_post_order( $query ){
+    // if this is not an admin screen,
+    // and is the event post type archive
+    // and is the main query
+    if( ! is_admin()
+        && $query->is_post_type_archive( 'agenda' )
+        && $query->is_main_query() ){
+
+        // if this is a past events view
+        // set compare to before today,
+        // otherwise set to today or later
+        $compare = isset( $query->query_vars['is_past'] ) ? '<' : '>=';
+        $order = isset( $query->query_vars['is_past'] ) ? 'DESC' : 'ASC';
+
+        // add the meta query and use the $compare var
+        //$today = date( 'Y-m-d' );
+        $meta_query = array(
+            array(
+                'key' => '__data_fim',  // usa a data de fim do evento
+                'value' => current_time('timestamp') - 86400, //- 3 * 3600,
+                'compare' => $compare,       // pra comprar com a data atual.                 
+            ) 
+        ); 
+        $query->set( 'meta_query', $meta_query );
+        $query->set( 'meta_key', '__data_inicio' );
+        $query->set( 'orderby', 'meta_value' );
+        $query->set( 'order', $order );
+    }
+}
+add_action( 'pre_get_posts', 'agenda_post_order' );
+
+function agenda_archive_rewrites(){
+    add_rewrite_tag( '%is_past%','([^&]+)' );
+    add_rewrite_rule(
+        'agenda/passados/([0-9]+)/?$',
+        'index.php?post_type=agenda&paged=$matches[1]&is_past=true',
+        'top'
+    );
+    add_rewrite_rule(
+        'agenda/passados/?$',
+        'index.php?post_type=agenda&is_past=true',
+        'top'
+    );
+}
+add_action( 'init', 'agenda_archive_rewrites' );
 
 /*
 * source: https://stackoverflow.com/questions/43100515/get-categories-order-by-last-post

@@ -51,6 +51,13 @@ class WidgetNumerosMulheres extends WP_Widget {
         $tecnico_m_percent = round(($tecnico_m / $tecnico_total) * 100) . '%';
         $tecnico_h_percent = round(($tecnico_h / $tecnico_total) * 100) . '%';
 
+        $discente_m = $graduacao_m + $pos_m + $residencia_m + $tecnico_m;
+        $discente_h = $graduacao_h + $pos_h + $residencia_h + $tecnico_h;
+        $discente_nd = $graduacao_nd + $pos_nd + $residencia_nd + $tecnico_nd;
+        $discente_total = $discente_m + $discente_h + $discente_nd;
+        $discente_m_percent = round(($discente_m / $discente_total) * 100) . '%';
+        $discente_h_percent = round(($discente_h / $discente_total) * 100) . '%';
+
         //echo '<pre>' . print_r($graduacao_total, true) . '</pre>';
 
         echo $args['before_widget'];
@@ -120,6 +127,18 @@ class WidgetNumerosMulheres extends WP_Widget {
                 </div>
                 <div class="totais nd"><?php echo $tecnico_nd; ?></div>
                 <div class="totais"><?php echo $tecnico_total; ?></div>
+
+                <div class="linha-rotulo">Total</div>
+                <div class="linha-barras" style="--qtd-total: <?php echo $discente_total; ?>;">
+                    <div class="mulheres" style="--qtd-m: <?php echo $discente_m; ?>;">
+                        <div class="porcento"><?php echo $discente_m_percent; ?></div><div class="absoluto"><?php echo $discente_m; ?></div>
+                    </div>
+                    <div class="homens" style="--qtd-h: <?php echo $discente_h; ?>;">
+                        <div class="porcento"><?php echo $discente_h_percent; ?></div><div class="absoluto"><?php echo $discente_h; ?></div>
+                    </div>
+                </div>
+                <div class="totais nd"><?php echo $discente_nd; ?></div>
+                <div class="totais"><?php echo $discente_total; ?></div>
             </div>
         <?php
 
@@ -149,6 +168,13 @@ class WidgetNumerosMulheres extends WP_Widget {
         $docente_doutorado_total = $docente_doutorado_m + $docente_doutorado_h + $docente_doutorado_nd;
         $docente_doutorado_m_percent = round(($docente_doutorado_m / $docente_doutorado_total) * 100) . '%';
         $docente_doutorado_h_percent = round(($docente_doutorado_h / $docente_doutorado_total) * 100) . '%';
+
+        $docente_m = $docente_mestrado_m + $docente_espec_m + $docente_doutorado_m;
+        $docente_h = $docente_mestrado_h + $docente_espec_h + $docente_doutorado_h;
+        $docente_nd = $docente_mestrado_nd + $docente_espec_nd + $docente_doutorado_nd;
+        $docente_total = $docente_m + $docente_h + $docente_nd;
+        $docente_m_percent = round(($docente_m / $docente_total) * 100) . '%';
+        $docente_h_percent = round(($docente_h / $docente_total) * 100) . '%';
 
         //echo '<pre>' . print_r($docente_doutorado_m, true) . '</pre>';
 
@@ -200,6 +226,19 @@ class WidgetNumerosMulheres extends WP_Widget {
                 </div>
                 <div class="totais nd"><?php echo $docente_espec_nd; ?></div>
                 <div class="totais"><?php echo $docente_espec_total; ?></div>
+
+                <div class="linha-rotulo">Total</div>
+                <div class="linha-barras" style="--qtd-total: <?php echo $docente_total; ?>;">
+                    <div class="mulheres" style="--qtd-m: <?php echo $docente_m; ?>;">
+                        <div class="porcento"><?php echo $docente_m_percent; ?></div><div class="absoluto"><?php echo $docente_m; ?></div>
+                    </div>
+                    <div class="homens" style="--qtd-h: <?php echo $docente_h; ?>;">
+                        <div class="porcento"><?php echo $docente_h_percent; ?></div><div class="absoluto"><?php echo $docente_h; ?></div>
+                    </div>
+                </div>
+                <div class="totais nd"><?php echo $docente_nd; ?></div>
+                <div class="totais"><?php echo $docente_total; ?></div>
+
             </div>
 
             <?php 

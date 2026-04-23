@@ -9,7 +9,7 @@
         </div>
         
         <div class="content-grid">            
-            <h1>Editais</h1>
+            <h1>Arquivo</h1>
             
             <div class="noticias-relacionadas">
                 <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
