@@ -20,6 +20,7 @@ include get_theme_file_path('/widgets/WidgetPostsCheck.php');
 include get_theme_file_path('/widgets/WidgetNoticiasCheck.php');
 include get_theme_file_path('/widgets/WidgetNumerosMulheres.php');
 include get_theme_file_path('/widgets/WidgetAgenda.php');
+include get_theme_file_path('/widgets/WidgetNumerosCustom.php');
 
 function example_theme_support() {
     remove_theme_support( 'widgets-block-editor' );
