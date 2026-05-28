@@ -1,7 +1,7 @@
 <div class="topo portal" id="cabecalho-id">
         <div class="cabecalho width-wrapper">            
             <a rel="noopener noreferrer" href="<?php echo get_home_url(); ?>" class="brasao">
-                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/marca-70anos.png">
+                <img src="<?php echo get_bloginfo("template_directory"); ?>/img/marca.png">
             </a>
             <button type="nav" id="hamburger">
                 <i id="hamburger-botao" class="fa-solid fa-bars"></i>
@@ -136,7 +136,7 @@
 
 <?php if(!is_home()) summon_banner_top(); ?>
 
-<?php if(is_home()) : ?>
+<?php /*if(is_home()) : ?>
 
 <section aria-label="Carrossel">    
     <div class="carrossel" data-carrossel>        
@@ -163,7 +163,7 @@
     </div>
 </section>
 
-<?php endif ?>
+<?php endif */?>
 
 <div id="menu-overlay" class="top-fixed-overlay menu-hidden">
 
