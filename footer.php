@@ -176,7 +176,7 @@
         </g>
       </svg>
     </a>
-    <img id="marca_gov" src="<?php echo get_bloginfo("template_directory"); ?>/img/gov.png" alt="Marca do Governo Federal">
+    <img id="marca_gov" src="<?php echo get_bloginfo("template_directory"); ?>/img/gov_eleitoral.png" alt="Marca do Governo Federal">
   </div>
   
 </div>

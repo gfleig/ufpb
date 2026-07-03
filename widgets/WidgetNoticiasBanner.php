@@ -83,7 +83,7 @@ class WidgetNoticiasBanner extends WP_Widget {
                     echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card" style="background-image:                          
                         url(' . get_the_post_thumbnail_url() . ')">';
                             $categories = get_the_category(); //categorias
-                            if ($categories && ($categories_count > 1)) {
+                            if (false && $categories && ($categories_count > 1)) {
                                 echo '<div class="categorias small-spacer">';
                                 $categories = array_slice($categories, 0, 2);
                                 foreach ($categories as $category) {                                                    

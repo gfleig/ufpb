@@ -28,6 +28,18 @@ function example_theme_support() {
 }
 add_action( 'after_setup_theme', 'example_theme_support' );
 
+function block_filter_file_set_defaults($metadata) {
+    if (!isset($metadata["name"]) || "core/file" !== $metadata["name"]) {
+        return $metadata;
+    }
+
+    if (isset($metadata["attributes"]) && isset($metadata["attributes"]["displayPreview"])) {
+        $metadata["attributes"]["displayPreview"]["default"] = false;
+    }
+
+    return $metadata;
+}
+add_filter("block_type_metadata", "block_filter_file_set_defaults");
 
 add_filter('render_block', function ($blockContent, $block) {
 

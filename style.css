@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.8
+Version: 2.9
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -53,6 +53,10 @@ body {
 
 /*=================================== NOVIDADES ===========================================*/
 
+.menu ul li.menu-item-has-children > a {
+  cursor: default;
+}
+
 .noticias-banner-widget {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -60,13 +64,13 @@ body {
   width: 100%;
   max-width: 1800px;
   min-height: 600px;
-  gap: var(--espaco-gutter);
+  gap: var(--espaco-minimo);
   grid-template-areas: "grande pequeno1" "grande pequeno2";
   margin: 0 auto;  
 }
 
 .noticias-banner.full-width-wrapper {
-  background-color: var(--cor-background);
+  background-color: unset;
 }
 
 .noticias-banner-widget > .noticia-card {
@@ -82,29 +86,44 @@ body {
 }
 
 .noticias-banner-widget > .noticia-card:hover .titulo {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
 }
 
 .noticias-banner-widget > .noticia-card:hover {
   /*background-size: 102%;*/
 }
 
+@property --cor-grad-1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: rgba(0, 0, 0, 1);
+}
+
 .noticias-banner-widget > .noticia-card::before {
-  background: linear-gradient(rgba(0,0,0,0.15) 0%, rgba(0, 0, 0, 0.35) 100%);
+  background: linear-gradient(rgba(0,0,0,0) 40%, var(--cor-grad-1) 90%);
   width: 100%;
   height: 100%;
   position: absolute;
   content: '';
-  z-index: 30;
+  z-index: 0;
   /*background: linear-gradient(in oklch to bottom, oklch(0 0 0 / 0) 50%, oklch(0 0 0 / .7) 100%);
   background: linear-gradient(in oklch to bottom, oklch(0 0 0 / 0) 50%, var(--cor-tema) 100%);
   background: linear-gradient(in oklch to bottom, oklch(0.7058 0.152 265.23 / 0) 50%, #20409ad0 100%);*/
-  mask: linear-gradient(rgba(255,255,255,0) 50%, rgb(0, 0, 0) 90%);
-  backdrop-filter: blur(12px);
+  /*mask: linear-gradient(rgba(255,255,255,0) 30%, rgb(0, 0, 0) 90%);*/
+  /*backdrop-filter: blur(8px);*/
+  transition: --cor-grad-1 .10s ease-out; /* ease is the default, no need to specify it */
+  opacity: 0.9;
+}
+
+.noticias-banner .noticia-card:hover::before {
+  --cor-grad-1: var(--cor-tema);
+  mix-blend-mode: revert-layer;
+  /*background: linear-gradient(rgba(0,0,0,0) 50%, var(--cor-tema) 100%);*/
+  opacity: 0.9;
 }
 
 .noticias-banner-widget > .noticia-card:first-child:before {
-  mask: linear-gradient(rgba(255,255,255,0) 30%, rgb(0, 0, 0) 90%);
+  /*mask: linear-gradient(rgba(255,255,255,0) 30%, rgb(0, 0, 0) 90%);*/
 }
 
 .noticias-banner-widget > .noticia-card:first-child {
@@ -125,29 +144,30 @@ body {
 }
 
 .noticias-banner-widget .titulo {
-  color: white;
+  color: var(--cor-background);
   margin-left: var(--espaco-gutter);
   margin-right: var(--espaco-gutter);
   margin-bottom: var(--espaco-linha);
   font-size: var(--fonte-pagina);
-  z-index: 300;  
+  z-index: 0;  
   font-weight: 500;
   /*border-top: 1px solid var(--cor-background);
   padding-top: var(--espaco-minimo);*/
+  position: relative;
+  text-shadow: 0px 0px 6px hsl(0deg 0% 0% / 0.3);
 }
 
 .noticias-banner-widget .noticia-card:first-child .titulo {
   font-size: 42px;
-  max-width: 66%;
   margin-left: var(--espaco-gutter);
-  margin-bottom: var(--espaco-grande);
   font-weight: 600;
+  max-width: 85%;
+  margin-bottom: calc(2* var(--espaco-gutter));
 }
 
 .noticias-banner-widget .noticia-card:hover .titulo {
   color: var(--cor-background);
 }
-
 
 .noticias-banner-widget .categorias {
   margin-left: var(--espaco-gutter);
@@ -176,6 +196,25 @@ body {
   padding-top: 0;
   padding-bottom: 0;
   margin-bottom: 54px;
+}
+
+.noticias-banner-widget .titulo::before {
+  height: 100%;
+  width: 2px;
+  position: absolute;
+  left: calc(-1 * var(--espaco-pequeno));
+  top: 0;
+  background: var(--cor-background);
+}
+
+.noticia-card .titulo::before {
+  content: "";
+  height: 100%;
+  width: 2px;
+  position: absolute;
+  left: calc(-1 * var(--espaco-pequeno));
+  top: 0;
+  background: var(--cor-background);
 }
 
 
@@ -1303,11 +1342,12 @@ font-size: var(--fonte-base);
   align-items: center;
   width: 100%;
   margin: 0 auto;
+  z-index: 10;
 }
 
 .topo.portal {
   border-bottom: 1px solid var(--cor-linha);
-  box-shadow: 0 0 12px rgba(0,0,0,.05);
+  box-shadow: 0 0 12px rgba(0,0,0,.15);
   position: relative;
 }
 
@@ -1976,7 +2016,7 @@ input[type="search"]:focus {
   border-bottom: 0;
   flex-direction: column;
   gap: 0;
-  z-index: 100;
+  z-index: 100000000000;
   left: calc(-1 * var(--espaco-pequeno));
   min-width: calc(100% + 3 * var(--espaco-linha));
   background: var(--cor-background);
@@ -2110,6 +2150,7 @@ menu>ul>li:not(.menu-item-has-children)>a:focus {
   visibility: visible;
   opacity: 1;
   transition: margin-top .25s, opacity .15s, visibility .15s;
+  z-index: 1000000000000000000000000000000000000;
 }
 
 .imagem {
@@ -4027,7 +4068,7 @@ body.contraste {
   .noticias-banner-widget {
     max-width: 1116px;
     min-height: 400px;
-    gap: var(--espaco-linha);
+    gap: var(--espaco-minimo);
     margin-top: -42px;
   }
 
@@ -4200,6 +4241,8 @@ body.contraste {
 
   /*novidades*/
 
+
+
   .noticias-banner-widget {  
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -4224,6 +4267,10 @@ body.contraste {
 
   .noticias-banner-widget .noticia-card:first-child .categorias {
     margin-left: var(--espaco-gutter);
+  }
+
+  .noticia-card .titulo::before {
+    left: calc(-.7 * var(--espaco-linha));
   }
 
   .agenda-card .icone {
