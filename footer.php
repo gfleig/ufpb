@@ -47,6 +47,7 @@
           $linkedin     = get_theme_mod('custom_linkedin');
           $spotify      = get_theme_mod('custom_spotify');
           $flickr       = get_theme_mod('custom_flickr');
+          $github       = get_theme_mod('custom_github');
                              
           if (!empty($logradouro)) {
               echo '<address>' . wp_kses_post($logradouro);
@@ -112,7 +113,10 @@
           } 
           if (!empty($flickr)) {
             echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_url($flickr) . '"><i class="fa-brands fa-flickr"></i></i></a>';
-          } 
+          }
+          if (!empty($github)) {
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_url($github) . '"><i class="fa-brands fa-github"></i></i></a>';
+          }  
 
           echo '</div>' //div fim redes sociais          
           ?>

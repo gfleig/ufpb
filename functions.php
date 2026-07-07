@@ -398,7 +398,7 @@ function summon_banner_top(){
         if (!empty($imagem_banner_url)) {
         echo '<img src="' . esc_attr(esc_url($imagem_banner_url)) . '" alt="Imagem decorativa do site">';
         } else {
-            echo '<img src="' , get_bloginfo("template_directory") , '/decoration.jpg" alt="Imagem decorativa do site">';
+            echo '<img src="' , get_bloginfo("template_directory") , '/decoration.webp" alt="Imagem decorativa do site">';
         }   
     }
          
@@ -412,7 +412,7 @@ function get_heroimage_url(){
     if (!empty($imagem_url)) {
         return esc_url($imagem_url);
     } else {
-        return esc_url(get_bloginfo("template_directory") , '/decoration.jpg');
+        return esc_url(get_bloginfo("template_directory") , '/decoration.webp');
     }        
 }
 
@@ -425,7 +425,7 @@ function summon_banner_bottom(){
     if (!empty($imagem_banner_url)) {
         echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
     } else {
-        echo '<img src="' , get_bloginfo("template_directory") , '/decoration.jpg" alt="Imagem decorativa do site">';
+        echo '<img src="' , get_bloginfo("template_directory") , '/decoration.webp" alt="Imagem decorativa do site">';
     }        
     echo '</div>'; 
 }
@@ -781,9 +781,9 @@ function customizer_contato($wp_customize) {
     ));
     $wp_customize->add_control('custom_whatsapp', array(
         'input_attrs' => array(
-            'placeholder' => __('Ex.: +558399991-0105'),
+            'placeholder' => __('Ex.: +5583999910105'),
         ),
-        'label' => 'Número do Whatsapp, em formato +5583XXXXX-XXXX',
+        'label' => 'Número do Whatsapp, em formato +5583XXXXXXXXX',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
@@ -877,6 +877,18 @@ function customizer_contato($wp_customize) {
             'placeholder' => __('Insira a URL da página do Flickr'),
         ),
         'label' => 'URL da página do Flickr',
+        'section' => 'customizer_contato',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting('custom_github', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_github', array(
+        'input_attrs' => array(
+            'placeholder' => __('Insira a URL do Github'),
+        ),
+        'label' => 'URL da página do Github',
         'section' => 'customizer_contato',
         'type' => 'url',
     ));
