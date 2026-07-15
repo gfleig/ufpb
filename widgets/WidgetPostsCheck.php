@@ -112,9 +112,12 @@ class WidgetNoticiasSimplesCheck extends WP_Widget {
                     $the_query->the_post();
 
                     echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-card linha-abaixo">';
+                        if (has_post_thumbnail()) {
                         echo '<div class="noticia-card-imagem  small-spacer">';
-                        the_post_thumbnail('large');
+                        //echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
+                        the_post_thumbnail('large');//echo    '<img src="', esc_url(the_post_thumbnail_url()), '">';
                         echo '</div>'; //noticia-imagem
+                        }
 
                         $categories = get_the_category(); //categorias
                         if ($categories && ($categories_count > 1)) {

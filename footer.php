@@ -48,7 +48,7 @@
           $spotify      = get_theme_mod('custom_spotify');
           $flickr       = get_theme_mod('custom_flickr');
           $github       = get_theme_mod('custom_github');
-                             
+                              
           if (!empty($logradouro)) {
               echo '<address>' . wp_kses_post($logradouro);
           }
@@ -156,8 +156,64 @@
 
   </div>
   </footer>
- <!-- fecha footer wrapper -->
+  <!-- fecha footer wrapper -->
 
+  <div class="azulejos">
+    <div class="azulejo-mural">
+      <!--figure><img src="<?php echo get_bloginfo("template_directory"); ?>/img/azulejo1.svg" alt=""></figure-->
+      <?php
+        for ($i = 0; $i < 96 * 4; $i++) {
+          $azulejo_tipo = mt_rand(1, 8);
+          switch ($azulejo_tipo) {
+            case 1: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><polygon class="cls-1" points="18 18 0 0 18 0 18 18"/></svg>
+                    </figure>';
+              break;
+            case 2: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><rect class="cls-1" y="0" width="6" height="18"/><polygon class="cls-1" points="18 12 6 0 18 0 18 12"/></svg>
+                    </figure>';
+              break;
+            case 3: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><rect class="cls-1" width="6" height="18"/></svg>
+                    </figure>';
+              break;
+            case 4: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><rect class="cls-1" x="12" width="6" height="18"/></svg>
+                    </figure>';
+              break;
+            case 5: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><rect class="cls-1" x="12" y="0" width="6" height="18"/><polygon class="cls-1" points="0 6 12 18 0 18 0 6"/></svg>
+                    </figure>';
+              break;
+            case 6: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><polygon class="cls-1" points="0 18 18 0 18 18 0 18"/></svg>
+                    </figure>';
+              break;
+            case 7: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><polygon class="cls-1" points="0 0 18 18 0 18 0 0"/></svg>
+                    </figure>';
+              break;
+            case 8: 
+              echo '<figure>
+              <svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><defs><style>.cls-1{fill:currentColor;}</style></defs><polygon class="cls-1" points="18 0 0 18 0 0 18 0"/></svg>
+                    </figure>';
+              break;
+          }
+
+      ?>
+      
+      <?php
+        }
+      ?>
+    </div>
+  </div>
 </div>
 
 <div id="footer-gov">
