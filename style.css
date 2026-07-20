@@ -4,7 +4,7 @@ Theme URI: https://github.com/gfleig/ufpb
 Author: Fleig {IL} + STI (UFPB)
 Author URI: https://github.com/gfleig
 Description: Tema para os sites da Universidade Federal da Paraíba. Utiliza zero plugins. Possui funcionalidades como sistema de eventos e editais, widgets de destaque, navegação via menus contextualizados e flexibilidade de customização gráfica e de conteúdo. 
-Version: 2.9.2
+Version: 2.9.3
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -679,7 +679,8 @@ summary::after {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  box-sizing: content-box;
+  margin: 0;
 }
 
 summary + p {
@@ -694,14 +695,11 @@ wp-block-details summary:hover {
   padding: calc(var(--espaco-pequeno) - 2px);
 }
 
-.wp-block-details summary:hover {
-  padding: calc(var(--espaco-pequeno) - 2px);
-}
 
 .wp-block-details:has(summary:hover) p {
-  margin-left: calc(var(--espaco-pequeno) - 2px);
+  /*margin-left: calc(var(--espaco-pequeno) - 2px);
   margin-right: calc(var(--espaco-pequeno) - 2px);
-  margin-top: calc(var(--espaco-linha) - var(--espaco-pequeno));
+  margin-top: calc(var(--espaco-linha) - var(--espaco-pequeno));*/
 }
 
 summary + p {
@@ -712,8 +710,31 @@ summary + p {
   margin-left: var(--espaco-pequeno);
   margin-right: var(--espaco-pequeno);
 }
+
 .wp-block-details:has(summary:hover) p:last-child {
   margin-bottom: calc(1em - 2px);
+}
+
+.wp-block-details > * {
+  margin-left: var(--espaco-pequeno);
+  margin-right: var(--espaco-pequeno);
+}
+
+.wp-block-details summary:hover ~ * {
+  margin-left: calc(var(--espaco-pequeno) - 2px);
+  margin-right: calc(var(--espaco-pequeno) - 2px);
+}
+
+.wp-block-details summary:hover {
+  margin: -2px;
+}
+
+.wp-block-details:open summary {
+  margin-bottom: 2px;
+}
+
+.wp-block-details > .wp-block-heading {
+  width: unset;
 }
 
 .spacer {

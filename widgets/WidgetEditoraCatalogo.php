@@ -13,8 +13,9 @@ class Widget_Editora_Catalogo extends WP_Widget
 
     public function widget( $args, $instance ) 
     {    
-        $api_url = 'https://www.editora.ufpb.br/press5/index.php/UFPB/api/v1/submissions?status=3&orderBy=datePublished&count=10&apiToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjkxODFmZmYyYzJkZWRjMWQ3YzkzYjM5N2E5OTZkMGE0ZjRkOTI2YTYi.a7JdYxo0SeJhnPyhtcnHBXfXo6LG-UbUBQ70z291KIU'; // Example API endpoint
-        $response = wp_remote_get( $api_url );
+        $api_url = 'https://www.editora.ufpb.br/press5/index.php/UFPB/api/v1/submissions?status=3&orderBy=datePublished&count=10&apiToken='; // Example API endpoint
+        $api_token = $instance['api_token'];
+        $response = wp_remote_get( $api_url . $api_token);
 
         if ( is_wp_error( $response ) ) {
             echo '<p>Error fetching data from API.</p>';
@@ -54,12 +55,23 @@ class Widget_Editora_Catalogo extends WP_Widget
 
     public function update( $new_instance, $old_instance ) 
     {
-        return $new_instance;
+        $instance = $old_instance;
+
+        $instance['api_token'] = !empty($new_instance['api_token']) ? esc_html($new_instance['api_token']) : null;
+
+        return $instance;
     }
 
     public function form( $instance ) 
     {        
-    
+        $api_token = $instance['api_token'];    
+
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('api_token'); ?>">Token da API para puxar dados dos livros:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('api_token'); ?>" name="<?php echo $this->get_field_name('api_token'); ?>" type="text" value="<?php echo $api_token; ?>">
+        </p>
+        <?php
     }
 
 }
